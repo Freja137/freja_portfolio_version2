@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Faglig profil</title>
+    <meta name="description"
+        content="Jeg er Freja Fischer, multimediedesignstuderende med interesse for frontendudvikling og UX/UI-design. Lær mig at kende og se mine projekter.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./assets/js/app.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <nav class="nav-mobile" aria-label="Mobilnavigation">
+            <a class="site-logo" href="./index.html" aria-label="Freja Fischer – forside">
+                FF.
+            </a>
+
+            <button class="burgerMenuIcon" type="button" aria-label="Åbn menu" aria-expanded="false"
+                aria-controls="navDropdown">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+
+            <div class="navDropdown" id="navDropdown" inert>
+                <ul class="nav-list">
+                    <li class="links">
+                        <a href="./faglig-profil.html">Faglig profil</a>
+                    </li>
+                    <li class="links">
+                        <a href="./om-mig.html">Om mig</a>
+                    </li>
+                    <li class="links">
+                        <a href="./portfolio.html">Portfolio</a>
+                    </li>
+                    <li class="links">
+                        <a href="./kontakt.html">Kontakt</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav class="nav-desktop" aria-label="Hovednavigation">
+            <ul class="nav-list-desktop">
+                <li><a href="./faglig-profil.html">Faglig profil</a></li>
+                <li><a href="./om-mig.html">Om mig</a></li>
+                <li><a href="./portfolio.html">Portfolio</a></li>
+            </ul>
+
+            <a class="site-logo" href="./index.html" aria-label="Freja Fischer – forside">
+                FF.
+            </a>
+
+            <a class="contact-link" href="./kontakt.html">
+                Kontakt
+                <!-- Ikon hentet fra google fonts -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 12.013L20.789 12m-6.776 7L21 12l-6.988-7" />
+                </svg>
+            </a>
+        </nav>
+    </header>
+    <main class="main-home">
+        <section class="hero faglig-profil">
+            <h1 class="fp-title">Hvordan jeg arbejder</h1>
+            <p>Jeg arbejder med både design og frontendudvikling – fra at forstå brugerens behov til at bygge og afprøve
+                løsningen. Her kan du læse om min arbejdsform og de faglige kompetencer, jeg bringer i spil.</p>
+            <img src="./assets/img/freja_arbejdsprocess.webp"
+                alt="Billede af Freja der sidder ved spisebordet og arbejder på wireframes">
+        </section>
+        <section class="fp-qoute">
+            <span>"</span>
+            <p class="qoute-label">&lt;/&gt; Det der driver mig</p>
+            <p class="qoute-content">“Jeg kan godt lide at se et design blive til en fungerende løsning gennem kode. Det
+                motiverer mig at
+                skabe intuitive websites, der er nemme at bruge og fungerer i praksis.”</p>
+            <a class="text-link fp-link" href="./portfolio.html">
+                Udforsk mine projekter
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 12.013L20.789 12m-6.776 7L21 12l-6.988-7" />
+                </svg>
+            </a>
+        </section>
+        <section class="kompetencer-container">
+            <h2>&lt;/&gt; Faglige kompetencer</h2>
+            <article class="kompetencer">
+                <h3 class="kompetencer-title">Frontend og frameworks</h3>
+                <p class="kompetencer-content">Jeg arbejder responsivt med i semantisk HTML, CSS og
+                    JavaScript samt arbejder jeg også med Vue og PHP. Jeg er nysgerrig på, hvordan tingene fungerer bag
+                    skærmen,
+                    og kan godt lide at nørde med detaljerne i koden.</p>
+            </article>
+
+            <article class="kompetencer">
+                <h3 class="kompetencer-title">UX/UI og brugertest</h3>
+                <p class="kompetencer-content">Jeg er fintmærkende og opdager ofte små nuancer i, hvordan brugere
+                    reagerer, før de selv siger det. Det gør mig god til at observere under brugertest og fange det, der
+                    ikke bliver sagt direkte. Jeg tager indsigterne med ind i designet og koden, så løsningen føles
+                    naturlig at bruge.</p>
+            </article>
+        </section>
+        <section class="bidrag" aria-labelledby="bidrag-title">
+            <h2 id="bidrag-title">&lt;/&gt; Det bidrager jeg med</h2>
+
+            <div class="accordion">
+                <h3 class="accordion-heading">
+                    <button class="accordion-title" type="button" aria-expanded="false"
+                        aria-controls="accordion-frontend">
+                        Frontend udvikling
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                    </button>
+                </h3>
+                <div class="accordion-panel" id="accordion-frontend" inert>
+                    <div class="accordion-inner">
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>Jeg visualiserer og tester løsninger i Figma og omsætter dem efterfølgende til
+                                    responsiv og
+                                    <strong>funktionel</strong> frontend med HTML, CSS og JavaScript.
+                                </p>
+                                <p>Gennem API-integration og dataudveksling arbejder jeg med <strong>dynamiske
+                                        løsninger</strong>, hvor funktionalitet og brugeroplevelse hænger sammen.</p>
+                            </div>
+                            <img src="./assets/img/frontend.webp" alt="Bærbar computer med kode på et spisebord">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <h3 class="accordion-heading">
+                    <button class="accordion-title" type="button" aria-expanded="false"
+                        aria-controls="accordion-design">
+                        Design og prototyping
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                    </button>
+                </h3>
+                <div class="accordion-panel" id="accordion-design" inert>
+                    <div class="accordion-inner">
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>Med udgangspunkt i <strong>designprincipper</strong> omsætter jeg idéer og research
+                                    til
+                                    gennemarbejdede og brugervenlige løsninger.</p>
+                                <p>Gennem <strong>iterative processer</strong> og løbende brugertest forfiner jeg
+                                    designet, så
+                                    det bliver mere intuitivt og velfungerende.</p>
+                            </div>
+                            <img src="./assets/img/deign_og_prototyping.webp" alt="Skitser af wireframes på papir">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <h3 class="accordion-heading">
+                    <button class="accordion-title" type="button" aria-expanded="false"
+                        aria-controls="accordion-bruger">
+                        Brugerforståelse
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                    </button>
+                </h3>
+                <div class="accordion-panel" id="accordion-bruger" inert>
+                    <div class="accordion-inner">
+                        <div class="accordion-content">
+                            <div class="accordion-text">
+                                <p>Jeg bruger research og kvalitative interviews til at forstå <strong>brugernes
+                                        behov</strong> og oplevelser. Gennem tematisk analyse finder jeg mønstre i deres
+                                    svar og
+                                    omsætter indsigterne til valg om indhold, navigation og funktioner.</p>
+                            </div>
+                            <img src="./assets/img/brugerforstaelse.webp" alt="Bærbar computer med en tematisk analyse">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="process-container">
+            <h2>&lt;/&gt; Sådan arbejder jeg</h2>
+            <article class="process-content">
+                <h3 class="process-title">Samarbejde</h3>
+                <p class="process-text">I samarbejde er jeg rolig og observerende og lægger stor vægt på dialog og
+                    gensidig forståelse. Jeg bestræber mig på at bidrage til et arbejdsmiljø præget af ansvar, respekt
+                    og tryghed.
+                </p>
+            </article>
+            <article class="process-content">
+                <h3 class="process-title">Process</h3>
+                <p class="process-text">Jeg er samvittighedsfuld og pligtopfyldende og lægger vægt på at gøre tingene
+                    ordentligt fra start
+                    til slut. Jeg arbejder struktureret og procesorienteret med fokus på overblik og klare rammer.
+                </p>
+            </article>
+        </section>
+        <a class="to-top" href="#">
+            Til toppen
+            <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+        </a>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <ul class="footer-links">
+                <li>
+                    <a href="https://github.com/DIT-BRUGERNAVN" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:DIN@MAIL.DK">
+                        <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                        Mail
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/DIT-BRUGERNAVN" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                        LinkedIn
+                    </a>
+                </li>
+            </ul>
+            <p class="footer-copy">&copy;Freja Fischer 2026</p>
+        </div>
+    </footer>
+</body>
+
+</html>

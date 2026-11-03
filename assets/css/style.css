@@ -1,7 +1,819 @@
+/* Variabler */
+:root {
+    /* Farver */
+    --color-background: #f4efe7;
+    --chocolate: #3E2B24;
+    --color-line: #b7a596;
+
+    /* Skrifttyper */
+    --font-heading: "Instrument Serif", serif;
+    --font-body: "Instrument Sans", sans-serif;
+
+    /* Afstande */
+    --smallPadding: 20px;
+    --mediumPadding: 40px;
+    --largePadding: 80px;
+
+    /* Sidebredde */
+    --page-padding: 50px;
+    --page-max-width: 1200px;
+}
+
+
+/* Grund styling */
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
+    background-color: var(--color-background);
+    color: var(--chocolate);
+    font-family: var(--font-body);
+    line-height: 1.5;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+main {
+    padding-top: 60px;
+    /* plads til den faste mobilnav */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+    color: var(--chocolate);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: var(--color-background);
+}
+
+
+/* Nav - mobile */
+.nav-desktop {
+    display: none;
+}
+
+.nav-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding-inline: var(--page-padding);
+}
+
+.site-logo {
+    text-decoration: none;
+    color: var(--chocolate);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+}
+
+/* Menuknap */
+.burgerMenuIcon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+
+    background: transparent;
+    color: var(--chocolate);
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+/* Menuen fylder resten af skærmen */
+.navDropdown {
+    position: fixed;
+    inset: 60px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px var(--smallPadding);
+    overflow-y: auto;
+    background-color: var(--color-background);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(30px);
+    transition:
+        opacity 400ms ease,
+        transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 500ms;
+}
+
+.navDropdown.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Links */
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+    margin: auto 0;
+    padding: 0;
+}
+
+.nav-list a {
+    display: block;
+    color: var(--chocolate);
+    text-decoration: none;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+/* Links starter lidt længere nede */
+.nav-list .links {
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+        opacity 600ms ease,
+        transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navDropdown.show .links {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Forsinkelse gælder kun, når menuen åbner */
+.navDropdown.show .links:nth-child(1) {
+    transition-delay: 80ms;
+}
+
+.navDropdown.show .links:nth-child(2) {
+    transition-delay: 160ms;
+}
+
+.navDropdown.show .links:nth-child(3) {
+    transition-delay: 240ms;
+}
+
+.navDropdown.show .links:nth-child(4) {
+    transition-delay: 320ms;
+}
+
+/* Stop scroll på siden bag menuen */
+body.menu-open {
+    overflow: hidden;
+}
+
+.burgerMenuIcon:focus-visible,
+.nav-mobile a:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
+}
+
+
+/* CTA */
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    min-width: 13rem;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid var(--chocolate);
+    color: var(--chocolate);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.text-link svg {
+    flex-shrink: 0;
+    width: 1.2rem;
+    height: 1.2rem;
+    transition: transform 250ms ease;
+}
+
+.text-link:hover svg,
+.text-link:focus-visible svg {
+    transform: translateX(4px);
+}
+
+.text-link:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
+}
+
+/* FOOTER mobil */
+.site-footer {
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+    padding-bottom: var(--mediumPadding);
+    margin-top: var(--largePadding);
+}
+
+/* Stregen i toppen og copyright nederst til højre */
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: last baseline;
+    gap: 1rem;
+    padding-top: var(--smallPadding);
+    border-top: 1px solid var(--chocolate);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--chocolate);
+    text-decoration: none;
+    font-size: 12px;
+}
+
+/* Ikonerne fylder lige meget, så teksten flugter */
+.footer-links i {
+    width: 1rem;
+    font-size: 12px;
+    text-align: center;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+.footer-links a:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
+}
+
+.footer-copy {
+    margin: 0;
+    color: var(--color-line);
+    font-size: 10px;
+}
+
+/* ----- FORSIDE ----- */
+/* Kort om mig sektion til forside */
+.about {
+    display: grid;
+    gap: 1.25rem;
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+    padding-block: 3.5rem var(--largePadding);
+}
+
+.about-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 7 / 4;
+    object-fit: cover;
+    object-position: center;
+}
+
+.section-label {
+    margin: 0;
+    margin-top: var(--smallPadding);
+    font-size: 0.8rem;
+}
+
+.about-title {
+    margin: 2.5rem 0 0;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 1.5;
+}
+
+.about-text {
+    margin: 1rem 0 0;
+    font-size: 15px;
+}
+
+.about-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 5rem;
+}
+
+/* Sektioner fader ind fra bunden, når man scroller ned til dem */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity 800ms ease,
+        transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---- FAGLIG PROFIL ---- */
+.hero {
+    padding-inline: var(--page-padding);
+    margin-inline: auto;
+    padding-bottom: var(--mediumPadding);
+    padding-top: var(--mediumPadding);
+
+    img {
+        width: 100%;
+        max-height: 350px;
+        object-fit: cover;
+        object-position: 40% 65%;
+    }
+
+    p {
+        font-family: var(--font-body);
+        padding-bottom: var(--mediumPadding);
+        font-size: 15px;
+    }
+}
+
+.fp-title {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.fp-qoute {
+    padding-inline: var(--mediumPadding);
+    padding-bottom: var(--largePadding);
+    padding-top: var(--largePadding);
+    display: flex;
+    flex-direction: column;
+}
+
+.fp-qoute span {
+    font-size: 50px;
+    font-family: var(--font-body);
+    line-height: 1;
+    margin: 0 auto;
+}
+
+.qoute-label {
+    margin: 0 auto;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.qoute-content {
+    max-width: 700px;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    text-align: left;
+    font-weight: 300;
+}
+
+.fp-link {
+    font-weight: 300;
+    margin: 0 auto;
+    max-width: 250px;
+}
+
+.kompetencer-container {
+    display: flex;
+    flex-direction: column;
+    padding-inline: var(--mediumPadding);
+    font-family: var(--font-body);
+    gap: var(--smallPadding);
+    padding-top: var(--mediumPadding);
+}
+
+.kompetencer-container h2,
+.bidrag h2,
+.process-container h2 {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.kompetencer-container h2,
+.process-container h2 {
+    margin-bottom: 0;
+}
+
+.kompetencer-content {
+    font-size: 15px;
+}
+
+.kompetencer-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-heading);
+    font-size: 23px;
+    font-weight: 300;
+}
+
+/* Streg efter titlen */
+.bidrag h2 {
+    padding-bottom: var(--smallPadding);
+}
+
+.kompetencer-title,
+.process-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Streg efter titlen */
+.kompetencer-title::after,
+.process-title::after {
+    content: "";
+    width: 55px;
+    height: 0.5px;
+    background-color: var(--chocolate);
+}
+
+/* Det bidrager jeg med */
+.bidrag {
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+    padding-block: var(--largePadding);
+}
+
+/* Streg under hvert punkt og over det første */
+.accordion {
+    border-bottom: 1px solid var(--chocolate);
+}
+
+.accordion:first-of-type {
+    border-top: 1px solid var(--chocolate);
+}
+
+.accordion-heading {
+    margin: 0;
+}
+
+/* Knappen fylder hele rækken */
+.accordion-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding: 1.75rem 0;
+    border: 0;
+    background: transparent;
+    color: var(--chocolate);
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    cursor: pointer;
+}
+
+.accordion-title:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
+}
+
+.accordion-title i {
+    flex-shrink: 0;
+    font-size: 20px;
+    transition: transform 300ms ease;
+}
+
+.accordion.is-open .accordion-title i {
+    transform: rotate(180deg);
+}
+
+/* Indholdet glider op og ned */
+.accordion-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.accordion.is-open .accordion-panel {
+    grid-template-rows: 1fr;
+}
+
+.accordion-inner {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.accordion-content {
+    display: grid;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+.accordion-text p {
+    margin: 0 0 1rem;
+    font-size: 15px;
+}
+
+/* Fremhævede ord */
+.accordion-text strong {
+    font-style: italic;
+}
+
+.accordion-content img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.process-container {
+    padding-inline: var(--mediumPadding);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.process-title {
+    font-family: var(--font-heading);
+    font-size: 23px;
+}
+
+.process-text {
+    font-size: 15px;
+    font-family: var(--font-body);
+}
+
+/* Til toppen */
+.to-top-container {
+    display: flex;
+    justify-content: flex-end;
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+    padding-block: var(--mediumPadding) var(--largePadding);
+}
+
+/* Skjult, mens hero-sektionen er på skærmen */
+.to-top.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Til toppen – fast i højre side */
+.to-top {
+    position: fixed;
+    right: var(--page-padding);
+    bottom: var(--largePadding);
+    z-index: 900;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 15px 15px;
+    border-radius: 2rem;
+
+    background-color: var(--chocolate);
+    color: var(--color-background);
+    text-decoration: none;
+    font-size: 10px;
+
+    transition: opacity 300ms ease, visibility 300ms;
+}
+
+.to-top i {
+    font-size: 10px;
+    transition: transform 250ms ease;
+}
+
+/* Pilen hopper lidt op ved hover */
+.to-top:hover i,
+.to-top:focus-visible i {
+    transform: translateY(-4px);
+}
+
+.to-top:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
+}
+
+
+/* Media queries */
+@media (min-width: 768px) {
+    :root {
+        --page-padding: var(--mediumPadding);
+    }
+
+    main {
+        padding-top: 80px;
+        /* plads til desktopnav */
+    }
+
+    /* Nav */
+    .nav-mobile {
+        display: none;
+    }
+
+    /* Samme bredde og sideafstand som indholdet, så de flugter */
+    .nav-desktop {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 1rem;
+
+        max-width: var(--page-max-width);
+        height: 80px;
+        margin-inline: auto;
+        padding-inline: var(--page-padding);
+    }
+
+    .nav-list-desktop {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-list-desktop li {
+        flex-shrink: 0;
+    }
+
+    .nav-desktop a {
+        color: var(--chocolate);
+        text-decoration: none;
+    }
+
+    .nav-list-desktop a {
+        font-family: var(--font-heading);
+        font-size: 1rem;
+        white-space: nowrap;
+    }
+
+    .nav-desktop .site-logo {
+        justify-self: center;
+        font-size: 2rem;
+        line-height: 1;
+    }
+
+    .nav-desktop .contact-link {
+        justify-self: end;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+        border-radius: 2rem;
+
+        font-family: var(--font-heading);
+        font-size: 1rem;
+        white-space: nowrap;
+
+        transition:
+            background-color 250ms ease,
+            color 250ms ease,
+            padding 250ms ease;
+    }
+
+    .nav-desktop .contact-link svg,
+    .nav-desktop .contact-link svg path {
+        color: inherit;
+        stroke: currentColor;
+    }
+
+    .contact-link svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: -3px;
+    }
+
+    .nav-desktop .contact-link:hover,
+    .nav-desktop .contact-link:focus-visible {
+        padding-inline: 1.25rem;
+        background-color: var(--chocolate);
+        color: var(--color-background);
+    }
+
+    .nav-list-desktop a:hover {
+        text-decoration: underline;
+        text-underline-offset: 8px;
+    }
+
+    .nav-desktop a:focus-visible {
+        outline: 2px solid var(--color-background);
+        outline-offset: 6px;
+    }
+
+    /* Kort om mig i to kolonner */
+    .section-label {
+        margin-top: 0;
+    }
+
+    .about {
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--largePadding);
+        align-items: start;
+        padding-block: 7rem 8rem;
+    }
+
+    .about-image {
+        width: 90%;
+        aspect-ratio: 3 / 4;
+    }
+
+    .about-title {
+        margin-top: 1.5rem;
+        font-size: 3rem;
+        line-height: 1.1;
+    }
+
+    .about-text {
+        margin-top: 2rem;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .about-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 3rem;
+        margin-top: 5rem;
+    }
+
+    /* Faglig profil */
+
+}
+
+
+@media (min-width: 1200px) {
+    .nav-list-desktop {
+        gap: 2rem;
+    }
+
+    .nav-desktop .contact-link {
+        gap: 1rem;
+    }
+
+    .nav-desktop .contact-link:hover,
+    .nav-desktop .contact-link:focus-visible {
+        padding-inline: 1.5rem;
+    }
+
+    .about-image {
+        width: 70%;
+    }
+
+    .about-title {
+        font-size: 3.5rem;
+    }
+}
+
+/* Ingen animation for dem, der har slået bevægelse fra */
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .to-top {
+        transition: none;
+    }
 }
