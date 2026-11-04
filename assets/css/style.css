@@ -1,4 +1,6 @@
-/* Variabler */
+/* ==========================================
+   VARIABLER
+   ========================================== */
 :root {
     /* Farver */
     --color-background: #f4efe7;
@@ -17,12 +19,39 @@
     /* Sidebredde */
     --page-padding: 50px;
     --page-max-width: 1200px;
+
+    /* Afstand mellem sektioner */
+    --section-space: 100px;
+}
+
+/* Variabler, der ændrer sig fra tablet og op */
+@media (min-width: 768px) {
+    :root {
+        --page-padding: var(--mediumPadding);
+        --section-space: 160px;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+}
+
+main {
+    flex: 1;
 }
 
 
-/* Grund styling */
+/* ==========================================
+   GRUND STYLING
+   ========================================== */
 * {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -33,9 +62,6 @@ body {
     line-height: 1.5;
 }
 
-html {
-    scroll-behavior: smooth;
-}
 
 main {
     padding-top: 60px;
@@ -51,8 +77,28 @@ h6,
 p,
 a {
     color: var(--chocolate);
+    font-weight: 300;
 }
 
+/* Lige meget luft mellem alle sektioner */
+.main-home>section {
+    padding-block: 0;
+}
+
+/* Luft mellem navbaren og den første sektion */
+.main-home>section:first-child {
+    padding-top: var(--largePadding);
+}
+
+/* Afstanden ligger kun mellem sektionerne */
+.main-home>section+section {
+    margin-top: var(--section-space);
+}
+
+
+/* ==========================================
+   HEADER OG NAV – MOBIL
+   ========================================== */
 header {
     position: fixed;
     top: 0;
@@ -62,8 +108,6 @@ header {
     background-color: var(--color-background);
 }
 
-
-/* Nav - mobile */
 .nav-desktop {
     display: none;
 }
@@ -192,7 +236,9 @@ body.menu-open {
 }
 
 
-/* CTA */
+/* ==========================================
+   CTA – TEKSTLINK MED PIL
+   ========================================== */
 .text-link {
     display: inline-flex;
     align-items: center;
@@ -226,75 +272,34 @@ body.menu-open {
     outline-offset: 6px;
 }
 
-/* FOOTER mobil */
-.site-footer {
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
-    padding-bottom: var(--mediumPadding);
-    margin-top: var(--largePadding);
+
+/* ==========================================
+   FADE IN – SEKTIONER
+   ========================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity 800ms ease,
+        transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Stregen i toppen og copyright nederst til højre */
-.footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: last baseline;
-    gap: 1rem;
-    padding-top: var(--smallPadding);
-    border-top: 1px solid var(--chocolate);
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
 
-.footer-links a {
-    display: inline-flex;
-    align-items: center;
-    gap: 1rem;
-    color: var(--chocolate);
-    text-decoration: none;
-    font-size: 12px;
-}
-
-/* Ikonerne fylder lige meget, så teksten flugter */
-.footer-links i {
-    width: 1rem;
-    font-size: 12px;
-    text-align: center;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-    text-underline-offset: 6px;
-}
-
-.footer-links a:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 6px;
-}
-
-.footer-copy {
-    margin: 0;
-    color: var(--color-line);
-    font-size: 10px;
-}
-
-/* ----- FORSIDE ----- */
-/* Kort om mig sektion til forside */
+/* ==========================================
+   FORSIDE
+   ========================================== */
+/* Kort om mig */
 .about {
     display: grid;
     gap: 1.25rem;
     max-width: var(--page-max-width);
     margin-inline: auto;
     padding-inline: var(--page-padding);
-    padding-block: 3.5rem var(--largePadding);
 }
 
 .about-image {
@@ -333,39 +338,28 @@ body.menu-open {
     margin-top: 5rem;
 }
 
-/* Sektioner fader ind fra bunden, når man scroller ned til dem */
-.reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition:
-        opacity 800ms ease,
-        transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
-}
 
-.reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ---- FAGLIG PROFIL ---- */
+/* ==========================================
+   FAGLIG PROFIL
+   ========================================== */
+/* Hero */
 .hero {
-    padding-inline: var(--page-padding);
+    max-width: var(--page-max-width);
     margin-inline: auto;
+    padding-inline: var(--page-padding);
+}
+
+.hero img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    object-position: 40% 65%;
+}
+
+.hero p {
+    font-family: var(--font-body);
     padding-bottom: var(--mediumPadding);
-    padding-top: var(--mediumPadding);
-
-    img {
-        width: 100%;
-        max-height: 350px;
-        object-fit: cover;
-        object-position: 40% 65%;
-    }
-
-    p {
-        font-family: var(--font-body);
-        padding-bottom: var(--mediumPadding);
-        font-size: 15px;
-    }
+    font-size: 15px;
 }
 
 .fp-title {
@@ -375,25 +369,25 @@ body.menu-open {
     line-height: 1;
 }
 
+/* Citat */
 .fp-qoute {
-    padding-inline: var(--mediumPadding);
-    padding-bottom: var(--largePadding);
-    padding-top: var(--largePadding);
     display: flex;
     flex-direction: column;
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
 }
 
 .fp-qoute span {
-    font-size: 50px;
-    font-family: var(--font-body);
-    line-height: 1;
     margin: 0 auto;
+    font-family: var(--font-body);
+    font-size: 50px;
+    line-height: 1;
 }
 
 .qoute-label {
     margin: 0 auto;
     font-size: 12px;
-    font-weight: 300;
 }
 
 .qoute-content {
@@ -401,30 +395,32 @@ body.menu-open {
     font-family: var(--font-heading);
     font-size: 20px;
     text-align: left;
-    font-weight: 300;
 }
 
 .fp-link {
-    font-weight: 300;
-    margin: 0 auto;
     max-width: 250px;
+    margin: 0 auto;
+    font-weight: 300;
 }
 
-.kompetencer-container {
+/* Det nørder jeg med + Sådan arbejder jeg */
+.kompetencer-container,
+.process-container {
     display: flex;
     flex-direction: column;
-    padding-inline: var(--mediumPadding);
-    font-family: var(--font-body);
     gap: var(--smallPadding);
-    padding-top: var(--mediumPadding);
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+    font-family: var(--font-body);
 }
 
+/* Små labels over sektionerne */
 .kompetencer-container h2,
 .bidrag h2,
 .process-container h2 {
     font-family: var(--font-body);
     font-size: 12px;
-    font-weight: 300;
 }
 
 .kompetencer-container h2,
@@ -432,46 +428,39 @@ body.menu-open {
     margin-bottom: 0;
 }
 
-.kompetencer-content {
-    font-size: 15px;
-}
-
-.kompetencer-title {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-family: var(--font-heading);
-    font-size: 23px;
-    font-weight: 300;
-}
-
-/* Streg efter titlen */
 .bidrag h2 {
     padding-bottom: var(--smallPadding);
 }
 
+/* Titler med streg efter */
 .kompetencer-title,
 .process-title {
     display: flex;
     align-items: center;
     gap: 1rem;
+    font-family: var(--font-heading);
+    font-size: 23px;
 }
 
-/* Streg efter titlen */
 .kompetencer-title::after,
 .process-title::after {
     content: "";
     width: 55px;
-    height: 0.5px;
+    height: 1px;
     background-color: var(--chocolate);
 }
 
-/* Det bidrager jeg med */
+.kompetencer-content,
+.process-text {
+    font-family: var(--font-body);
+    font-size: 15px;
+}
+
+/* Det bidrager jeg med – accordions */
 .bidrag {
     max-width: var(--page-max-width);
     margin-inline: auto;
     padding-inline: var(--page-padding);
-    padding-block: var(--largePadding);
 }
 
 /* Streg under hvert punkt og over det første */
@@ -559,40 +548,10 @@ body.menu-open {
     object-fit: cover;
 }
 
-.process-container {
-    padding-inline: var(--mediumPadding);
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
 
-.process-title {
-    font-family: var(--font-heading);
-    font-size: 23px;
-}
-
-.process-text {
-    font-size: 15px;
-    font-family: var(--font-body);
-}
-
-/* Til toppen */
-.to-top-container {
-    display: flex;
-    justify-content: flex-end;
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
-    padding-block: var(--mediumPadding) var(--largePadding);
-}
-
-/* Skjult, mens hero-sektionen er på skærmen */
-.to-top.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-/* Til toppen – fast i højre side */
+/* ==========================================
+   TIL TOPPEN – FAST I HØJRE SIDE
+   ========================================== */
 .to-top {
     position: fixed;
     right: var(--page-padding);
@@ -602,7 +561,7 @@ body.menu-open {
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    padding: 15px 15px;
+    padding: 15px;
     border-radius: 2rem;
 
     background-color: var(--chocolate);
@@ -611,6 +570,12 @@ body.menu-open {
     font-size: 10px;
 
     transition: opacity 300ms ease, visibility 300ms;
+}
+
+/* Skjult, indtil man når den anden sektion */
+.to-top.is-hidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .to-top i {
@@ -629,13 +594,162 @@ body.menu-open {
     outline-offset: 6px;
 }
 
+/* ==========================================
+   KONTAKT
+   ========================================== */
+.kontakt {
+    display: grid;
+    gap: var(--smallPadding);
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+}
 
-/* Media queries */
+.kontakt-label {
+    margin: 0;
+    font-size: 12px;
+}
+
+.kontakt-title {
+    margin: 0 0 var(--smallPadding);
+    font-family: var(--font-heading);
+    font-size: 40px;
+    line-height: 1.1;
+}
+
+.kontakt-text {
+    max-width: 30rem;
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Linkliste med streg mellem punkterne */
+.kontakt-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.kontakt-links li:not(:last-child) {
+    border-bottom: 1px solid var(--chocolate);
+}
+
+/* Lille tekst og stort navn til venstre, pil til højre */
+.kontakt-link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 1rem;
+    padding-block: 1.5rem;
+    color: var(--chocolate);
+    text-decoration: none;
+}
+
+.kontakt-link-label {
+    grid-column: 1;
+    font-size: 14px;
+}
+
+.kontakt-link-name {
+    grid-column: 1;
+    font-family: var(--font-heading);
+    font-size: 25px;
+    line-height: 1;
+}
+
+.kontakt-link svg {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    width: 25px;
+    height: 25px;
+    transition: transform 250ms ease;
+}
+
+/* Pilen skubber sig lidt op mod højre ved hover */
+.kontakt-link:hover svg,
+.kontakt-link:focus-visible svg {
+    transform: translate(3px, -3px);
+}
+
+.kontakt-link:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
+}
+
+.kontakt-intro {
+    padding-bottom: var(--mediumPadding);
+}
+
+/* ==========================================
+   FOOTER – MOBIL
+   ========================================== */
+.site-footer {
+    width: 100%;
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    margin-top: var(--section-space);
+    padding-inline: var(--page-padding);
+    padding-bottom: var(--mediumPadding);
+}
+
+/* Stregen i toppen og copyright nederst til højre */
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: last baseline;
+    gap: 1rem;
+    padding-top: var(--smallPadding);
+    border-top: 1px solid var(--chocolate);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--chocolate);
+    text-decoration: none;
+    font-size: 12px;
+}
+
+/* Ikonerne fylder lige meget, så teksten flugter */
+.footer-links i {
+    width: 1rem;
+    font-size: 12px;
+    text-align: center;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+.footer-links a:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
+}
+
+.footer-copy {
+    margin: 0;
+    color: var(--color-line);
+    font-size: 10px;
+}
+
+
+/* ==========================================
+   MEDIA QUERIES
+   ========================================== */
+
+/* Tablet og større */
 @media (min-width: 768px) {
-    :root {
-        --page-padding: var(--mediumPadding);
-    }
-
     main {
         padding-top: 80px;
         /* plads til desktopnav */
@@ -684,12 +798,18 @@ body.menu-open {
         white-space: nowrap;
     }
 
+    .nav-list-desktop a:hover {
+        text-decoration: underline;
+        text-underline-offset: 8px;
+    }
+
     .nav-desktop .site-logo {
         justify-self: center;
         font-size: 2rem;
         line-height: 1;
     }
 
+    /* Kontakt – pilen flugter med indholdet, bliver til en knap ved hover */
     .nav-desktop .contact-link {
         justify-self: end;
         display: inline-flex;
@@ -727,17 +847,17 @@ body.menu-open {
         color: var(--color-background);
     }
 
-    .nav-list-desktop a:hover {
-        text-decoration: underline;
-        text-underline-offset: 8px;
-    }
-
     .nav-desktop a:focus-visible {
         outline: 2px solid var(--color-background);
         outline-offset: 6px;
     }
 
-    /* Kort om mig i to kolonner */
+    /* CTA */
+    .text-link {
+        font-size: 12px;
+    }
+
+    /* Forside – Kort om mig i to kolonner */
     .section-label {
         margin-top: 0;
     }
@@ -746,7 +866,6 @@ body.menu-open {
         grid-template-columns: 1fr 1fr;
         column-gap: var(--largePadding);
         align-items: start;
-        padding-block: 7rem 8rem;
     }
 
     .about-image {
@@ -773,12 +892,135 @@ body.menu-open {
         margin-top: 5rem;
     }
 
-    /* Faglig profil */
+    /* Faglig profil – billede til venstre, tekst til højre */
+    .faglig-profil {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr;
+        column-gap: var(--largePadding);
+    }
 
+    .faglig-profil img {
+        grid-column: 1;
+        grid-row: 1 / 3;
+        width: 100%;
+        max-height: none;
+        height: 500px;
+    }
+
+    .faglig-profil p {
+        grid-column: 2;
+        grid-row: 2;
+        max-width: 34rem;
+        font-size: 17px;
+    }
+
+    .faglig-profil .fp-title {
+        grid-column: 2;
+        grid-row: 1;
+        margin-top: 0;
+        font-size: 70px;
+
+    }
+
+    .kontakt {
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--largePadding);
+        row-gap: var(--mediumPadding);
+        align-items: start;
+        align-content: center;
+    }
+
+    /* Det første link starter på linje med titlen */
+    .kontakt-links li:first-child .kontakt-link {
+        padding-top: 0;
+    }
+
+    /* Labelen står alene øverst over begge kolonner */
+    .kontakt-label {
+        grid-column: 1 / -1;
+    }
+
+    .kontakt-title {
+        font-size: 56px;
+    }
+
+    body:has(.kontakt) main {
+        display: flex;
+    }
+
+    .main-home>section.kontakt {
+        width: 100%;
+        min-height: auto;
+    }
+
+    /* Citat */
+    .qoute-content {
+        margin: 0 auto;
+        padding-top: var(--smallPadding);
+        padding-bottom: var(--mediumPadding);
+        font-size: 25px;
+    }
+
+    .accordion-title {
+        font-size: 30px;
+    }
+
+    /* Footer – stregen går helt ud til kanten */
+    .site-footer {
+        max-width: none;
+        padding-inline: 0;
+        padding-bottom: 0;
+        border-top: 1px solid var(--chocolate);
+    }
+
+    /* Indholdet holder samme bredde som resten af siden */
+    .footer-inner {
+        align-items: center;
+        max-width: var(--page-max-width);
+        margin-inline: auto;
+        padding-inline: var(--page-padding);
+        padding-block: 1.5rem;
+        border-top: 0;
+    }
+
+    /* Links på én række */
+    .footer-links {
+        flex-direction: row;
+        gap: 3rem;
+    }
+
+    .footer-links a {
+        gap: 0.5rem;
+        font-size: 13px;
+    }
+
+    .footer-links i {
+        font-size: 15px;
+    }
+
+    /* Rækkefølgen er Mail, LinkedIn, GitHub på desktop */
+    .footer-links li:nth-child(1) {
+        order: 3;
+    }
+
+    .footer-links li:nth-child(2) {
+        order: 1;
+    }
+
+    .footer-links li:nth-child(3) {
+        order: 2;
+    }
+
+    .footer-copy {
+        font-size: 13px;
+    }
 }
 
+/* Desktop */
+@media (min-width: 1100px) {
 
-@media (min-width: 1200px) {
+    /* Nav */
     .nav-list-desktop {
         gap: 2rem;
     }
@@ -792,6 +1034,7 @@ body.menu-open {
         padding-inline: 1.5rem;
     }
 
+    /* Forside */
     .about-image {
         width: 70%;
     }
@@ -799,21 +1042,71 @@ body.menu-open {
     .about-title {
         font-size: 3.5rem;
     }
+
+    /* Faglig profil – citat */
+    .qoute-content {
+        font-size: 33px;
+    }
+
+    /* Det nørder jeg med + Sådan arbejder jeg i to kolonner */
+    .kompetencer-container,
+    .process-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--largePadding);
+    }
+
+    /* Labelen fylder hele rækken over de to kolonner */
+    .kompetencer-container h2,
+    .process-container h2 {
+        grid-column: 1 / -1;
+    }
+
+    /* Teksten under titlen er rykket lidt ind */
+    .kompetencer-content,
+    .process-text {
+        padding-left: var(--largePadding);
+    }
+
+    /* Accordions – tekst til venstre, billede til højre */
+    .accordion-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .faglig-profil img {
+        height: 650px;
+    }
+
+    .kontakt-title {
+        font-size: 72px;
+    }
+
+    .kontakt-link svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .kontakt-link-name {
+        font-size: 35px;
+        line-height: 1;
+    }
 }
 
 /* Ingen animation for dem, der har slået bevægelse fra */
 @media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
     .reveal {
         opacity: 1;
         transform: none;
         transition: none;
     }
 
-    html {
-        scroll-behavior: auto;
-    }
-
-    .to-top {
+    .to-top,
+    .accordion-panel,
+    .accordion-title i {
         transition: none;
     }
 }
