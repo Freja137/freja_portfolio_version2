@@ -26,7 +26,7 @@ const projects = [
     {
         id: "highway69",
         titel: "Highway 69 Sæby",
-        billede: "./assets/img/Highway.webp",
+        billede: "./assets/img/highway.webp",
         alt: "Forsiden på restaurant Highway 69s hjemmeside",
         beskrivelse:
             "Fuldt redesign af restaurantens nuværende hjemmeside med fokus på et overskueligt menukort, tydelig navigation og relevant information.",

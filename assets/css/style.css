@@ -49,7 +49,7 @@ body {
     line-height: 1.5;
 }
 
-/* Plads til den faste mobilnav */
+/* Plads til den faste mobil nav */
 main {
     flex: 1;
     padding-top: 60px;
@@ -873,8 +873,8 @@ body.menu-open {
 }
 
 .project-description {
-    margin: 0;
-    font-size: 14px;
+    margin: 0 0 var(--smallPadding);
+    font-size: 12px;
 }
 
 /* Teknologier med prik imellem */
@@ -1862,7 +1862,6 @@ body.menu-open {
     .project-card-title,
     .project-contact h2 {
         margin-top: 1rem;
-        font-size: 22px;
     }
 
     .project-technologies {
