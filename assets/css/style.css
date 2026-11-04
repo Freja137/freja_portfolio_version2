@@ -3,21 +3,19 @@
     /* Farver */
     --color-background: #f4efe7;
     --chocolate: #3E2B24;
+    --caramel: #8C6248;
     --color-line: #b7a596;
-
     /* Skrifttyper */
     --font-heading: "Instrument Serif", serif;
     --font-body: "Instrument Sans", sans-serif;
-
+    --font-code: monospace;
     /* Afstande */
     --smallPadding: 20px;
     --mediumPadding: 40px;
     --largePadding: 80px;
-
     /* Sidebredde */
     --page-padding: 50px;
     --page-max-width: 1200px;
-
     /* Afstand mellem sektioner */
     --section-space: 100px;
 }
@@ -30,18 +28,7 @@
     }
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100svh;
-}
-
-main {
-    flex: 1;
-}
-
-
-/* ----- Generelt stling ----- */
+/* ----- Generel styling ----- */
 * {
     box-sizing: border-box;
 }
@@ -50,7 +37,11 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Footeren står altid i bunden */
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
     margin: 0;
     background-color: var(--color-background);
     color: var(--chocolate);
@@ -58,10 +49,10 @@ body {
     line-height: 1.5;
 }
 
-
+/* Plads til den faste mobilnav */
 main {
+    flex: 1;
     padding-top: 60px;
-    /* plads til den faste mobilnav */
 }
 
 h1,
@@ -91,16 +82,15 @@ a {
     margin-top: var(--largePadding);
 }
 
-/* Markeret hvilken side man befinder sig på */
 /* Markering af den aktuelle side */
 .nav-list a[aria-current="page"],
-.nav-desktop a[aria-current="page"] {
+.nav-desktop a[aria-current="page"]:not(.site-logo) {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 8px;
 }
 
-/* Header og nav til mobil */
+/* ----- Header og nav til mobil ----- */
 header {
     position: fixed;
     top: 0;
@@ -134,13 +124,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
     width: 44px;
     height: 44px;
     margin-left: auto;
     padding: 0;
     border: 0;
-
     background: transparent;
     color: var(--chocolate);
     font-size: 1.25rem;
@@ -237,8 +225,7 @@ body.menu-open {
     outline-offset: 6px;
 }
 
-
-/* CTA */
+/* ----- CTA ----- */
 .text-link {
     display: inline-flex;
     align-items: center;
@@ -272,8 +259,7 @@ body.menu-open {
     outline-offset: 6px;
 }
 
-
-/* Fade-in animation på sektioner */
+/* ----- Fade-in animation på sektioner ----- */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -287,8 +273,215 @@ body.menu-open {
     transform: translateY(0);
 }
 
+/* ----- Forside ----- */
+/* Hero */
+.home-hero {
+    position: relative;
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+}
 
-/* ----- FORSIDE ----- */
+.home-hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.home-hero-content {
+    min-width: 0;
+    padding-bottom: var(--smallPadding);
+}
+
+/* Samme h1 som på Faglig profil og Om mig */
+.hero-title {
+    margin: 0 0 var(--smallPadding);
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.hero-description {
+    margin: 0;
+    padding-bottom: var(--mediumPadding);
+    font-size: 15px;
+}
+
+/* Kodekort og portræt */
+.hero-visual {
+    position: relative;
+    min-width: 0;
+    height: 460px;
+}
+
+.code-card {
+    position: absolute;
+    top: var(--smallPadding);
+    left: 0;
+    width: 100%;
+    height: 310px;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 28px 45px rgba(62, 43, 36, 0.09);
+}
+
+.code-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    padding: 0 15px;
+    border-bottom: 1px solid var(--color-line);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.window-controls {
+    display: flex;
+    gap: 10px;
+}
+
+/* Selve koden står i monospace */
+.profile-code {
+    padding: var(--mediumPadding) 15px;
+    overflow-x: auto;
+    font-family: var(--font-code);
+    font-size: 10px;
+}
+
+.code-line {
+    min-height: 2em;
+    line-height: 2;
+    white-space: nowrap;
+}
+
+/* Indrykker linjerne inde i objektet med 2 tegn – ligesom rigtig kode */
+.code-line:not(:first-child):not(:last-child) {
+    padding-left: 2ch;
+}
+
+.code-keyword {
+    font-weight: 600;
+}
+
+.code-string {
+    color: var(--caramel);
+}
+
+.hero-portrait {
+    position: absolute;
+    right: -24px;
+    bottom: 0;
+    z-index: 1;
+    display: block;
+    width: 70%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    object-position: bottom;
+}
+
+/* Scrollpil – vises først på desktop */
+.scroll-link {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 135px;
+    padding: 8px;
+    color: var(--chocolate);
+    font-size: 32px;
+    transform: translateX(-50%);
+}
+
+.scroll-link i {
+    display: inline-block;
+    animation: arrow-bounce 1.8s ease-in-out infinite;
+}
+
+.scroll-link:focus-visible,
+.marquee:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
+}
+
+/* Marquee. Inspiration: https://markodenic.tech/seamless-css-marquees/ */
+.marquee {
+    overflow: hidden;
+    border-block: 1px solid var(--chocolate);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 35s linear infinite;
+}
+
+.marquee-group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: var(--smallPadding);
+    margin: 0;
+    padding: var(--smallPadding) var(--mediumPadding) var(--smallPadding) 0;
+    list-style: none;
+}
+
+.marquee-group li {
+    display: flex;
+    align-items: center;
+    gap: var(--mediumPadding);
+    white-space: nowrap;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.marquee-group li::after {
+    content: "";
+    flex-shrink: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--chocolate);
+}
+
+/* Animationer til hero */
+@keyframes dot-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.75);
+    }
+}
+
+@keyframes arrow-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
 /* Kort om mig */
 .about {
     display: grid;
@@ -314,7 +507,7 @@ body.menu-open {
 }
 
 .about-title {
-    margin: 2.5rem 0 0;
+    margin: var(--smallPadding) 0 0;
     font-family: var(--font-heading);
     font-weight: 400;
     font-size: 3rem;
@@ -333,7 +526,6 @@ body.menu-open {
     gap: 3rem;
     margin-top: 5rem;
 }
-
 
 /* ----- Faglig profil ----- */
 /* Hero */
@@ -535,11 +727,10 @@ body.menu-open {
     object-fit: cover;
 }
 
-/* OM MIG – RANDOM FACTS */
+/* ----- Om mig – random facts ----- */
 .fun-facts {
     display: grid;
     gap: var(--smallPadding);
-
     max-width: var(--page-max-width);
     margin-inline: auto;
     padding-inline: var(--page-padding);
@@ -553,7 +744,7 @@ body.menu-open {
     line-height: 1.1;
 }
 
-/* Kilde til at oprhttps://www.w3schools.com/cssref/pr_gen_counter-reset.php */
+/* Kilde: https://www.w3schools.com/cssref/pr_gen_counter-reset.php */
 .facts-list {
     display: grid;
     gap: 1.5rem;
@@ -564,14 +755,13 @@ body.menu-open {
     counter-reset: fact;
 }
 
+/* Læg 1 til ved hvert punkt */
 .facts-list li {
     display: grid;
     grid-template-columns: 1.5rem 1.5rem minmax(0, 1fr);
     align-items: baseline;
-    column-gap: 0.75rem;
-
+    column-gap: 0.5rem;
     counter-increment: fact;
-    /* Læg 1 til ved hvert punkt */
     font-size: 15px;
     line-height: 1.6;
 }
@@ -589,7 +779,6 @@ body.menu-open {
     grid-column: 2;
     grid-row: 1;
     align-self: start;
-
     height: 1px;
     margin-top: 0.8em;
     background-color: var(--chocolate);
@@ -599,7 +788,6 @@ body.menu-open {
     min-width: 0;
 }
 
-/* Billederne står under listen på mobil */
 /* Billeder under hinanden på mobil */
 .facts-images {
     display: grid;
@@ -621,24 +809,334 @@ body.menu-open {
     object-position: 70% 20%;
 }
 
-/* Til toppen knap */
+/* ----- Portfolio – oversigt ----- */
+.portfolio {
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+}
+
+.portfolio h1 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 44px;
+    line-height: 1.1;
+}
+
+.portfolio-intro {
+    max-width: 35rem;
+    margin-top: var(--smallPadding);
+    font-size: 15px;
+}
+
+/* Projektkort – som i version 1 */
+.projects-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    margin-top: var(--largePadding);
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--chocolate);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgb(62 43 36 / 0.12);
+    transition:
+        transform 250ms ease,
+        box-shadow 250ms ease;
+}
+
+/* Kortet løfter sig ved hover */
+.project-card:hover,
+.project-card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 24px rgb(62 43 36 / 0.18);
+}
+
+.project-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 8 / 5;
+    object-fit: cover;
+    object-position: top;
+}
+
+.project-card-title {
+    margin: var(--smallPadding) 0 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 25px;
+    line-height: 1.1;
+}
+
+.project-description {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Teknologier med prik imellem */
+.project-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+    margin: 1rem 0 var(--mediumPadding);
+    padding: 0;
+    list-style: none;
+    color: var(--caramel);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.project-technologies li:not(:last-child)::after {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    margin-left: 8px;
+    border-radius: 50%;
+    background-color: currentColor;
+    vertical-align: middle;
+}
+
+/* Linket står altid i bunden af kortet */
+.project-card .text-link {
+    min-width: 0;
+    width: 100%;
+    margin-top: auto;
+}
+
+/* Kontaktkortet */
+.project-contact {
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+    text-align: center;
+}
+
+/* Kuverten */
+.contact-envelope {
+    display: block;
+    width: 46px;
+    height: 46px;
+    overflow: visible;
+    fill: none;
+    stroke: var(--chocolate);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Flappen drejer omkring kuvertens øverste kant */
+.envelope-flap {
+    transform-box: view-box;
+    transform-origin: 24px 19px;
+    transition: transform 450ms ease;
+}
+
+/* Hover over hele kortet åbner kuverten */
+.project-contact:hover .envelope-flap,
+.project-contact:focus-within .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.project-contact h2 {
+    margin: var(--smallPadding) 0 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 25px;
+}
+
+.project-contact p {
+    margin: 0 0 var(--mediumPadding);
+    color: var(--caramel);
+    font-size: 15px;
+}
+
+.project-contact-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 2rem;
+    background-color: var(--chocolate);
+    color: var(--color-background);
+    box-shadow: 0 5px 12px rgb(62 43 36 / 0.2);
+    text-decoration: none;
+    font-size: 13px;
+    transition: background-color 250ms ease;
+}
+
+.project-contact-button:hover,
+.project-contact-button:focus-visible {
+    background-color: var(--caramel);
+}
+
+.project-contact-button:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
+}
+
+/* ----- Projektside ----- */
+.projekt {
+    display: grid;
+    gap: var(--mediumPadding);
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+}
+
+.projekt-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: fit-content;
+    color: var(--chocolate);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.projekt-back:hover {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+.projekt-back:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
+}
+
+.projekt-intro .section-label {
+    margin: 0;
+    font-size: 12px;
+}
+
+.projekt-title {
+    margin: 0.5rem 0 0;
+    font-family: var(--font-heading);
+    font-size: 48px;
+    line-height: 1.05;
+}
+
+.projekt-text {
+    max-width: 36rem;
+    margin: 1rem 0 0;
+    font-size: 16px;
+}
+
+/* Teknologier på projektsiden – samme stil som på kortene */
+.projekt .project-technologies {
+    margin-bottom: 0;
+}
+
+/* Rolle, type og periode */
+.projekt-meta {
+    display: grid;
+    gap: var(--smallPadding);
+    margin: 0;
+    padding-block: var(--smallPadding);
+    border-block: 1px solid var(--chocolate);
+}
+
+.projekt-meta dt {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.projekt-meta dd {
+    margin: 0.25rem 0 0;
+    font-family: var(--font-heading);
+    font-size: 22px;
+}
+
+.projekt-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.projekt-sections {
+    display: grid;
+    gap: var(--mediumPadding);
+}
+
+.projekt-section h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 28px;
+}
+
+.projekt-section p {
+    margin: 0.75rem 0 0;
+    font-size: 15px;
+}
+
+.projekt-live {
+    width: fit-content;
+}
+
+/* Næste projekt nederst på siden */
+.projekt-next {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    margin-top: var(--mediumPadding);
+    padding-block: var(--mediumPadding);
+    border-top: 1px solid var(--chocolate);
+    color: var(--chocolate);
+    text-decoration: none;
+}
+
+.projekt-next-label {
+    grid-column: 1;
+    font-size: 13px;
+}
+
+.projekt-next-title {
+    grid-column: 1;
+    font-family: var(--font-heading);
+    font-size: 36px;
+    line-height: 1.1;
+}
+
+.projekt-next i {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    font-size: 24px;
+    transition: transform 250ms ease;
+}
+
+.projekt-next:hover i,
+.projekt-next:focus-visible i {
+    transform: translateX(6px);
+}
+
+.projekt-next:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
+}
+
+.projekt-missing {
+    display: grid;
+    gap: var(--smallPadding);
+}
+
+/* ----- Til toppen knap ----- */
 .to-top {
     position: fixed;
     right: var(--page-padding);
     bottom: var(--largePadding);
     z-index: 900;
-
     display: inline-flex;
     align-items: center;
     gap: 1rem;
     padding: 15px;
     border-radius: 2rem;
-
     background-color: var(--chocolate);
     color: var(--color-background);
     text-decoration: none;
     font-size: 10px;
-
     transition: opacity 300ms ease, visibility 300ms;
 }
 
@@ -684,13 +1182,20 @@ body.menu-open {
     line-height: 1.1;
 }
 
+.kontakt-title span {
+    font-style: italic;
+}
+
 .kontakt-text {
     max-width: 30rem;
     margin: 0;
     font-size: 16px;
 }
 
-/* Linkliste med streg mellem punkterne */
+.kontakt-intro {
+    padding-bottom: var(--mediumPadding);
+}
+
 .kontakt-links {
     margin: 0;
     padding: 0;
@@ -701,7 +1206,6 @@ body.menu-open {
     border-bottom: 1px solid var(--chocolate);
 }
 
-/* Lille tekst og stort navn til venstre, pil til højre */
 .kontakt-link {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -743,11 +1247,7 @@ body.menu-open {
     outline-offset: 6px;
 }
 
-.kontakt-intro {
-    padding-bottom: var(--mediumPadding);
-}
-
-/* Footer til mobil */
+/* ----- Footer til mobil ----- */
 .site-footer {
     width: 100%;
     max-width: var(--page-max-width);
@@ -757,7 +1257,6 @@ body.menu-open {
     padding-bottom: var(--mediumPadding);
 }
 
-/* Stregen i toppen og copyright nederst til højre */
 .footer-inner {
     display: flex;
     justify-content: space-between;
@@ -785,7 +1284,6 @@ body.menu-open {
     font-size: 12px;
 }
 
-/* Ikonerne fylder lige meget, så teksten flugter */
 .footer-links i {
     width: 1rem;
     font-size: 12px;
@@ -808,18 +1306,12 @@ body.menu-open {
     font-size: 10px;
 }
 
-
-/* Media queries */
-
-/* Tablet og større */
+/* ----- Tablet ----- */
 @media (min-width: 768px) {
+
+    /* Plads til desktopnav */
     main {
         padding-top: 80px;
-        /* plads til desktopnav */
-    }
-
-    .main-home>section+section {
-        margin-top: var(--largePadding);
     }
 
     /* Nav */
@@ -833,7 +1325,6 @@ body.menu-open {
         grid-template-columns: 1fr auto 1fr;
         align-items: center;
         gap: 1rem;
-
         max-width: var(--page-max-width);
         height: 80px;
         margin-inline: auto;
@@ -844,7 +1335,6 @@ body.menu-open {
         display: flex;
         align-items: center;
         gap: 1rem;
-
         list-style: none;
         margin: 0;
         padding: 0;
@@ -884,11 +1374,9 @@ body.menu-open {
         gap: 0.75rem;
         padding: 0.5rem 0;
         border-radius: 2rem;
-
         font-family: var(--font-heading);
         font-size: 1rem;
         white-space: nowrap;
-
         transition:
             background-color 250ms ease,
             color 250ms ease,
@@ -927,8 +1415,60 @@ body.menu-open {
         font-size: 0.75rem;
         font-weight: 300;
         line-height: 1.5;
+        padding-bottom: var(--mediumPadding);
     }
 
+    /* Forside – Hero */
+
+    .hero-title {
+        margin: 0 0 var(--mediumPadding);
+        font-size: 60px;
+    }
+
+    .hero-description {
+        max-width: 34rem;
+        font-size: 16px;
+    }
+
+    .hero-visual {
+        height: 540px;
+    }
+
+    .code-card {
+        width: 75%;
+        height: 360px;
+    }
+
+    .profile-code {
+        padding: var(--mediumPadding) var(--smallPadding);
+        font-size: 13px;
+    }
+
+    /* 4 tegns indrykning på større skærme */
+    .code-line:not(:first-child):not(:last-child) {
+        padding-left: 4ch;
+    }
+
+    .hero-portrait {
+        right: 0;
+        width: 55%;
+        max-height: 700px;
+    }
+
+    .marquee-group,
+    .marquee-group li {
+        gap: var(--largePadding);
+    }
+
+    .marquee-group {
+        padding-block: 30px;
+    }
+
+    .marquee-group li {
+        font-size: 0.75rem;
+    }
+
+    /* Forside – Kort om mig */
     .about {
         grid-template-columns: 1fr 1fr;
         column-gap: var(--largePadding);
@@ -959,68 +1499,49 @@ body.menu-open {
         margin-top: 5rem;
     }
 
-    /* Faglig profil – billede til venstre, tekst til højre */
+    /* Faglig profil og Om mig – billede til venstre, tekst centreret til højre */
     .faglig-profil,
     .om-mig-hero {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto 1fr;
+        grid-template-rows: 1fr auto auto auto 1fr;
         column-gap: var(--largePadding);
     }
 
     .faglig-profil img,
     .om-mig-hero img {
         grid-column: 1;
-        grid-row: 1 / 3;
+        grid-row: 1 / -1;
         width: 100%;
         max-height: none;
         height: 500px;
     }
 
+    .faglig-profil h1,
+    .om-mig-hero h1 {
+        grid-column: 2;
+        grid-row: 2;
+        margin: 0 0 var(--mediumPadding);
+        font-size: 60px;
+        line-height: 1;
+    }
+
     .faglig-profil p,
     .om-mig-hero p {
         grid-column: 2;
-        grid-row: 2;
         max-width: 34rem;
+        margin: 0 0 1rem;
+        padding-bottom: 0;
     }
 
-    .faglig-profil .fp-title,
-    .hero h1 {
-        grid-column: 2;
-        grid-row: 1;
-        font-size: 60px;
-
+    .faglig-profil p:nth-of-type(1),
+    .om-mig-hero p:nth-of-type(1) {
+        grid-row: 3;
     }
 
-    .kontakt {
-        grid-template-columns: 1fr 1fr;
-        column-gap: var(--largePadding);
-        row-gap: var(--mediumPadding);
-        align-items: start;
-        align-content: center;
-    }
-
-    /* Det første link starter på linje med titlen */
-    .kontakt-links li:first-child .kontakt-link {
-        padding-top: 0;
-    }
-
-    /* Labelen står alene øverst over begge kolonner */
-    .kontakt-label {
-        grid-column: 1 / -1;
-    }
-
-    .kontakt-title {
-        font-size: 56px;
-    }
-
-    body:has(.kontakt) main {
-        display: flex;
-    }
-
-    .main-home>section.kontakt {
-        width: 100%;
-        min-height: auto;
+    .faglig-profil p:nth-of-type(2),
+    .om-mig-hero p:nth-of-type(2) {
+        grid-row: 4;
     }
 
     /* Citat */
@@ -1031,13 +1552,14 @@ body.menu-open {
         font-size: 25px;
     }
 
-    .accordion-title {
-        font-size: 30px;
-    }
-
     .kompetencer-container>.section-label {
         grid-column: 1 / -1;
         text-align: center;
+    }
+
+    /* Accordions */
+    .accordion-title {
+        font-size: 30px;
     }
 
     /* Om mig – fun facts */
@@ -1080,7 +1602,6 @@ body.menu-open {
         width: 100%;
     }
 
-    /* To forskudte billeder */
     .facts-images {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1098,7 +1619,70 @@ body.menu-open {
         margin-top: var(--largePadding);
     }
 
-    /* Footer – stregen går helt ud til kanten */
+    /* Portfolio */
+    .portfolio>h1 {
+        font-size: 60px;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .project-description {
+        margin: var(--smallPadding) 0 var(--smallPadding);
+        font-size: 15px;
+    }
+
+    /* Projektside */
+    .projekt-title {
+        font-size: 72px;
+    }
+
+    .projekt-meta {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .projekt-section {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: var(--largePadding);
+    }
+
+    .projekt-section p {
+        margin-top: 0;
+    }
+
+    .projekt-next-title {
+        font-size: 56px;
+    }
+
+    /* Kontakt */
+    body:has(.kontakt) main {
+        display: flex;
+    }
+
+    .main-home>section.kontakt {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .kontakt {
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--largePadding);
+        row-gap: var(--mediumPadding);
+        align-items: start;
+        align-content: center;
+    }
+
+    .kontakt-links li:first-child .kontakt-link {
+        padding-top: 0;
+    }
+
+    .kontakt-title {
+        font-size: 56px;
+    }
+
+    /* Footer */
     .site-footer {
         max-width: none;
         padding-inline: 0;
@@ -1106,7 +1690,6 @@ body.menu-open {
         border-top: 1px solid var(--chocolate);
     }
 
-    /* Indholdet holder samme bredde som resten af siden */
     .footer-inner {
         align-items: center;
         max-width: var(--page-max-width);
@@ -1116,7 +1699,6 @@ body.menu-open {
         border-top: 0;
     }
 
-    /* Links på én række */
     .footer-links {
         flex-direction: row;
         gap: 3rem;
@@ -1131,7 +1713,6 @@ body.menu-open {
         font-size: 15px;
     }
 
-    /* Rækkefølgen er Mail, LinkedIn, GitHub på desktop */
     .footer-links li:nth-child(1) {
         order: 3;
     }
@@ -1149,7 +1730,7 @@ body.menu-open {
     }
 }
 
-/* Desktop */
+/* ----- Desktop ----- */
 @media (min-width: 1100px) {
 
     /* Nav */
@@ -1170,7 +1751,38 @@ body.menu-open {
         margin-top: var(--section-space);
     }
 
-    /* Forside */
+    /* Forside – Hero i to kolonner */
+    .home-hero-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: var(--largePadding);
+        min-height: 640px;
+    }
+
+    .home-hero-content {
+        align-self: center;
+        padding-bottom: var(--largePadding);
+    }
+
+    .hero-visual {
+        height: auto;
+    }
+
+    .code-card {
+        top: var(--largePadding);
+        width: 80%;
+        height: 430px;
+    }
+
+    .hero-portrait {
+        width: 65%;
+        max-height: 650px;
+    }
+
+    .scroll-link {
+        display: block;
+    }
+
+    /* Forside – Kort om mig */
     .about-image {
         width: 70%;
     }
@@ -1179,12 +1791,15 @@ body.menu-open {
         font-size: 3.5rem;
     }
 
-    /* Faglig profil – citat */
+    /* Faglig profil */
+    .faglig-profil img {
+        height: 650px;
+    }
+
     .qoute-content {
         font-size: 33px;
     }
 
-    /* Det nørder jeg med + Sådan arbejder jeg i to kolonner */
     .kompetencer-container,
     .process-container {
         display: grid;
@@ -1209,10 +1824,6 @@ body.menu-open {
         grid-template-columns: 1fr 1fr;
     }
 
-    .faglig-profil img {
-        height: 650px;
-    }
-
     /* Om mig */
     .om-mig-hero img {
         height: 650px;
@@ -1234,7 +1845,39 @@ body.menu-open {
         gap: 2.5rem;
     }
 
-    /* Kontakt side */
+    /* Portfolio – fire lavere kort på én række */
+    .projects-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--smallPadding);
+    }
+
+    .project-card {
+        padding: 16px;
+    }
+
+    .project-image {
+        aspect-ratio: 16 / 9;
+    }
+
+    .project-card-title,
+    .project-contact h2 {
+        margin-top: 1rem;
+        font-size: 22px;
+    }
+
+    .project-technologies {
+        margin-bottom: var(--smallPadding);
+    }
+
+    .project-contact {
+        min-height: auto;
+    }
+
+    .project-contact p {
+        margin-bottom: var(--smallPadding);
+    }
+
+    /* Kontakt */
     .kontakt-title {
         font-size: 72px;
     }
@@ -1249,6 +1892,7 @@ body.menu-open {
         line-height: 1;
     }
 
+    /* Footer */
     .site-footer {
         margin-top: var(--section-space);
     }
@@ -1266,9 +1910,33 @@ body.menu-open {
         transition: none;
     }
 
+    /* Forsiden står stille */
+    .scroll-link i,
+    .marquee-track {
+        animation: none;
+    }
+
+    .marquee-group[aria-hidden="true"] {
+        display: none;
+    }
+
+    .marquee-group {
+        flex-wrap: wrap;
+        flex-shrink: 1;
+    }
+
     .to-top,
     .accordion-panel,
-    .accordion-title i {
+    .accordion-title i,
+    .project-card,
+    .project-contact-button,
+    .projekt-next i,
+    .envelope-flap {
         transition: none;
+    }
+
+    .project-card:hover,
+    .project-card:focus-within {
+        transform: none;
     }
 }

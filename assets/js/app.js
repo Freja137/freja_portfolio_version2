@@ -78,7 +78,7 @@ const revealObserver = new IntersectionObserver((entries) => {
         // Vis sektionen, når den er på skærmen, og skjul den igen, når den forlader skærmen
         entry.target.classList.toggle("is-visible", entry.isIntersecting);
     });
-}, { threshold: 0.33 });
+}, { threshold: 0.15 });
 
 // Skjul alle sektioner fra start
 revealSections.forEach((section) => {
