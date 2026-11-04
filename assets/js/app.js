@@ -52,6 +52,23 @@ if (menuButton && menuDropdown) {
     });
 }
 
+/* Markér den aktuelle side i navigationen */
+const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
+const navLinks = document.querySelectorAll(
+    ".nav-list a, .nav-desktop a"
+);
+
+navLinks.forEach((link) => {
+    const linkPage = new URL(link.href).pathname.split("/").pop();
+
+    if (linkPage === currentPage) {
+        link.setAttribute("aria-current", "page");
+    } else {
+        link.removeAttribute("aria-current");
+    }
+});
+
 // Alle sektioner fader ind, når de kommer ind på skærmen
 /* https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API */
 const revealSections = document.querySelectorAll("main section");
