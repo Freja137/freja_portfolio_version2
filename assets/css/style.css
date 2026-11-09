@@ -9,6 +9,8 @@
     --font-heading: "Instrument Serif", serif;
     --font-body: "Instrument Sans", sans-serif;
     --font-code: monospace;
+    /* Skriftstørrelser */
+    --h1-size: 40px;
     /* Afstande */
     --smallPadding: 20px;
     --mediumPadding: 40px;
@@ -25,6 +27,7 @@
     :root {
         --page-padding: var(--mediumPadding);
         --section-space: 150px;
+        --h1-size: 60px;
     }
 }
 
@@ -69,6 +72,17 @@ p,
 a {
     color: var(--chocolate);
     font-weight: 300;
+}
+
+/* Samme h1 på alle sider */
+h1 {
+    font-family: var(--font-heading);
+    font-size: var(--h1-size);
+}
+
+/* Vue-wrapperen påvirker ikke layoutet, så footeren stadig står i bunden */
+#app {
+    display: contents;
 }
 
 /* Lige meget luft mellem alle sektioner */
@@ -311,12 +325,8 @@ body.menu-open {
     padding-bottom: var(--smallPadding);
 }
 
-/* Samme h1 som på Faglig profil og Om mig */
 .hero-title {
     margin: 0 0 var(--smallPadding);
-    font-family: var(--font-heading);
-    font-size: 40px;
-    font-weight: 300;
     line-height: 1;
 }
 
@@ -569,15 +579,7 @@ body.menu-open {
 }
 
 .hero h1 {
-    font-family: var(--font-heading);
-    font-size: 40px;
     margin-top: 0;
-}
-
-.fp-title {
-    font-family: var(--font-heading);
-    font-size: 40px;
-    font-weight: 300;
     line-height: 1;
 }
 
@@ -725,9 +727,7 @@ body.menu-open {
 }
 
 .accordion-content {
-    display: grid;
-    gap: 1.5rem;
-    padding-bottom: 2rem;
+    padding-bottom: var(--smallPadding);
 }
 
 .accordion-text p {
@@ -740,7 +740,27 @@ body.menu-open {
     font-style: italic;
 }
 
-.accordion-content img {
+/* Billedet glider op og ned sammen med teksten */
+.accordion-media {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.accordion.is-open .accordion-media {
+    grid-template-rows: 1fr;
+}
+
+.accordion-media-inner {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.accordion-media .image-zoom {
+    margin-bottom: 2rem;
+}
+
+.accordion-media img {
     display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
@@ -836,11 +856,8 @@ body.menu-open {
     padding-inline: var(--page-padding);
 }
 
-/* Samme h1 som på Faglig profil og Om mig */
 .portfolio h1 {
     margin: 0;
-    font-family: var(--font-heading);
-    font-size: 40px;
     line-height: 1;
 }
 
@@ -902,10 +919,6 @@ body.menu-open {
     object-position: top;
 }
 
-
-
-
-
 /* ----- Til toppen knap ----- */
 .to-top {
     position: fixed;
@@ -946,6 +959,126 @@ body.menu-open {
     outline-offset: 6px;
 }
 
+/* ----- Billed-modal ----- */
+/* Billeder, der kan åbnes i stor størrelse */
+.image-zoom {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+}
+
+/* Outline ligger inde i billedet, så den ikke bliver skåret af */
+.image-zoom:focus-visible {
+    outline: 2px solid var(--color-background);
+    outline-offset: -8px;
+}
+
+/* Overlay med tekst og pil – skjult, indtil man holder musen over */
+.image-zoom-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: rgb(62 43 36 / 0.8);
+    color: var(--color-background);
+    font-family: var(--font-heading);
+    font-size: 25px;
+    opacity: 0;
+    transition: opacity 300ms ease;
+}
+
+.image-zoom-label svg {
+    width: 28px;
+    height: 28px;
+}
+
+.image-zoom:hover .image-zoom-label,
+.image-zoom:focus-visible .image-zoom-label {
+    opacity: 1;
+}
+
+/* Modalen. Inspiration: https://www.w3schools.com/howto/howto_css_modal_images.asp */
+.image-modal {
+    max-width: 90vw;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    /* Det zoomede billede bliver inden for modalen */
+    overflow: hidden;
+}
+
+/* Mørk baggrund bag billedet */
+.image-modal::backdrop {
+    background-color: rgb(62 43 36 / 0.9);
+}
+
+/* Billedet zoomer ind, når modalen åbner */
+.image-modal-img {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    max-height: 75svh;
+    margin-inline: auto;
+    object-fit: contain;
+    cursor: zoom-in;
+    animation: modal-zoom 600ms ease;
+    transition: transform 300ms ease;
+}
+
+/* Zoomet ind */
+.image-modal-img.is-zoomed {
+    transform: scale(2.5);
+    cursor: zoom-out;
+}
+
+/* Billedtekst under billedet */
+.image-modal-caption {
+    max-width: 700px;
+    margin: var(--smallPadding) auto 0;
+    color: var(--color-background);
+    font-size: 15px;
+    text-align: center;
+}
+
+/* Krydset står oppe i højre hjørne af skærmen */
+.image-modal-close {
+    position: fixed;
+    top: 15px;
+    right: 35px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-background);
+    font-size: 40px;
+    cursor: pointer;
+    transition: opacity 250ms ease;
+}
+
+.image-modal-close:hover {
+    opacity: 0.7;
+}
+
+.image-modal-close:focus-visible {
+    outline: 2px solid var(--color-background);
+    outline-offset: 4px;
+}
+
+@keyframes modal-zoom {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
 /* ----- Kontakt ----- */
 .kontakt {
     display: grid;
@@ -961,8 +1094,6 @@ body.menu-open {
 
 .kontakt-title {
     margin: 0 0 var(--smallPadding);
-    font-family: var(--font-heading);
-    font-size: 40px;
     line-height: 1.1;
 }
 
@@ -1186,6 +1317,12 @@ body.menu-open {
         color: var(--color-background);
     }
 
+    /* Ingen streg under Kontakt, når den bliver til en knap */
+    .nav-desktop .contact-link[aria-current="page"]:hover,
+    .nav-desktop .contact-link[aria-current="page"]:focus-visible {
+        text-decoration: none;
+    }
+
     .nav-desktop a:focus-visible {
         outline: 2px solid var(--color-background);
         outline-offset: 6px;
@@ -1211,10 +1348,8 @@ body.menu-open {
     }
 
     /* Forside – Hero */
-
     .hero-title {
         margin: 0 0 var(--mediumPadding);
-        font-size: 60px;
     }
 
     .hero-description {
@@ -1315,7 +1450,6 @@ body.menu-open {
         grid-column: 2;
         grid-row: 1;
         margin: 0 0 var(--mediumPadding);
-        font-size: 60px;
         line-height: 1;
     }
 
@@ -1414,10 +1548,6 @@ body.menu-open {
     }
 
     /* Portfolio */
-    .portfolio h1 {
-        font-size: 60px;
-    }
-
     .portfolio-intro {
         font-size: 16px;
     }
@@ -1453,25 +1583,32 @@ body.menu-open {
         display: flex;
     }
 
+    /* Ingen ekstra luft over og under, så indholdet står i midten mellem nav og footer */
     .main-home>section.kontakt {
         width: 100%;
         min-height: auto;
+        padding-top: 0;
+    }
+
+    body:has(.kontakt) .site-footer {
+        margin-top: 0;
     }
 
     .kontakt {
         grid-template-columns: 1fr 1fr;
         column-gap: var(--largePadding);
-        row-gap: var(--mediumPadding);
+        row-gap: var(--smallPadding);
         align-items: start;
         align-content: center;
     }
 
-    .kontakt-links li:first-child .kontakt-link {
-        padding-top: 0;
+    /* Labelen står tæt på indholdet, så det hele står samlet i midten */
+    .kontakt-label {
+        padding-bottom: 0;
     }
 
-    .kontakt-title {
-        font-size: 56px;
+    .kontakt-links li:first-child .kontakt-link {
+        padding-top: 0;
     }
 
     /* Footer */
@@ -1612,9 +1749,28 @@ body.menu-open {
         padding-left: var(--largePadding);
     }
 
-    /* Accordions – tekst til venstre, billede til højre */
-    .accordion-content {
+    /* Accordions – overskrift og ikon på første række, tekst og billede ved siden af hinanden under */
+    .accordion {
+        display: grid;
         grid-template-columns: 1fr 1fr;
+        column-gap: var(--largePadding);
+    }
+
+    /* Overskriften fylder hele bredden, så ikonet altid står ude til højre */
+    .accordion-heading {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .accordion-panel {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    /* Billedet starter samme sted som brødteksten */
+    .accordion-media {
+        grid-column: 2;
+        grid-row: 2;
     }
 
     /* Om mig */
@@ -1650,10 +1806,6 @@ body.menu-open {
     }
 
     /* Kontakt */
-    .kontakt-title {
-        font-size: 72px;
-    }
-
     .kontakt-link svg {
         width: 32px;
         height: 32px;
@@ -1710,6 +1862,29 @@ body.menu-open {
     }
 }
 
+/* Til skærme, hvor man ikke kan hover, viser en knap, at man kan åbne billedet i fuld størrelse */
+@media (hover: none) {
+    .image-zoom-label {
+        inset: auto auto var(--smallPadding) var(--smallPadding);
+        gap: 0.25rem;
+        padding: 6px 14px;
+        border-radius: 2rem;
+        font-family: var(--font-body);
+        font-size: 12px;
+        opacity: 1;
+    }
+
+    .image-zoom-label svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Kun "Åben" på den lille label */
+    .image-zoom-long {
+        display: none;
+    }
+}
+
 /* Ingen animation for dem, der har slået bevægelse fra */
 @media (prefers-reduced-motion: reduce) {
     html {
@@ -1739,13 +1914,20 @@ body.menu-open {
 
     .to-top,
     .accordion-panel,
-    .accordion-title i {
+    .accordion-media,
+    .accordion-title i,
+    .image-zoom-label,
+    .image-modal-close,
+    .image-modal-img {
         transition: none;
+    }
+
+    /* Billedet zoomer ikke ind */
+    .image-modal-img {
+        animation: none;
     }
 
     .cursor {
         display: none;
     }
-
-
 }

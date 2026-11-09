@@ -15,262 +15,283 @@
         href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <script type="module" src="./assets/js/main.js"></script>
     <script src="./assets/js/app.js" defer></script>
 </head>
 
 <body>
-    <header>
-        <nav class="nav-mobile" aria-label="Mobilnavigation">
-            <a class="site-logo" href="./index.html" aria-label="Freja Fischer – forside">
-                FF.
-            </a>
-
-            <button class="burgerMenuIcon" type="button" aria-label="Åbn menu" aria-expanded="false"
-                aria-controls="navDropdown">
-                <i class="fa-solid fa-bars" aria-hidden="true"></i>
-            </button>
-
-            <div class="navDropdown" id="navDropdown" inert>
-                <ul class="nav-list">
-                    <li class="links">
-                        <a href="./kompetencer.html">Kompetencer</a>
-                    </li>
-                    <li class="links">
-                        <a href="./om-mig.html">Om mig</a>
-                    </li>
-                    <li class="links">
-                        <a href="./portfolio.html">Portfolio</a>
-                    </li>
-                    <li class="links">
-                        <a href="./kontakt.html">Kontakt</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <nav class="nav-desktop" aria-label="Hovednavigation">
-            <ul class="nav-list-desktop">
-                <li><a href="./kompetencer.html">Kompetencer</a></li>
-                <li><a href="./om-mig.html">Om mig</a></li>
-                <li><a href="./portfolio.html">Portfolio</a></li>
-            </ul>
-
-            <a class="site-logo" href="./index.html" aria-label="Freja Fischer – forside">
-                FF.
-            </a>
-
-            <a class="contact-link" href="./kontakt.html">
-                Kontakt
-                <!-- Ikon hentet fra google fonts -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"
-                        d="M3 12.013L20.789 12m-6.776 7L21 12l-6.988-7" />
-                </svg>
-            </a>
-        </nav>
-    </header>
-    <main class="main-home">
-        <section class="hero faglig-profil">
-            <h1 class="fp-title">Hvordan jeg arbejder</h1>
-            <p>Jeg arbejder i krydsfeltet mellem UX-design og frontendudvikling – fra research og prototyping til
-                responsiv, tilgængelig kode. Jeg er nysgerrig på, hvordan tingene hænger sammen, og følger gerne en idé
-                hele vejen fra skitse til færdig løsning.</p>
-            <p>Jeg arbejder struktureret og lægger vægt på overblik, kvalitet og gennemarbejdede detaljer. Jeg kan lide
-                at fordybe mig og blive udfordret, især når jeg kan omsætte det, jeg lærer, til noget, der virker i
-                praksis.</p>
-            <img src="./assets/img/freja_arbejdsprocess.webp"
-                alt="Freja sidder ved spisebordet og skitserer wireframes på papir" loading="lazy">
-        </section>
-        <section class="fp-qoute">
-            <span>"</span>
-            <p class="section-label">&lt;/&gt; Det der driver mig</p>
-            <p class="qoute-content">“Jeg kan godt lide at se et design blive til en fungerende løsning gennem kode. Det
-                motiverer mig at
-                skabe intuitive websites, der er nemme at bruge og fungerer i praksis.”</p>
-            <a class="text-link fp-link" href="./portfolio.html">
-                Udforsk mine projekter
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        d="M3 12.013L20.789 12m-6.776 7L21 12l-6.988-7" />
-                </svg>
-            </a>
-        </section>
-        <section class="kompetencer-container">
-            <h2 class="section-label">&lt;/&gt; Det arbejder jeg i</h2>
-
-            <article class="kompetencer">
-                <h3 class="kompetencer-title"><i class="fa-brands fa-figma" aria-hidden="true"></i> Design</h3>
-                <p class="kompetencer-content">I Figma arbejder jeg fra wireframes og user flows til mockups og
-                    klikbare prototyper, som kan testes med brugere. Genbrugelige komponenter holder designet
-                    konsistent på tværs af sider. Affinity bruger jeg til billedbehandling og grafiske elementer.</p>
-            </article>
-
-            <article class="kompetencer">
-                <h3 class="kompetencer-title"><i class="fa-solid fa-code" aria-hidden="true"></i> Kode</h3>
-                <p class="kompetencer-content">Jeg skriver semantisk HTML og responsiv CSS med en mobile first-tilgang
-                    og bruger JavaScript til interaktion og data fra REST API'er. Med Vue bygger jeg komponentbaserede
-                    løsninger med reaktiv data, og med PHP henter og viser jeg indhold dynamisk.</p>
-            </article>
-
-            <article class="kompetencer">
-                <h3 class="kompetencer-title"><i class="fa-brands fa-wordpress-simple" aria-hidden="true"></i> WordPress
-                </h3>
-                <p class="kompetencer-content">Jeg bruger WordPress både som klassisk og som headless CMS. Jeg udvikler
-                    skræddersyede temaer med PHP-skabeloner, Custom Post Types og Advanced Custom Fields, så indholdet
-                    får en fast struktur, som kunden selv kan redigere.</p>
-            </article>
-
-            <article class="kompetencer">
-                <h3 class="kompetencer-title"><i class="fa-brands fa-github" aria-hidden="true"></i> Arbejdsgang</h3>
-                <p class="kompetencer-content">Jeg koder i VS Code og versionsstyrer med Git og GitHub, hvor vi i
-                    gruppeprojekter arbejder med branches og pull requests. Vite bruger jeg til at sætte Vue-projekter
-                    op og bygge dem til produktion, og med GitHub Actions har jeg automatiseret deployment.</p>
-            </article>
-        </section>
-        <section class="bidrag" aria-labelledby="bidrag-title">
-            <h2 class="section-label" id="bidrag-title">&lt;/&gt; Det bidrager jeg med</h2>
-
-            <div class="accordion">
-                <h3 class="accordion-heading">
-                    <button class="accordion-title" type="button" aria-expanded="false"
-                        aria-controls="accordion-frontend">
-                        Frontend udvikling
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                    </button>
-                </h3>
-                <div class="accordion-panel" id="accordion-frontend" inert>
-                    <div class="accordion-inner">
-                        <div class="accordion-content">
-                            <div class="accordion-text">
-                                <p>Jeg omsætter design til <strong>responsiv og tilgængelig</strong> frontend med fokus
-                                    på semantisk
-                                    struktur, tastaturnavigation og tydelige fokustilstande.</p>
-                                <p>Gennem API-integration og <strong>komponentbaseret udvikling</strong> bygger jeg
-                                    dynamiske løsninger,
-                                    hvor indhold, funktionalitet og brugeroplevelse hænger sammen. Undervejs tester jeg
-                                    med Lighthouse
-                                    for at forbedre performance, tilgængelighed og SEO.</p>
-                            </div>
-                            <img src="./assets/img/frontend.webp" alt="Bærbar computer med kode på et spisebord"
-                                loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion">
-                <h3 class="accordion-heading">
-                    <button class="accordion-title" type="button" aria-expanded="false"
-                        aria-controls="accordion-design">
-                        Design og prototyping
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                    </button>
-                </h3>
-                <div class="accordion-panel" id="accordion-design" inert>
-                    <div class="accordion-inner">
-                        <div class="accordion-content">
-                            <div class="accordion-text">
-                                <p>Før jeg designer, skaber jeg overblik over indholdet. Med
-                                    <strong>informationsdesign</strong>,
-                                    indholdsmodeller og content sitemaps fastlægger jeg, hvilke oplysninger hver side
-                                    skal rumme, og hvordan
-                                    siderne hænger sammen.
-                                </p>
-                                <p>Derefter udforsker jeg forskellige løsninger gennem skitser og metoder som fx Crazy
-                                    8,
-                                    før de bliver til
-                                    wireframes og mockups til både mobil og desktop. Genbrugelige komponenter, med
-                                    inspiration fra Atomic
-                                    Design, giver sammenhæng på tværs af siderne.</p>
-                                <p>Gennem <strong>iterative processer</strong> tester jeg klikbare prototyper med
-                                    brugere, fx med
-                                    5-second test og think-aloud, og bruger resultaterne til at forfine designet, så det
-                                    bliver mere
-                                    intuitivt og velfungerende.</p>
-                            </div>
-                            <img src="./assets/img/deign_og_prototyping.webp" alt="Skitser af wireframes på papir"
-                                loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion">
-                <h3 class="accordion-heading">
-                    <button class="accordion-title" type="button" aria-expanded="false"
-                        aria-controls="accordion-bruger">
-                        Brugerforståelse
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                    </button>
-                </h3>
-                <div class="accordion-panel" id="accordion-bruger" inert>
-                    <div class="accordion-inner">
-                        <div class="accordion-content">
-                            <div class="accordion-text">
-                                <p>Jeg starter med desk research og segmentering ud fra objektive og subjektive
-                                    kriterier for at forstå
-                                    målgruppen og dens forskellige behov og formål.</p>
-                                <p>Med <strong>semistrukturerede interviews</strong> går jeg i dybden med brugernes egne
-                                    erfaringer. Svarene
-                                    transskriberes og analyseres tematisk og bruges i den efterfølgende designprocess.
-                                </p>
-                                <p>Gennem affinity diagram og metoder som card sorting undersøger jeg, hvordan indhold
-                                    hænger sammen samt, hvordan
-                                    brugerne selv
-                                    organiserer indholdet, så navigation og struktur følger deres forståelse frem for
-                                    min egen.</p>
-                            </div>
-                            <img src="./assets/img/brugerforstaelse.webp" alt="Bærbar computer med en tematisk analyse"
-                                loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="process-container">
-            <h2 class="section-label">&lt;/&gt; Som kollega</h2>
-            <article class="process-content">
-                <h3 class="process-title"><i class="fa-regular fa-handshake" aria-hidden="true"></i> Samarbejde</h3>
-                <p class="process-text">Jeg er rolig og lyttende og lægger vægt på dialog og gensidig forståelse. Jeg
-                    bidrager gerne med struktur i fælles processer, fra fordeling af opgaver til gennemgang af hinandens
-                    kode via pull requests.</p>
-            </article>
-            <article class="process-content">
-                <h3 class="process-title"><i class="fa-solid fa-gears" aria-hidden="true"></i> Proces</h3>
-                <p class="process-text">Jeg holder styr på mine opgaver og deler løbende, hvor langt jeg er, så resten
-                    af teamet ved, hvad de kan regne med. Jeg tager imod feedback og bruger den til at gøre løsningen
-                    bedre.</p>
-            </article>
-        </section>
-        <a class="to-top" href="#">
-            Til toppen
-            <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
-        </a>
-    </main>
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <ul class="footer-links">
-                <li>
-                    <a href="https://github.com/Freja137" target="_blank" rel="noopener">
-                        <i class="fa-brands fa-github" aria-hidden="true"></i>
-                        GitHub
-                    </a>
-                </li>
-                <li>
-                    <a href="mailto:Frejahfischer@gmail.com">
-                        <i class="fa-regular fa-envelope" aria-hidden="true"></i>
-                        Mail
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/freja-fischer" target="_blank" rel="noopener">
-                        <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-                        LinkedIn
-                    </a>
-                </li>
-            </ul>
-            <p class="footer-copy">&copy;Freja Fischer 2026</p>
+    <!-- Samlede det i et div-element da vue styrer det er det element vi mounter på. Med .mount(#app) kigger Vue kun efter TheHeader og TheFooter inde i <div id="app"> -->
+    <div id="app">
+        <!-- Custom cursor -->
+        <div class="cursor" aria-hidden="true">
+            <div class="cursor-inner"></div>
         </div>
-    </footer>
+
+        <!-- Indsætter header med Vue -->
+        <the-header></the-header>
+        <main class="main-home">
+            <section class="hero faglig-profil">
+                <h1 class="fp-title">Hvordan jeg arbejder</h1>
+                <p>Jeg arbejder i krydsfeltet mellem UX-design og frontendudvikling – fra research og prototyping til
+                    responsiv, tilgængelig kode. Jeg er nysgerrig på, hvordan tingene hænger sammen, og følger gerne en
+                    idé
+                    hele vejen fra skitse til færdig løsning.</p>
+                <p>Jeg arbejder struktureret og lægger vægt på overblik, kvalitet og gennemarbejdede detaljer. Jeg kan
+                    lide
+                    at fordybe mig og blive udfordret, især når jeg kan omsætte det, jeg lærer, til noget, der virker i
+                    praksis.</p>
+                <img src="./assets/img/freja_arbejdsprocess.webp"
+                    alt="Freja sidder ved spisebordet og skitserer wireframes på papir" loading="lazy">
+            </section>
+            <section class="fp-qoute">
+                <span>"</span>
+                <p class="section-label">&lt;/&gt; Det der driver mig</p>
+                <p class="qoute-content">“Jeg kan godt lide at se et design blive til en fungerende løsning gennem kode.
+                    Det
+                    motiverer mig at
+                    skabe intuitive websites, der er nemme at bruge og fungerer i praksis.”</p>
+                <a class="text-link fp-link" href="./portfolio.html">
+                    Udforsk mine projekter
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 12.013L20.789 12m-6.776 7L21 12l-6.988-7" />
+                    </svg>
+                </a>
+            </section>
+            <section class="kompetencer-container">
+                <h2 class="section-label">&lt;/&gt; Det arbejder jeg i</h2>
+
+                <article class="kompetencer">
+                    <h3 class="kompetencer-title"><i class="fa-brands fa-figma" aria-hidden="true"></i> Design</h3>
+                    <p class="kompetencer-content">I Figma arbejder jeg fra wireframes og user flows til mockups og
+                        klikbare prototyper, som kan testes med brugere. Genbrugelige komponenter holder designet
+                        konsistent på tværs af sider. Affinity bruger jeg til billedbehandling og grafiske elementer.
+                    </p>
+                </article>
+
+                <article class="kompetencer">
+                    <h3 class="kompetencer-title"><i class="fa-solid fa-code" aria-hidden="true"></i> Kode</h3>
+                    <p class="kompetencer-content">Jeg skriver semantisk HTML og responsiv CSS med en mobile
+                        first-tilgang
+                        og bruger JavaScript til interaktion og data fra REST API'er. Med Vue bygger jeg
+                        komponentbaserede
+                        løsninger med reaktiv data, og med PHP henter og viser jeg indhold dynamisk.</p>
+                </article>
+
+                <article class="kompetencer">
+                    <h3 class="kompetencer-title"><i class="fa-brands fa-wordpress-simple" aria-hidden="true"></i>
+                        WordPress
+                    </h3>
+                    <p class="kompetencer-content">Jeg bruger WordPress både som klassisk og som headless CMS. Jeg
+                        udvikler
+                        skræddersyede temaer med PHP-skabeloner, Custom Post Types og Advanced Custom Fields, så
+                        indholdet
+                        får en fast struktur, som kunden selv kan redigere.</p>
+                </article>
+
+                <article class="kompetencer">
+                    <h3 class="kompetencer-title"><i class="fa-brands fa-github" aria-hidden="true"></i> Arbejdsgang
+                    </h3>
+                    <p class="kompetencer-content">Jeg koder i VS Code og versionsstyrer med Git og GitHub, hvor vi i
+                        gruppeprojekter arbejder med branches og pull requests. Vite bruger jeg til at sætte
+                        Vue-projekter
+                        op og bygge dem til produktion, og med GitHub Actions har jeg automatiseret deployment.</p>
+                </article>
+            </section>
+            <section class="bidrag" aria-labelledby="bidrag-title">
+                <h2 class="section-label" id="bidrag-title">&lt;/&gt; Det bidrager jeg med</h2>
+
+                <div class="accordion">
+                    <h3 class="accordion-heading">
+                        <button class="accordion-title" type="button" aria-expanded="false"
+                            aria-controls="accordion-frontend">
+                            Frontend udvikling
+                            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        </button>
+                    </h3>
+                    <div class="accordion-panel" id="accordion-frontend" inert>
+                        <div class="accordion-inner">
+                            <div class="accordion-content">
+                                <div class="accordion-text">
+                                    <p>Jeg omsætter design til <strong>responsiv og tilgængelig</strong> frontend med
+                                        fokus
+                                        på semantisk
+                                        struktur, tastaturnavigation og tydelige fokustilstande.</p>
+                                    <p>Gennem API-integration og <strong>komponentbaseret udvikling</strong> bygger jeg
+                                        dynamiske løsninger,
+                                        hvor indhold, funktionalitet og brugeroplevelse hænger sammen. Undervejs tester
+                                        jeg
+                                        med Lighthouse
+                                        for at forbedre performance, tilgængelighed og SEO.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Billedet ligger for sig selv, så det kan stå ved siden af overskriften på desktop -->
+                    <div class="accordion-media" inert>
+                        <div class="accordion-media-inner">
+                            <!-- Åbner billedet i stor størrelse -->
+                            <button class="image-zoom" type="button" aria-label="Se billedet i stor størrelse">
+                                <!-- data-full er det billede, der vises i modalen -->
+                                <img src="./assets/img/frontend.webp" data-full="./assets/img/frontend_modal.webp"
+                                    alt="Bærbar computer med kode på et spisebord" loading="lazy">
+                                <!-- Overlay med tekst og pil -->
+                                <span class="image-zoom-label" aria-hidden="true">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <h3 class="accordion-heading">
+                        <button class="accordion-title" type="button" aria-expanded="false"
+                            aria-controls="accordion-design">
+                            Design og prototyping
+                            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        </button>
+                    </h3>
+                    <div class="accordion-panel" id="accordion-design" inert>
+                        <div class="accordion-inner">
+                            <div class="accordion-content">
+                                <div class="accordion-text">
+                                    <p>Før jeg designer, skaber jeg overblik over indholdet. Med
+                                        <strong>informationsdesign</strong>,
+                                        indholdsmodeller og content sitemaps fastlægger jeg, hvilke oplysninger hver
+                                        side
+                                        skal rumme, og hvordan
+                                        siderne hænger sammen.
+                                    </p>
+                                    <p>Derefter udforsker jeg forskellige løsninger gennem skitser og metoder som fx
+                                        Crazy
+                                        8,
+                                        før de bliver til
+                                        wireframes og mockups til både mobil og desktop. Genbrugelige komponenter, med
+                                        inspiration fra Atomic
+                                        Design, giver sammenhæng på tværs af siderne.</p>
+                                    <p>Gennem <strong>iterative processer</strong> tester jeg klikbare prototyper med
+                                        brugere, fx med
+                                        5-second test og think-aloud, og bruger resultaterne til at forfine designet, så
+                                        det
+                                        bliver mere
+                                        intuitivt og velfungerende.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Billedet ligger for sig selv, så det kan stå ved siden af overskriften på desktop -->
+                    <div class="accordion-media" inert>
+                        <div class="accordion-media-inner">
+                            <!-- Åbner billedet i stor størrelse -->
+                            <button class="image-zoom" type="button" aria-label="Se billedet i stor størrelse">
+                                <img src="./assets/img/deign_og_prototyping.webp" alt="Skitser af wireframes på papir"
+                                    loading="lazy">
+                                <!-- Overlay med tekst og pil -->
+                                <span class="image-zoom-label" aria-hidden="true">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <h3 class="accordion-heading">
+                        <button class="accordion-title" type="button" aria-expanded="false"
+                            aria-controls="accordion-bruger">
+                            Brugerforståelse
+                            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        </button>
+                    </h3>
+                    <div class="accordion-panel" id="accordion-bruger" inert>
+                        <div class="accordion-inner">
+                            <div class="accordion-content">
+                                <div class="accordion-text">
+                                    <p>Jeg starter med desk research og segmentering ud fra objektive og subjektive
+                                        kriterier for at forstå
+                                        målgruppen og dens forskellige behov og formål.</p>
+                                    <p>Med <strong>semistrukturerede interviews</strong> går jeg i dybden med brugernes
+                                        egne
+                                        erfaringer. Svarene
+                                        transskriberes og analyseres tematisk og bruges i den efterfølgende
+                                        designprocess.
+                                    </p>
+                                    <p>Gennem affinity diagram og metoder som card sorting undersøger jeg, hvordan
+                                        indhold
+                                        hænger sammen samt, hvordan
+                                        brugerne selv
+                                        organiserer indholdet, så navigation og struktur følger deres forståelse frem
+                                        for
+                                        min egen.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Billedet ligger for sig selv, så det kan stå ved siden af overskriften på desktop -->
+                    <div class="accordion-media" inert>
+                        <div class="accordion-media-inner">
+                            <!-- Åbner billedet i stor størrelse -->
+                            <button class="image-zoom" type="button" aria-label="Se billedet i stor størrelse">
+                                <!-- data-full er det billede, der vises i modalen -->
+                                <img src="./assets/img/brugerforstaelse.webp"
+                                    data-full="./assets/img/brugerforstaelse_modal.webp"
+                                    alt="Bærbar computer med en tematisk analyse" loading="lazy">
+                                <!-- Overlay med tekst og pil -->
+                                <span class="image-zoom-label" aria-hidden="true">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="process-container">
+                <h2 class="section-label">&lt;/&gt; Som kollega</h2>
+                <article class="process-content">
+                    <h3 class="process-title"><i class="fa-regular fa-handshake" aria-hidden="true"></i> Samarbejde</h3>
+                    <p class="process-text">Jeg er rolig og lyttende og lægger vægt på dialog og gensidig forståelse.
+                        Jeg
+                        bidrager gerne med struktur i fælles processer, fra fordeling af opgaver til gennemgang af
+                        hinandens
+                        kode via pull requests.</p>
+                </article>
+                <article class="process-content">
+                    <h3 class="process-title"><i class="fa-solid fa-gears" aria-hidden="true"></i> Proces</h3>
+                    <p class="process-text">Jeg holder styr på mine opgaver og deler løbende, hvor langt jeg er, så
+                        resten
+                        af teamet ved, hvad de kan regne med. Jeg tager imod feedback og bruger den til at gøre
+                        løsningen
+                        bedre.</p>
+                </article>
+            </section>
+            <a class="to-top" href="#">
+                Til toppen
+                <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+            </a>
+
+            <!-- Modal til billeder i stor størrelse. Inspiration: https://www.w3schools.com/howto/howto_css_modal_images.asp -->
+            <dialog class="image-modal" aria-label="Billede i stor størrelse">
+                <button class="image-modal-close" type="button" aria-label="Luk billedet">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+                <img class="image-modal-img" src="" alt="">
+                <p class="image-modal-caption"></p>
+            </dialog>
+        </main>
+
+        <!-- Indsætter footer med Vue -->
+        <the-footer></the-footer>
+    </div>
 </body>
 
 </html>

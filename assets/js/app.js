@@ -100,6 +100,7 @@ const accordions = document.querySelectorAll(".accordion");
 function setAccordion(accordion, open) {
     const button = accordion.querySelector(".accordion-title");
     const panel = accordion.querySelector(".accordion-panel");
+    const media = accordion.querySelector(".accordion-media");
     const icon = button.querySelector("i");
 
     // Fortæl skærmlæsere, om punktet er åbent
@@ -108,6 +109,11 @@ function setAccordion(accordion, open) {
 
     // Lukket indhold kan ikke nås med tastaturet
     panel.inert = !open;
+
+    // Billedet åbner og lukker sammen med teksten
+    if (media) {
+        media.inert = !open;
+    }
 
     // Skift mellem plus og minus
     icon.classList.toggle("fa-plus", !open);
@@ -196,4 +202,65 @@ if (cursor && hasMouse && !reduceMotion) {
     }
 
     requestAnimationFrame(moveCursor);
+}
+
+/* ----- Billed-modal ----- */
+/* Kilde: https://www.w3schools.com/howto/howto_css_modal_images.asp */
+const imageModal = document.querySelector(".image-modal");
+
+if (imageModal) {
+    const modalImg = imageModal.querySelector(".image-modal-img");
+    const closeButton = imageModal.querySelector(".image-modal-close");
+
+    const modalCaption = imageModal.querySelector(".image-modal-caption");
+
+    // Åbner modalen med det billede, man trykker på
+    document.querySelectorAll(".image-zoom").forEach((button) => {
+        button.addEventListener("click", () => {
+            const img = button.querySelector("img");
+            modalImg.src = img.dataset.full || img.src;
+            modalImg.alt = img.alt;
+            // Billedteksten under billedet er billedets alt-tekst
+            modalCaption.textContent = img.alt;
+            imageModal.showModal();
+        });
+    });
+
+    // Lukker med krydset
+    closeButton.addEventListener("click", () => {
+        imageModal.close();
+    });
+
+    // Lukker, når man trykker uden for billedet
+    imageModal.addEventListener("click", (e) => {
+        if (e.target === imageModal) {
+            imageModal.close();
+        }
+    });
+
+    // Klik på billedet zoomer ind det sted, man klikker
+    modalImg.addEventListener("click", (e) => {
+        moveZoom(e);
+        modalImg.classList.toggle("is-zoomed");
+    });
+
+    // Mens billedet er zoomet, følger det musen
+    modalImg.addEventListener("mousemove", (e) => {
+        if (modalImg.classList.contains("is-zoomed")) {
+            moveZoom(e);
+        }
+    });
+
+    // Finder ud af, hvor på billedet musen er i procent
+    function moveZoom(e) {
+        const rect = modalImg.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        modalImg.style.transformOrigin = `${x}% ${y}%`;
+    }
+
+    // Zoomer ud igen, når modalen lukkes
+    imageModal.addEventListener("close", () => {
+        modalImg.classList.remove("is-zoomed");
+    });
 }
