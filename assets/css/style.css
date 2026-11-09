@@ -15,7 +15,7 @@
     --largePadding: 80px;
     /* Sidebredde */
     --page-padding: 50px;
-    --page-max-width: 1200px;
+    --page-max-width: 1300px;
     /* Afstand mellem sektioner */
     --section-space: 100px;
 }
@@ -24,7 +24,7 @@
 @media (min-width: 768px) {
     :root {
         --page-padding: var(--mediumPadding);
-        --section-space: 160px;
+        --section-space: 150px;
     }
 }
 
@@ -47,6 +47,10 @@ body {
     color: var(--chocolate);
     font-family: var(--font-body);
     line-height: 1.5;
+}
+
+.cursor {
+    display: none;
 }
 
 /* Plads til den faste mobil nav */
@@ -88,6 +92,21 @@ a {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 8px;
+}
+
+/* Skjuler tekst visuelt, men skærmlæsere kan stadig læse den */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* Skjuler Vue-skabelonen, indtil Vue har fyldt den ud https://www.w3schools.com/vue/ref_v-cloak.php */
+[v-cloak] {
+    display: none;
 }
 
 /* ----- Header og nav til mobil ----- */
@@ -503,6 +522,7 @@ body.menu-open {
 .section-label {
     margin: 0;
     margin-top: var(--smallPadding);
+    margin-bottom: var(--mediumPadding);
     font-size: 10px;
 }
 
@@ -809,318 +829,82 @@ body.menu-open {
     object-position: 70% 20%;
 }
 
-/* ----- Portfolio – oversigt ----- */
+/* ----- Portfolio ----- */
 .portfolio {
     max-width: var(--page-max-width);
     margin-inline: auto;
     padding-inline: var(--page-padding);
 }
 
+/* Samme h1 som på Faglig profil og Om mig */
 .portfolio h1 {
     margin: 0;
     font-family: var(--font-heading);
-    font-size: 44px;
-    line-height: 1.1;
+    font-size: 40px;
+    line-height: 1;
 }
 
 .portfolio-intro {
-    max-width: 35rem;
-    margin-top: var(--smallPadding);
+    max-width: 30rem;
+    margin: var(--smallPadding) 0 0;
     font-size: 15px;
 }
 
-/* Projektkort – som i version 1 */
-.projects-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
-    margin-top: var(--largePadding);
-}
-
-.project-card {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    padding: 20px;
-    border: 1px solid var(--chocolate);
-    border-radius: 8px;
-    box-shadow: 0 8px 16px rgb(62 43 36 / 0.12);
-    transition:
-        transform 250ms ease,
-        box-shadow 250ms ease;
-}
-
-/* Kortet løfter sig ved hover */
-.project-card:hover,
-.project-card:focus-within {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 24px rgb(62 43 36 / 0.18);
-}
-
-.project-image {
-    display: block;
-    width: 100%;
-    aspect-ratio: 8 / 5;
-    object-fit: cover;
-    object-position: top;
-}
-
-.project-card-title {
-    margin: var(--smallPadding) 0 0.5rem;
-    font-family: var(--font-heading);
-    font-size: 25px;
-    line-height: 1.1;
-}
-
-.project-description {
-    margin: 0 0 var(--smallPadding);
-    font-size: 12px;
-}
-
-/* Teknologier med prik imellem */
-.project-technologies {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 8px;
-    margin: 1rem 0 var(--mediumPadding);
-    padding: 0;
+/* Listen med projekter */
+.project-list {
+    /* Fjerner prikker og browserens luft */
     list-style: none;
-    color: var(--caramel);
-    font-size: 12px;
-    font-weight: 500;
+    margin: var(--largePadding) 0 0;
+    padding: 0;
 }
 
-.project-technologies li:not(:last-child)::after {
-    content: "";
-    display: inline-block;
-    width: 4px;
-    height: 4px;
-    margin-left: 8px;
-    border-radius: 50%;
-    background-color: currentColor;
-    vertical-align: middle;
-}
-
-/* Linket står altid i bunden af kortet */
-.project-card .text-link {
-    min-width: 0;
-    width: 100%;
-    margin-top: auto;
-}
-
-/* Kontaktkortet */
-.project-contact {
-    justify-content: center;
-    align-items: center;
-    min-height: 350px;
-    text-align: center;
-}
-
-/* Kuverten */
-.contact-envelope {
-    display: block;
-    width: 46px;
-    height: 46px;
-    overflow: visible;
-    fill: none;
-    stroke: var(--chocolate);
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-/* Flappen drejer omkring kuvertens øverste kant */
-.envelope-flap {
-    transform-box: view-box;
-    transform-origin: 24px 19px;
-    transition: transform 450ms ease;
-}
-
-/* Hover over hele kortet åbner kuverten */
-.project-contact:hover .envelope-flap,
-.project-contact:focus-within .envelope-flap {
-    transform: rotateX(180deg);
-}
-
-.project-contact h2 {
-    margin: var(--smallPadding) 0 0.5rem;
-    font-family: var(--font-heading);
-    font-size: 25px;
-}
-
-.project-contact p {
-    margin: 0 0 var(--mediumPadding);
-    color: var(--caramel);
-    font-size: 15px;
-}
-
-.project-contact-button {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 2rem;
-    background-color: var(--chocolate);
-    color: var(--color-background);
-    box-shadow: 0 5px 12px rgb(62 43 36 / 0.2);
-    text-decoration: none;
-    font-size: 13px;
-    transition: background-color 250ms ease;
-}
-
-.project-contact-button:hover,
-.project-contact-button:focus-visible {
-    background-color: var(--caramel);
-}
-
-.project-contact-button:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 6px;
-}
-
-/* ----- Projektside ----- */
-.projekt {
+/* Ét projekt: titel, billede og tekst under hinanden på mobil */
+.project-row {
     display: grid;
-    gap: var(--mediumPadding);
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
-}
-
-.projekt-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    width: fit-content;
-    color: var(--chocolate);
-    text-decoration: none;
-    font-size: 13px;
-}
-
-.projekt-back:hover {
-    text-decoration: underline;
-    text-underline-offset: 6px;
-}
-
-.projekt-back:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 6px;
-}
-
-.projekt-intro .section-label {
-    margin: 0;
-    font-size: 12px;
-}
-
-.projekt-title {
-    margin: 0.5rem 0 0;
-    font-family: var(--font-heading);
-    font-size: 48px;
-    line-height: 1.05;
-}
-
-.projekt-text {
-    max-width: 36rem;
-    margin: 1rem 0 0;
-    font-size: 16px;
-}
-
-/* Teknologier på projektsiden – samme stil som på kortene */
-.projekt .project-technologies {
-    margin-bottom: 0;
-}
-
-/* Rolle, type og periode */
-.projekt-meta {
-    display: grid;
+    grid-template-areas:
+        "title"
+        "image"
+        "text";
     gap: var(--smallPadding);
-    margin: 0;
-    padding-block: var(--smallPadding);
-    border-block: 1px solid var(--chocolate);
-}
-
-.projekt-meta dt {
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.projekt-meta dd {
-    margin: 0.25rem 0 0;
-    font-family: var(--font-heading);
-    font-size: 22px;
-}
-
-.projekt-image {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-}
-
-.projekt-sections {
-    display: grid;
-    gap: var(--mediumPadding);
-}
-
-.projekt-section h2 {
-    margin: 0;
-    font-family: var(--font-heading);
-    font-size: 28px;
-}
-
-.projekt-section p {
-    margin: 0.75rem 0 0;
-    font-size: 15px;
-}
-
-.projekt-live {
-    width: fit-content;
-}
-
-/* Næste projekt nederst på siden */
-.projekt-next {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    margin-top: var(--mediumPadding);
     padding-block: var(--mediumPadding);
-    border-top: 1px solid var(--chocolate);
-    color: var(--chocolate);
-    text-decoration: none;
 }
 
-.projekt-next-label {
-    grid-column: 1;
-    font-size: 13px;
+/* Ingen streg og luft over det første projekt */
+.project-row:first-child {
+    border-top: 0;
 }
 
-.projekt-next-title {
-    grid-column: 1;
+.project-row-title {
+    grid-area: title;
+    margin: 0;
     font-family: var(--font-heading);
     font-size: 36px;
     line-height: 1.1;
 }
 
-.projekt-next i {
-    grid-column: 2;
-    grid-row: 1 / 3;
-    font-size: 24px;
-    transition: transform 250ms ease;
+.project-row-text {
+    grid-area: text;
 }
 
-.projekt-next:hover i,
-.projekt-next:focus-visible i {
-    transform: translateX(6px);
+.project-row-text p {
+    margin: 0 0 var(--mediumPadding);
+    font-size: 15px;
 }
 
-.projekt-next:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 6px;
+/* Skærmbilledet af projektet */
+.project-row-image {
+    grid-area: image;
+    display: block;
+    width: 100%;
+    /* Samme format på alle billeder, beskåret fra toppen */
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
 }
 
-.projekt-missing {
-    display: grid;
-    gap: var(--smallPadding);
-}
+
+
+
 
 /* ----- Til toppen knap ----- */
 .to-top {
@@ -1407,6 +1191,14 @@ body.menu-open {
         outline-offset: 6px;
     }
 
+    .main-home>section:first-child {
+        padding-top: var(--section-space);
+    }
+
+    .main-home>section.home-hero {
+        padding-top: var(--mediumPadding);
+    }
+
     /* Fælles styling til små sektionslabels */
     .section-label {
         margin: 0;
@@ -1441,7 +1233,7 @@ body.menu-open {
 
     .profile-code {
         padding: var(--mediumPadding) var(--smallPadding);
-        font-size: 13px;
+        font-size: 12px;
     }
 
     /* 4 tegns indrykning på større skærme */
@@ -1504,7 +1296,7 @@ body.menu-open {
     .om-mig-hero {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr auto auto auto 1fr;
+        grid-template-rows: auto auto auto 1fr;
         column-gap: var(--largePadding);
     }
 
@@ -1514,13 +1306,14 @@ body.menu-open {
         grid-row: 1 / -1;
         width: 100%;
         max-height: none;
-        height: 500px;
+        /* Billedet følger skærmens højde, så næste sektion kan anes i bunden */
+        height: clamp(320px, calc(100svh - 400px), 520px);
     }
 
     .faglig-profil h1,
     .om-mig-hero h1 {
         grid-column: 2;
-        grid-row: 2;
+        grid-row: 1;
         margin: 0 0 var(--mediumPadding);
         font-size: 60px;
         line-height: 1;
@@ -1536,12 +1329,12 @@ body.menu-open {
 
     .faglig-profil p:nth-of-type(1),
     .om-mig-hero p:nth-of-type(1) {
-        grid-row: 3;
+        grid-row: 2;
     }
 
     .faglig-profil p:nth-of-type(2),
     .om-mig-hero p:nth-of-type(2) {
-        grid-row: 4;
+        grid-row: 3;
     }
 
     /* Citat */
@@ -1552,7 +1345,8 @@ body.menu-open {
         font-size: 25px;
     }
 
-    .kompetencer-container>.section-label {
+    .kompetencer-container>.section-label,
+    .process-container>.section-label {
         grid-column: 1 / -1;
         text-align: center;
     }
@@ -1620,40 +1414,38 @@ body.menu-open {
     }
 
     /* Portfolio */
-    .portfolio>h1 {
+    .portfolio h1 {
         font-size: 60px;
     }
 
-    .projects-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .portfolio-intro {
+        font-size: 16px;
     }
 
-    .project-description {
-        margin: var(--smallPadding) 0 var(--smallPadding);
-        font-size: 15px;
+    /* Titel og tekst til venstre, billede til højre */
+    .project-row {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "title image"
+            "text  image";
+        /* Titel og tekst står i toppen i stedet for at blive strakt */
+        align-content: start;
+        column-gap: var(--mediumPadding);
+        row-gap: var(--smallPadding);
+        padding-block: var(--largePadding);
     }
 
-    /* Projektside */
-    .projekt-title {
-        font-size: 72px;
+    .project-row-title {
+        font-size: 35px;
     }
 
-    .projekt-meta {
-        grid-template-columns: repeat(3, 1fr);
+    .project-row {
+        border-top: 1px solid var(--chocolate);
     }
 
-    .projekt-section {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        column-gap: var(--largePadding);
-    }
-
-    .projekt-section p {
-        margin-top: 0;
-    }
-
-    .projekt-next-title {
-        font-size: 56px;
+    /* Ingen streg over det første projekt */
+    .project-row:first-child {
+        border-top: 0;
     }
 
     /* Kontakt */
@@ -1792,8 +1584,9 @@ body.menu-open {
     }
 
     /* Faglig profil */
-    .faglig-profil img {
-        height: 650px;
+    .faglig-profil img,
+    .om-mig-hero img {
+        height: clamp(360px, calc(100svh - 480px), 560px);
     }
 
     .qoute-content {
@@ -1810,7 +1603,7 @@ body.menu-open {
     /* Labelen fylder hele rækken over de to kolonner */
     .kompetencer-container h2,
     .process-container h2 {
-        grid-column: 1 / -1;
+        grid-column: 1/-1;
     }
 
     /* Teksten under titlen er rykket lidt ind */
@@ -1826,7 +1619,6 @@ body.menu-open {
 
     /* Om mig */
     .om-mig-hero img {
-        height: 650px;
         object-fit: cover;
         object-position: center;
     }
@@ -1845,35 +1637,16 @@ body.menu-open {
         gap: 2.5rem;
     }
 
-    /* Portfolio – fire lavere kort på én række */
-    .projects-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: var(--smallPadding);
+    /* Portfolio – titel, tekst og billede på én række */
+    .project-row {
+        grid-template-columns: 1fr 1fr 1.4fr;
+        grid-template-areas: "title text image";
+        align-items: start;
+        column-gap: var(--largePadding);
     }
 
-    .project-card {
-        padding: 16px;
-    }
-
-    .project-image {
-        aspect-ratio: 16 / 9;
-    }
-
-    .project-card-title,
-    .project-contact h2 {
-        margin-top: 1rem;
-    }
-
-    .project-technologies {
-        margin-bottom: var(--smallPadding);
-    }
-
-    .project-contact {
-        min-height: auto;
-    }
-
-    .project-contact p {
-        margin-bottom: var(--smallPadding);
+    .project-row-title {
+        font-size: 40px;
     }
 
     /* Kontakt */
@@ -1894,6 +1667,46 @@ body.menu-open {
     /* Footer */
     .site-footer {
         margin-top: var(--section-space);
+    }
+}
+
+/* ----- Custom cursor – kun på enheder med mus ----- */
+@media (hover: hover) and (pointer: fine) {
+    .cursor {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1100;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 300ms ease;
+        will-change: transform;
+    }
+
+    /* Vises, når musen har bevæget sig */
+    .cursor.is-visible {
+        opacity: 1;
+    }
+
+    .cursor-inner {
+        width: 25px;
+        height: 25px;
+        border: none;
+        background-color: var(--chocolate);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition:
+            width 250ms ease,
+            height 250ms ease,
+            background-color 250ms ease;
+    }
+
+    /* Cirklen vokser over links og knapper */
+    .cursor.is-hovering .cursor-inner {
+        width: 40px;
+        height: 40px;
+        background-color: rgb(62 43 36 / 0.08);
     }
 }
 
@@ -1926,16 +1739,13 @@ body.menu-open {
 
     .to-top,
     .accordion-panel,
-    .accordion-title i,
-    .project-card,
-    .project-contact-button,
-    .projekt-next i,
-    .envelope-flap {
+    .accordion-title i {
         transition: none;
     }
 
-    .project-card:hover,
-    .project-card:focus-within {
-        transform: none;
+    .cursor {
+        display: none;
     }
+
+
 }

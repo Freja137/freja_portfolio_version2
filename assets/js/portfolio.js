@@ -1,41 +1,12 @@
-/* Vue – projektoversigt */
-const { createApp } = Vue;
-
-// Kort til hvert projekt – samme opbygning til alle
-const ProjectCard = {
-    props: {
-        project: {
-            type: Object,
-            required: true
-        }
-    },
-
-    template: `
-        <a class="project-card">
-            <img class="project-image" :src="project.billede" :alt="project.alt" loading="lazy">
-
-            <h2 class="project-card-title">{{ project.titel }}</h2>
-            <p class="project-description">{{ project.beskrivelse }}</p>
-
-            <a class="text-link" :href="'./projekt.html?id=' + project.id">
-                Udforsk projektet
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        d="M3 12.013L20.789 12m-6.776 7L21 12l-6.988-7" />
-                </svg>
-            </a>
-        </a>
-    `
-};
+//Henter Vue fra et CDN, så siden ikke skal bygges
+import { createApp } from "https://unpkg.com/vue@3.5.13/dist/vue.esm-browser.prod.js";
+//Henter projekterne fra datafilen
+import { projects } from "./projects.js";
 
 createApp({
-    components: {
-        ProjectCard
-    },
-
+    //Det, der returneres her, kan bruges i skabelonen
     setup() {
-        return {
-            projects
-        };
-    }
-}).mount("#portfolio-app");
+        return { projects };
+    },
+    //Vue styrer kun listen med projekter
+}).mount("#project-list");

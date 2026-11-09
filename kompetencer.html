@@ -33,7 +33,7 @@
             <div class="navDropdown" id="navDropdown" inert>
                 <ul class="nav-list">
                     <li class="links">
-                        <a href="./faglig-profil.html">Faglig profil</a>
+                        <a href="./kompetencer.html">Kompetencer</a>
                     </li>
                     <li class="links">
                         <a href="./om-mig.html">Om mig</a>
@@ -49,7 +49,7 @@
         </nav>
         <nav class="nav-desktop" aria-label="Hovednavigation">
             <ul class="nav-list-desktop">
-                <li><a href="./faglig-profil.html">Faglig profil</a></li>
+                <li><a href="./kompetencer.html">Kompetencer</a></li>
                 <li><a href="./om-mig.html">Om mig</a></li>
                 <li><a href="./portfolio.html">Portfolio</a></li>
             </ul>
@@ -71,17 +71,14 @@
     <main class="main-home">
         <section class="hero faglig-profil">
             <h1 class="fp-title">Hvordan jeg arbejder</h1>
-            <p>Jeg arbejder med både design og frontendudvikling – fra at forstå brugerens behov til at bygge og afprøve
-                løsningen. Jeg er nysgerrig på, hvordan tingene hænger sammen, og kan godt lide at følge en idé hele
-                vejen fra skitse til færdig kode.
-                <br>
-                <br>
-                Jeg arbejder struktureret og lægger vægt på overblik, kvalitet og at gøre mig umage med mine opgaver.
-                Jeg kan lide at fordybe mig og blive udfordret, især når jeg kan afprøve det, jeg lærer, i praksis. Det
-                motiverer mig at se mine løsninger tage form og mærke, at jeg udvikler mig undervejs.
-            </p>
+            <p>Jeg arbejder i krydsfeltet mellem UX-design og frontendudvikling – fra research og prototyping til
+                responsiv, tilgængelig kode. Jeg er nysgerrig på, hvordan tingene hænger sammen, og følger gerne en idé
+                hele vejen fra skitse til færdig løsning.</p>
+            <p>Jeg arbejder struktureret og lægger vægt på overblik, kvalitet og gennemarbejdede detaljer. Jeg kan lide
+                at fordybe mig og blive udfordret, især når jeg kan omsætte det, jeg lærer, til noget, der virker i
+                praksis.</p>
             <img src="./assets/img/freja_arbejdsprocess.webp"
-                alt="Billede af Freja der sidder ved spisebordet og arbejder på wireframes" loading="lazy">
+                alt="Freja sidder ved spisebordet og skitserer wireframes på papir" loading="lazy">
         </section>
         <section class="fp-qoute">
             <span>"</span>
@@ -98,33 +95,35 @@
             </a>
         </section>
         <section class="kompetencer-container">
-            <h2 class="section-label">&lt;/&gt; Værktøjer</h2>
+            <h2 class="section-label">&lt;/&gt; Det arbejder jeg i</h2>
+
             <article class="kompetencer">
-                <h3 class="kompetencer-title"> <i class="fa-brands fa-vuejs"></i> Frameworks</h3>
-                <p class="kompetencer-content">Jeg er nysgerrig på nye måder at bygge på og arbejder med Vue til
-                    komponentbaserede løsninger og PHP til at hente og vise data. Jeg kan arbejde selvstændigt, og
-                    når noget driller, går jeg roligt til værks, indtil jeg forstår, hvorfor det sker.</p>
+                <h3 class="kompetencer-title"><i class="fa-brands fa-figma" aria-hidden="true"></i> Design</h3>
+                <p class="kompetencer-content">I Figma arbejder jeg fra wireframes og user flows til mockups og
+                    klikbare prototyper, som kan testes med brugere. Genbrugelige komponenter holder designet
+                    konsistent på tværs af sider. Affinity bruger jeg til billedbehandling og grafiske elementer.</p>
             </article>
 
             <article class="kompetencer">
-                <h3 class="kompetencer-title"> <i class="fa-brands fa-wordpress-simple"></i> WordPress</h3>
-                <p class="kompetencer-content">Jeg lytter til kundens behov og tænker langsigtet, når jeg sætter en
-                    WordPress-side op. Med CSS og PHP tilpasser jeg temaet, så designet sidder præcist. Det vigtigste
-                    for mig er, at kunden kan stole på løsningen og selv kan arbejde videre med den.</p>
+                <h3 class="kompetencer-title"><i class="fa-solid fa-code" aria-hidden="true"></i> Kode</h3>
+                <p class="kompetencer-content">Jeg skriver semantisk HTML og responsiv CSS med en mobile first-tilgang
+                    og bruger JavaScript til interaktion og data fra REST API'er. Med Vue bygger jeg komponentbaserede
+                    løsninger med reaktiv data, og med PHP henter og viser jeg indhold dynamisk.</p>
             </article>
 
             <article class="kompetencer">
-                <h3 class="kompetencer-title"><i class="fa-solid fa-text-width"></i> Layout og typografi</h3>
-                <p class="kompetencer-content">Jeg har et fint øje for de små nuancer i skrift, afstande og farver og
-                    lægger mærke til detaljer, andre måske overser. Når jeg koder et layout, sørger jeg for, at det
-                    hænger sammen på alle skærmstørrelser, fra mobil til desktop.</p>
+                <h3 class="kompetencer-title"><i class="fa-brands fa-wordpress-simple" aria-hidden="true"></i> WordPress
+                </h3>
+                <p class="kompetencer-content">Jeg bruger WordPress både som klassisk og som headless CMS. Jeg udvikler
+                    skræddersyede temaer med PHP-skabeloner, Custom Post Types og Advanced Custom Fields, så indholdet
+                    får en fast struktur, som kunden selv kan redigere.</p>
             </article>
 
             <article class="kompetencer">
-                <h3 class="kompetencer-title"><i class="fa-solid fa-arrow-pointer"></i> Interaktion og animation</h3>
-                <p class="kompetencer-content">Jeg er kreativ og kan godt lide at nørde med de små ting, der gør en
-                    side levende, som overgange, hover-effekter og elementer, der fader ind. Jeg holder animationerne
-                    rolige og tænker på tilgængelighed, så de løfter oplevelsen uden at stjæle fokus.</p>
+                <h3 class="kompetencer-title"><i class="fa-brands fa-github" aria-hidden="true"></i> Arbejdsgang</h3>
+                <p class="kompetencer-content">Jeg koder i VS Code og versionsstyrer med Git og GitHub, hvor vi i
+                    gruppeprojekter arbejder med branches og pull requests. Vite bruger jeg til at sætte Vue-projekter
+                    op og bygge dem til produktion, og med GitHub Actions har jeg automatiseret deployment.</p>
             </article>
         </section>
         <section class="bidrag" aria-labelledby="bidrag-title">
@@ -142,12 +141,14 @@
                     <div class="accordion-inner">
                         <div class="accordion-content">
                             <div class="accordion-text">
-                                <p>Jeg visualiserer og tester løsninger i Figma og omsætter dem efterfølgende til
-                                    responsiv og
-                                    <strong>funktionel</strong> frontend med HTML, CSS og JavaScript.
-                                </p>
-                                <p>Gennem API-integration og dataudveksling arbejder jeg med <strong>dynamiske
-                                        løsninger</strong>, hvor funktionalitet og brugeroplevelse hænger sammen.</p>
+                                <p>Jeg omsætter design til <strong>responsiv og tilgængelig</strong> frontend med fokus
+                                    på semantisk
+                                    struktur, tastaturnavigation og tydelige fokustilstande.</p>
+                                <p>Gennem API-integration og <strong>komponentbaseret udvikling</strong> bygger jeg
+                                    dynamiske løsninger,
+                                    hvor indhold, funktionalitet og brugeroplevelse hænger sammen. Undervejs tester jeg
+                                    med Lighthouse
+                                    for at forbedre performance, tilgængelighed og SEO.</p>
                             </div>
                             <img src="./assets/img/frontend.webp" alt="Bærbar computer med kode på et spisebord"
                                 loading="lazy">
@@ -168,12 +169,23 @@
                     <div class="accordion-inner">
                         <div class="accordion-content">
                             <div class="accordion-text">
-                                <p>Med udgangspunkt i <strong>designprincipper</strong> omsætter jeg idéer og research
-                                    til
-                                    gennemarbejdede og brugervenlige løsninger.</p>
-                                <p>Gennem <strong>iterative processer</strong> og løbende brugertest forfiner jeg
-                                    designet, så
-                                    det bliver mere intuitivt og velfungerende.</p>
+                                <p>Før jeg designer, skaber jeg overblik over indholdet. Med
+                                    <strong>informationsdesign</strong>,
+                                    indholdsmodeller og content sitemaps fastlægger jeg, hvilke oplysninger hver side
+                                    skal rumme, og hvordan
+                                    siderne hænger sammen.
+                                </p>
+                                <p>Derefter udforsker jeg forskellige løsninger gennem skitser og metoder som fx Crazy
+                                    8,
+                                    før de bliver til
+                                    wireframes og mockups til både mobil og desktop. Genbrugelige komponenter, med
+                                    inspiration fra Atomic
+                                    Design, giver sammenhæng på tværs af siderne.</p>
+                                <p>Gennem <strong>iterative processer</strong> tester jeg klikbare prototyper med
+                                    brugere, fx med
+                                    5-second test og think-aloud, og bruger resultaterne til at forfine designet, så det
+                                    bliver mere
+                                    intuitivt og velfungerende.</p>
                             </div>
                             <img src="./assets/img/deign_og_prototyping.webp" alt="Skitser af wireframes på papir"
                                 loading="lazy">
@@ -194,10 +206,18 @@
                     <div class="accordion-inner">
                         <div class="accordion-content">
                             <div class="accordion-text">
-                                <p>Jeg bruger research og kvalitative interviews til at forstå <strong>brugernes
-                                        behov</strong> og oplevelser. Gennem tematisk analyse finder jeg mønstre i deres
-                                    svar og
-                                    omsætter indsigterne til valg om indhold, navigation og funktioner.</p>
+                                <p>Jeg starter med desk research og segmentering ud fra objektive og subjektive
+                                    kriterier for at forstå
+                                    målgruppen og dens forskellige behov og formål.</p>
+                                <p>Med <strong>semistrukturerede interviews</strong> går jeg i dybden med brugernes egne
+                                    erfaringer. Svarene
+                                    transskriberes og analyseres tematisk og bruges i den efterfølgende designprocess.
+                                </p>
+                                <p>Gennem affinity diagram og metoder som card sorting undersøger jeg, hvordan indhold
+                                    hænger sammen samt, hvordan
+                                    brugerne selv
+                                    organiserer indholdet, så navigation og struktur følger deres forståelse frem for
+                                    min egen.</p>
                             </div>
                             <img src="./assets/img/brugerforstaelse.webp" alt="Bærbar computer med en tematisk analyse"
                                 loading="lazy">
@@ -207,20 +227,18 @@
             </div>
         </section>
         <section class="process-container">
-            <h2 class="section-label">&lt;/&gt; Sådan arbejder jeg</h2>
+            <h2 class="section-label">&lt;/&gt; Som kollega</h2>
             <article class="process-content">
-                <h3 class="process-title"><i class="fa-regular fa-handshake"></i> Samarbejde</h3>
-                <p class="process-text">I samarbejde er jeg rolig og observerende og lægger stor vægt på dialog og
-                    gensidig forståelse. Jeg bestræber mig på at bidrage til et arbejdsmiljø præget af ansvar, respekt
-                    og tryghed.
-                </p>
+                <h3 class="process-title"><i class="fa-regular fa-handshake" aria-hidden="true"></i> Samarbejde</h3>
+                <p class="process-text">Jeg er rolig og lyttende og lægger vægt på dialog og gensidig forståelse. Jeg
+                    bidrager gerne med struktur i fælles processer, fra fordeling af opgaver til gennemgang af hinandens
+                    kode via pull requests.</p>
             </article>
             <article class="process-content">
-                <h3 class="process-title"><i class="fa-solid fa-gears"></i> Process</h3>
-                <p class="process-text">Jeg er samvittighedsfuld og pligtopfyldende og lægger vægt på at gøre tingene
-                    ordentligt fra start
-                    til slut. Jeg arbejder struktureret og procesorienteret med fokus på overblik og klare rammer.
-                </p>
+                <h3 class="process-title"><i class="fa-solid fa-gears" aria-hidden="true"></i> Proces</h3>
+                <p class="process-text">Jeg holder styr på mine opgaver og deler løbende, hvor langt jeg er, så resten
+                    af teamet ved, hvad de kan regne med. Jeg tager imod feedback og bruger den til at gøre løsningen
+                    bedre.</p>
             </article>
         </section>
         <a class="to-top" href="#">

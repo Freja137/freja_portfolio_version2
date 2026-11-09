@@ -72,13 +72,12 @@ navLinks.forEach((link) => {
 // Alle sektioner fader ind, når de kommer ind på skærmen
 /* https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API */
 const revealSections = document.querySelectorAll("main section");
-
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-        // Vis sektionen, når den er på skærmen, og skjul den igen, når den forlader skærmen
+        // Vis sektionen, når den er på skærmen, og skjul den igen, når den er helt ude af skærmen
         entry.target.classList.toggle("is-visible", entry.isIntersecting);
     });
-}, { threshold: 0.15 });
+}, { rootMargin: "0px 0px -15% 0px" });
 
 // Skjul alle sektioner fra start
 revealSections.forEach((section) => {
@@ -150,4 +149,51 @@ if (toTop && heroSection) {
     // kilde: https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin
 
     toTopObserver.observe(heroSection);
+}
+
+/* ----- Custom cursor ----- */
+const cursor = document.querySelector(".cursor");
+
+// Kun på enheder med mus, og ikke hvis brugeren har slået bevægelse fra
+const hasMouse = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (cursor && hasMouse && !reduceMotion) {
+    const mouse = { x: 0, y: 0 };
+    const pos = { x: 0, y: 0 };
+    const speed = 0.15; // mellem 0 og 1 – lavere tal giver mere forsinkelse
+
+    // Gemmer musens position
+    window.addEventListener("mousemove", (e) => {
+        // Første gang starter cirklen præcis ved musen
+        if (!cursor.classList.contains("is-visible")) {
+            pos.x = e.clientX;
+            pos.y = e.clientY;
+            cursor.classList.add("is-visible");
+        }
+
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+
+    // Skjuler cirklen, når musen forlader vinduet
+    document.addEventListener("mouseleave", () => {
+        cursor.classList.remove("is-visible");
+    });
+
+    // Cirklen vokser over links og knapper
+    document.addEventListener("mouseover", (e) => {
+        const isLink = e.target.closest("a, button");
+        cursor.classList.toggle("is-hovering", Boolean(isLink));
+    });
+
+    // Cirklen glider efter musen
+    function moveCursor() {
+        pos.x += (mouse.x - pos.x) * speed;
+        pos.y += (mouse.y - pos.y) * speed;
+        cursor.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
+        requestAnimationFrame(moveCursor);
+    }
+
+    requestAnimationFrame(moveCursor);
 }
