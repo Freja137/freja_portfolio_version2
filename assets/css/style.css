@@ -44,7 +44,7 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100svh;
+    min-height: 100vh;
     margin: 0;
     background-color: var(--color-background);
     color: var(--chocolate);
@@ -259,7 +259,8 @@ body.menu-open {
 }
 
 /* ----- CTA ----- */
-.text-link {
+.text-link,
+.case-figure-link {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
@@ -275,7 +276,8 @@ body.menu-open {
     text-transform: uppercase;
 }
 
-.text-link svg {
+.text-link svg,
+.case-figure-link svg {
     flex-shrink: 0;
     width: 1.2rem;
     height: 1.2rem;
@@ -283,7 +285,9 @@ body.menu-open {
 }
 
 .text-link:hover svg,
-.text-link:focus-visible svg {
+.text-link:focus-visible svg,
+.case-figure:hover .case-figure-link svg,
+.case-figure:focus-visible .case-figure-link svg {
     transform: translateX(4px);
 }
 
@@ -1023,7 +1027,7 @@ body.menu-open {
     display: block;
     width: 100%;
     max-width: 800px;
-    max-height: 75svh;
+    max-height: 75vh;
     margin-inline: auto;
     object-fit: contain;
     cursor: zoom-in;
@@ -1160,6 +1164,242 @@ body.menu-open {
 .kontakt-link:focus-visible {
     outline: 2px solid var(--chocolate);
     outline-offset: 6px;
+}
+
+/* ----- Case study ----- */
+/* Intro */
+.case-hero {
+    display: grid;
+    gap: var(--mediumPadding);
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+}
+
+.case-hero h1 {
+    margin: 0 0 var(--smallPadding);
+    line-height: 1;
+}
+
+.case-hero-text p {
+    max-width: 36rem;
+    margin: 0 0 1rem;
+    font-size: 15px;
+}
+
+.case-hero-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Links til løsningen og koden */
+.case-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--mediumPadding) var(--mediumPadding);
+    margin-top: var(--mediumPadding);
+}
+
+.case-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--chocolate);
+    color: var(--chocolate);
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.case-link svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    transition: transform 250ms ease;
+}
+
+.case-link i {
+    font-size: 1.2rem;
+}
+
+/* Pilen skubber sig lidt op mod højre ved hover */
+.case-link:hover svg,
+.case-link:focus-visible svg {
+    transform: translate(3px, -3px);
+}
+
+.case-link:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
+}
+
+/* Processen */
+.case-process {
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+}
+
+.case-process-title {
+    margin: 0 0 var(--mediumPadding);
+    font-family: var(--font-heading);
+    font-size: 36px;
+    line-height: 1;
+}
+
+
+/* Faserne med pile – pilene vises kun på mobil */
+
+.phase-nav {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--chocolate);
+}
+
+/* Faserne kan scrolles vandret på små skærme */
+.phase-tabs {
+    position: relative;
+    display: flex;
+    flex: 1;
+    gap: var(--mediumPadding);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    /* Skjuler scrollbaren, fordi pilene bruges i stedet */
+    scrollbar-width: none;
+}
+
+.phase-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.phase-tab {
+    position: relative;
+    flex-shrink: 0;
+    padding: 0 0 0.75rem;
+    border: 0;
+    background: transparent;
+    color: var(--chocolate);
+    font-family: var(--font-heading);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* Den fede streg glider hen under den valgte fase – placeringen sættes i case.js */
+.phase-tabs::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: var(--indicator-width, 0);
+    height: 4px;
+    background-color: var(--chocolate);
+    transform: translateX(var(--indicator-left, 0));
+    transition:
+        transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+        width 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Pilene ude i siderne */
+.phase-arrow {
+    flex-shrink: 0;
+    width: 32px;
+    height: 44px;
+    margin-bottom: 0.75rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--chocolate);
+    font-size: 16px;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+/* Pilen er svag, når der ikke er flere faser i den retning */
+.phase-arrow:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+
+.phase-arrow:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 2px;
+}
+
+
+/* Trinene i den valgte fase */
+.step-tabs {
+    display: flex;
+    gap: var(--mediumPadding);
+    overflow-x: auto;
+    padding-block: var(--smallPadding);
+}
+
+.step-tab {
+    flex-shrink: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--chocolate);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.step-tab.is-active {
+    font-weight: 600;
+}
+
+.phase-tab:focus-visible,
+.step-tab:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 4px;
+}
+
+/* Ét trin: tekst og billede */
+.case-step {
+    display: grid;
+    gap: var(--mediumPadding);
+    padding-top: var(--mediumPadding);
+}
+
+.case-step h3 {
+    margin: 0 0 var(--smallPadding);
+    font-family: var(--font-heading);
+    font-size: 30px;
+    line-height: 1.1;
+}
+
+.case-step-text p {
+    max-width: 36rem;
+    margin: 0 0 1rem;
+    font-size: 15px;
+}
+
+/* Flere billeder i samme trin står under hinanden */
+.case-figures {
+    display: grid;
+    gap: var(--mediumPadding);
+    align-self: start;
+}
+
+/* Billedet med link under – åbner modalen */
+.case-figure {
+    align-self: start;
+    text-align: left;
+}
+
+/* Billedet fylder kolonnens bredde og ikke mere */
+.case-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Luft mellem billedet og linket – resten af stylingen deler den med .text-link */
+.case-figure-link {
+    margin-top: 1rem;
+    font-family: var(--font-body);
 }
 
 /* ----- Footer til mobil ----- */
@@ -1442,7 +1682,7 @@ body.menu-open {
         width: 100%;
         max-height: none;
         /* Billedet følger skærmens højde, så næste sektion kan anes i bunden */
-        height: clamp(320px, calc(100svh - 400px), 520px);
+        height: 400px;
     }
 
     .faglig-profil h1,
@@ -1611,6 +1851,29 @@ body.menu-open {
         padding-top: 0;
     }
 
+    /* Case study */
+    .case-hero-text p,
+    .case-step-text p {
+        font-size: 15px;
+        font-weight: 300;
+    }
+
+    .case-process-title {
+        font-size: 48px;
+    }
+
+    .phase-tab {
+        font-size: 28px;
+    }
+
+    .step-tab {
+        font-size: 17px;
+    }
+
+    .phase-arrow {
+        display: none;
+    }
+
     /* Footer */
     .site-footer {
         max-width: none;
@@ -1723,7 +1986,7 @@ body.menu-open {
     /* Faglig profil */
     .faglig-profil img,
     .om-mig-hero img {
-        height: clamp(360px, calc(100svh - 480px), 560px);
+        height: 480px
     }
 
     .qoute-content {
@@ -1741,6 +2004,11 @@ body.menu-open {
     .kompetencer-container h2,
     .process-container h2 {
         grid-column: 1/-1;
+    }
+
+    .image-modal-img {
+        max-width: 1200px;
+        max-height: 82vh;
     }
 
     /* Teksten under titlen er rykket lidt ind */
@@ -1805,6 +2073,71 @@ body.menu-open {
         font-size: 40px;
     }
 
+    /* Case study – intro: bred tekstkolonne og lidt smallere billede */
+    .case-hero {
+        grid-template-columns: 1.4fr 1fr;
+        column-gap: var(--largePadding);
+        align-items: start;
+    }
+
+    .case-hero-text {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    /* Linkene står i bunden af tekstkolonnen, på linje med billedets bund */
+    .case-links {
+        margin-top: auto;
+        padding-top: var(--mediumPadding);
+    }
+
+    /* Faserne fordeles over hele bredden, så den sidste står ude til højre */
+    .phase-tabs {
+        justify-content: space-between;
+    }
+
+    /* Hver fase er mindst en femtedel bred, så stregen under den valgte fase bliver lang */
+    .phase-tab {
+        min-width: 20%;
+        text-align: left;
+    }
+
+    .phase-tab:last-child {
+        text-align: right;
+    }
+
+    .step-tab {
+        font-size: 15px;
+        font-weight: 300;
+    }
+
+    /* Trin – tekst til venstre, billede til højre */
+    .case-step {
+        grid-template-columns: 1fr 1.2fr;
+        column-gap: var(--largePadding);
+        align-items: start;
+        padding-top: var(--largePadding);
+    }
+
+    .case-step h3 {
+        height: 34px;
+        margin-bottom: var(--smallPadding);
+        font-size: 34px;
+        line-height: 1;
+    }
+
+    /* Billedet starter ud for brødteksten – overskriftens højde plus afstanden under den */
+    .case-figure,
+    .case-figures {
+        margin-top: 54px;
+    }
+
+    /* Billeder inde i .case-figures skal ikke have ekstra afstand */
+    .case-figures .case-figure {
+        margin-top: 0;
+    }
+
     /* Kontakt */
     .kontakt-link svg {
         width: 32px;
@@ -1823,6 +2156,7 @@ body.menu-open {
 }
 
 /* ----- Custom cursor – kun på enheder med mus ----- */
+/* Kilde: https://codepen.io/gabrielcojea/pen/dyGKKXY */
 @media (hover: hover) and (pointer: fine) {
     .cursor {
         display: block;
@@ -1918,7 +2252,12 @@ body.menu-open {
     .accordion-title i,
     .image-zoom-label,
     .image-modal-close,
-    .image-modal-img {
+    .image-modal-img,
+    .to-top {
+        transition: none;
+    }
+
+    .phase-tabs::after {
         transition: none;
     }
 

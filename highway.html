@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Faglig profil</title>
+    <meta name="description"
+        content="Jeg er Freja Fischer, multimediedesignstuderende med interesse for frontendudvikling og UX/UI-design. Lær mig at kende og se mine projekter.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script type="module" src="./assets/js/main.js"></script>
+    <script src="./assets/js/app.js" defer></script>
+</head>
+
+<body>
+    <!-- Samlede det i et div-element da vue styrer det er det element vi mounter på. Med .mount(#app) kigger Vue kun efter TheHeader og TheFooter inde i <div id="app"> -->
+    <div id="app">
+        <!-- Custom cursor -->
+        <div class="cursor" aria-hidden="true">
+            <div class="cursor-inner"></div>
+        </div>
+        <!-- Header indsættes med Vue -->
+        <the-header></the-header>
+
+        <main class="main-home">
+            <!-- Intro til casen -->
+            <section class="case-hero">
+                <div class="case-hero-text">
+                    <h1>Highway 69</h1>
+                    <p>Et komplet redesign af hjemmesiden for Highway 69, en amerikansk diner i Sæby. Projektet gik fra
+                        brugerresearch og interviews til et responsivt website med fokus på tydelig navigation og et
+                        overskueligt menukort.</p>
+                    <p>Jeg arbejdede i en gruppe på fire, hvor vi omsatte brugerindsigter til design og udvikling.
+                        Frontenden blev bygget med HTML, CSS og JavaScript, og menukortet blev hentet dynamisk fra
+                        WordPress via REST API.</p>
+
+                    <div class="case-links">
+                        <a class="case-link"
+                            href="https://mmd.ucn.dk/class/MMD-CSD-S25/10700522/MMD2/Highway69_MMD2_Gruppe5/"
+                            target="_blank" rel="noopener">
+                            Se løsningen i brug
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                aria-hidden="true">
+                                <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                            </svg>
+                        </a>
+                        <a class="case-link" href="https://github.com/Babaganooshz/Highway69_MMD2_Gruppe5"
+                            target="_blank" rel="noopener">
+                            Se koden i GitHub
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <img class="case-hero-image" src="./assets/img/highway/highway.webp"
+                    alt="Forsiden af Highway 69 med restaurantens bar">
+            </section>
+
+            <!-- Processen – tab-navigationen styres med Vue (assets/js/case.js) -->
+            <section class="case-process">
+                <h2 class="case-process-title">Processen</h2>
+
+                <!-- v-cloak skjuler tabs, indtil Vue er klar, så alle trin ikke blinker frem -->
+                <!-- :class markerer den valgte fase og det valgte trin. Kilde: https://vuejs.org/guide/essentials/class-and-style -->
+                <div id="case-tabs" v-cloak>
+                    <!-- Faserne -->
+                    <!-- Faserne med pile – pilene vises kun på mobil -->
+                    <div class="phase-nav">
+                        <button class="phase-arrow" type="button" aria-label="Vis tidligere faser"
+                            :disabled="!canScrollLeft" @click="scrollTabs(-1)">
+                            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <div class="phase-tabs" ref="phaseTabs" @scroll="updateArrows" role="tablist"
+                            aria-label="Faser i processen">
+                            <button class="phase-tab" type="button" role="tab"
+                                :class="{ 'is-active': activePhase === 'analyse' }"
+                                :aria-selected="activePhase === 'analyse'" @click="selectPhase('analyse', $event)">01
+                                Analyse</button>
+                            <button class="phase-tab" type="button" role="tab"
+                                :class="{ 'is-active': activePhase === 'indhold' }"
+                                :aria-selected="activePhase === 'indhold'" @click="selectPhase('indhold', $event)">02
+                                Indhold</button>
+                            <button class="phase-tab" type="button" role="tab"
+                                :class="{ 'is-active': activePhase === 'prototyping' }"
+                                :aria-selected="activePhase === 'prototyping'"
+                                @click="selectPhase('prototyping', $event)">03 Prototyping</button>
+                            <button class="phase-tab" type="button" role="tab"
+                                :class="{ 'is-active': activePhase === 'udvikling' }"
+                                :aria-selected="activePhase === 'udvikling'"
+                                @click="selectPhase('udvikling', $event)">04
+                                Udvikling</button>
+                        </div>
+                        <button class="phase-arrow" type="button" aria-label="Vis flere faser"
+                            :disabled="!canScrollRight" @click="scrollTabs(1)">
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <!-- Trinene i hver fase – kun den aktive fase vises -->
+                    <div class="step-tabs" role="tablist" aria-label="Trin i analysen"
+                        v-show="activePhase === 'analyse'">
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'desk-research' }"
+                            :aria-selected="activeStep === 'desk-research'" @click="selectStep('desk-research')">
+                            Desk research
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'segmentering' }"
+                            :aria-selected="activeStep === 'segmentering'" @click="selectStep('segmentering')">
+                            Segmentering
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'interview' }"
+                            :aria-selected="activeStep === 'interview'" @click="selectStep('interview')">
+                            Interview
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'tematisk-analyse' }"
+                            :aria-selected="activeStep === 'tematisk-analyse'" @click="selectStep('tematisk-analyse')">
+                            Tematisk analyse
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'personaer' }"
+                            :aria-selected="activeStep === 'personaer'" @click="selectStep('personaer')">
+                            Personaer og scenarier
+                        </button>
+                    </div>
+
+                    <div class="step-tabs" role="tablist" aria-label="Trin i indhold"
+                        v-show="activePhase === 'indhold'">
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'indholdsmodel' }"
+                            :aria-selected="activeStep === 'indholdsmodel'" @click="selectStep('indholdsmodel')">
+                            Indholdsmodel
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'affinity' }"
+                            :aria-selected="activeStep === 'affinity'" @click="selectStep('affinity')">
+                            Affinity Diagram
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'card-sorting' }"
+                            :aria-selected="activeStep === 'card-sorting'" @click="selectStep('card-sorting')">
+                            Card Sorting
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'content-sitemap' }"
+                            :aria-selected="activeStep === 'content-sitemap'" @click="selectStep('content-sitemap')">
+                            Content sitemap
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'informationsdesign' }"
+                            :aria-selected="activeStep === 'informationsdesign'"
+                            @click="selectStep('informationsdesign')">
+                            Informationsdesign
+                        </button>
+                    </div>
+
+                    <div class="step-tabs" role="tablist" aria-label="Trin i prototyping"
+                        v-show="activePhase === 'prototyping'">
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'design-sprint' }"
+                            :aria-selected="activeStep === 'design-sprint'" @click="selectStep('design-sprint')">
+                            Design sprint
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'atomic-design' }"
+                            :aria-selected="activeStep === 'atomic-design'" @click="selectStep('atomic-design')">
+                            Atomic Design
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'wireframes' }"
+                            :aria-selected="activeStep === 'wireframes'" @click="selectStep('wireframes')">
+                            Wireframes
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'mockups' }" :aria-selected="activeStep === 'mockups'"
+                            @click="selectStep('mockups')">
+                            Mockups
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'brugertest' }"
+                            :aria-selected="activeStep === 'brugertest'" @click="selectStep('brugertest')">
+                            Brugertest
+                        </button>
+                    </div>
+
+                    <div class="step-tabs" role="tablist" aria-label="Trin i udvikling"
+                        v-show="activePhase === 'udvikling'">
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'rest-api' }"
+                            :aria-selected="activeStep === 'rest-api'" @click="selectStep('rest-api')">
+                            Opsætning af WordPress
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'github' }" :aria-selected="activeStep === 'github'"
+                            @click="selectStep('github')">
+                            GitHub
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'frontend' }"
+                            :aria-selected="activeStep === 'frontend'" @click="selectStep('frontend')">
+                            Kode
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'lighthouse' }"
+                            :aria-selected="activeStep === 'lighthouse'" @click="selectStep('lighthouse')">
+                            Lighthouse-test
+                        </button>
+                    </div>
+
+                    <!-- Indholdet til hvert trin – kun det aktive trin vises -->
+
+                    <!-- 01 Analyse -->
+                    <!-- v-show viser kun det valgte trin. Kilde: https://vuejs.org/guide/essentials/conditional -->
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'desk-research'">
+                        <div class="case-step-text">
+                            <h3>Desk research</h3>
+                            <p>I den indledende fase af projektet blev der arbejdet med desk research for at forstå
+                                danske
+                                og internationale gæsters behov ved restaurantbesøg og takeaway.</p>
+                            <p>Undersøgelserne viste, at restaurantvalg påvirkes af anledning, sociale relationer og
+                                bekvemmelighed, og at udespisning særligt forbindes med fejringer. Samtidig peger et
+                                stigende takeawayforbrug på behovet for nemme løsninger. VisitDenmarks analyse viste
+                                desuden, at hver tredje gastroturist rejser i par uden børn.</p>
+                            <p>Gæster forventer hurtig adgang til menukort, priser, åbningstider og bookingmuligheder.
+                                Disse indsigter dannede grundlag for vores segmentering og personaer samt prioriteringen
+                                af indhold og navigation.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/desk_research.webp"
+                                alt="Udvalgte nøgletal om gastroturisterne i Kyst- og naturdanmark fra VisitDenmark"
+                                loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'segmentering'">
+                        <div class="case-step-text">
+                            <h3>Segmentering</h3>
+                            <p>Vores desk research pegede på, at gæsterne deler en interesse for madoplevelsen, men kan
+                                have forskellige grunde til at besøge restauranten. Segmenteringen blev derfor brugt til
+                                at afgrænse målgruppen og forstå både dens fælles træk og variationer.</p>
+                            <p>De objektive parametre beskrev personer over 16 år, primært lokale og besøgende i
+                                Nordjylland samt turister med interesse for amerikansk-inspireret mad. Målgruppen
+                                omfattede blandt andet par, familier og vennegrupper med middel til høj indkomst. De
+                                subjektive parametre fremhævede socialt samvær, bekvemmelighed og ønsket om hyggelige
+                                oplevelser, både ved planlagte anledninger og spontane besøg.</p>
+                            <p>Den brede målgruppe betød, at løsningen skulle kunne understøtte flere formål. Nogle
+                                gæster
+                                havde behov for hurtigt at finde menu og priser, mens andre skulle kunne undersøge
+                                rammerne for et større arrangement. Denne forskel blev et udgangspunkt for udvælgelsen
+                                af
+                                interviewpersoner og det videre arbejde med personaer.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/segmentering.webp"
+                                alt="Segmentering af målgruppen med objektive og subjektive parametre" loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'interview'">
+                        <div class="case-step-text">
+                            <h3>Interview</h3>
+                            <p>Desk research gav et overordnet billede af målgruppen, men kunne ikke alene forklare,
+                                hvordan gæsterne konkret søger information og træffer beslutninger. Derfor blev der
+                                gennemført semistrukturerede interviews med åbne spørgsmål om restaurantvaner,
+                                informationsbehov og takeaway.</p>
+                            <p>Deltagerne beskrev restaurantbesøg som en måde at være sammen med venner, familie eller
+                                partner på. Samtidig fremhævede de menukort, placering og åbningstider som afgørende
+                                oplysninger på et restaurantwebsite. Det viste, at præsentationen af restaurantens
+                                stemning skulle følges af let tilgængelig praktisk information, så gæsterne kunne
+                                vurdere
+                                både oplevelsen og mulighederne for et besøg.</p>
+                            <p>Ved takeaway lagde deltagerne vægt på en enkel bestillingsproces og tydelig kommunikation
+                                om blandt andet ventetid og ordrebekræftelse. Det gav indblik i, at behovet for
+                                bekvemmelighed også handler om tryghed og klare forventninger. Interviewene blev
+                                transskriberet, så disse sammenhænge kunne undersøges nærmere i den tematiske analyse.
+                            </p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/interviewundersøgelse.webp"
+                                alt="Uddrag af interviewguiden med spørgsmål om restaurantvaner og takeaway"
+                                loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'tematisk-analyse'">
+                        <div class="case-step-text">
+                            <h3>Tematisk analyse</h3>
+                            <p>Den tematiske analyse samlede interviewenes forskellige erfaringer i mønstre, som kunne
+                                bruges i det videre designarbejde. Tre temaer gik igen: socialt samvær ved
+                                restaurantbesøg, behovet for overblik over centrale informationer samt forventninger til
+                                takeaway og bestillingsprocessen.</p>
+                            <p>Temaerne viste, at gæsterne både søger en oplevelse og oplysninger, der gør det muligt at
+                                planlægge den. Billeder og beskrivelser kunne derfor understøtte vurderingen af
+                                restaurantens atmosfære, mens menukort, priser og åbningstider skulle være nemme at
+                                finde.
+                                Det gav et mere konkret grundlag for at prioritere indholdet på websitet.</p>
+                            <p>Takeaway-temaet fremhævede desuden betydningen af en tydelig vej til bestilling og
+                                information om processen. Analysen blev dermed forbindelsen mellem deltagernes udsagn og
+                                de efterfølgende designvalg. De gennemgående behov blev brugt til at udvikle personaer
+                                og
+                                undersøge, hvordan forskellige gæster ville anvende løsningen.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/tematisk_analyse.webp"
+                                alt="Tematisk analyse i Figma med citater fra interviewene sorteret i temaer"
+                                loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'personaer'">
+                        <div class="case-step-text">
+                            <h3>Personaer og scenarier</h3>
+                            <p>Brugerindsigterne viste, at et spontant restaurantbesøg, planlægningen af et selskab og
+                                bestilling af takeaway stiller forskellige krav til websitet. Derfor blev der udviklet
+                                tre
+                                personaer: turisten Lena, selskabskunden Henrik og takeaway-brugeren Tilde.</p>
+                            <p>Lenas scenarie fremhævede betydningen af billeder, anmeldelser og et overskueligt
+                                menukort,
+                                når man skal vurdere et ukendt spisested. Henriks behov for at planlægge en konfirmation
+                                pegede på tydelige buffetmuligheder, priser og kontaktoplysninger. Tildes travle hverdag
+                                gjorde hurtig adgang til takeaway og let aflæselige priser relevant.</p>
+                            <p>Scenarierne gjorde det muligt at forbinde brugerbehov med konkrete prioriteringer i
+                                løsningen. Samtidig var datagrundlaget ikke lige stærkt for alle personaer. Henrik blev
+                                udviklet som en ad hoc persona med input fra restaurantens ejer og blev ikke
+                                efterfølgende
+                                valideret. Hans behov fungerede derfor som et kvalificeret udgangspunkt, men med større
+                                usikkerhed end de øvrige brugerindsigter.</p>
+                        </div>
+
+                        <!-- Flere billeder under hinanden – hvert billede kan åbnes for sig -->
+                        <div class="case-figures">
+                            <button class="image-zoom case-figure" type="button"
+                                aria-label="Se billedet i stor størrelse">
+                                <img src="./assets/img/highway/personaer.webp"
+                                    alt="De tre personaer Lena, Henrik og Tilde" loading="lazy">
+                                <span class="case-figure-link" aria-hidden="true">
+                                    Åbn billede i fuld størrelse
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button"
+                                aria-label="Se billedet i stor størrelse">
+                                <img src="./assets/img/highway/situationer_scenarier.webp"
+                                    alt="Situationer og scenarier for de tre personaer" loading="lazy">
+                                <span class="case-figure-link" aria-hidden="true">
+                                    Åbn billede i fuld størrelse
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </article>
+
+
+                    <!-- 02 Indhold -->
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'indholdsmodel'">
+                        <div class="case-step-text">
+                            <h3>Indholdsmodel</h3>
+                            <p>Brugerundersøgelsen viste et tydeligt behov for at kunne finde og sammenligne oplysninger
+                                om mad, drikkevarer og selskabsmuligheder. Det gjorde en ensartet indholdsstruktur
+                                vigtig,
+                                så gæsterne ikke skulle lede efter forskellige oplysninger fra ret til ret eller tilbud
+                                til tilbud.</p>
+                            <p>Indholdsmodellerne beskrev derfor, hvilke oplysninger der var nødvendige for de tre
+                                indholdstyper, og hvordan core content og metadata skulle understøtte hinanden. For mad
+                                og
+                                drikkevarer indgik blandt andet navn, beskrivelse, pris og vægt eller størrelse. For
+                                selskaber var lokale, menu, antal kuverter og bookinginformation relevante for gæstens
+                                vurdering.</p>
+                            <p>Modellerne skabte en forbindelse mellem brugernes informationsbehov og den senere
+                                tekniske
+                                opsætning i WordPress. De synliggjorde også, hvilke oplysninger løsningen potentielt
+                                kunne
+                                rumme. I den endelige implementering blev indholdet afgrænset, så ikke alle
+                                identificerede
+                                felter blev anvendt. Modellerne fungerede dermed både som struktur og som grundlag for
+                                prioritering.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/meta_data.webp"
+                                alt="Indholdsmodel med core content og metadata for mad, drikkevarer og selskaber"
+                                loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'affinity'">
+                        <div class="case-step-text">
+                            <h3>Affinity Diagram</h3>
+                            <p>Indholdsmodellerne beskrev de enkelte indholdstyper, men der var også behov for at
+                                forstå,
+                                hvordan websitets samlede indhold hang sammen. En fælles brainstorm samlede derfor både
+                                eksisterende indhold og nye oplysninger, som kunne imødekomme de identificerede
+                                brugerbehov.</p>
+                            <p>I affinity diagrammet blev elementerne grupperet efter ligheder og relationer. Der
+                                tegnede
+                                sig seks overordnede kategorier: informationer, om os, job, selskaber, menu og takeaway.
+                                Grupperingen gjorde det lettere at se, hvilke emner der kunne samles, og hvor indhold
+                                havde forbindelse til flere områder.</p>
+                            <p>Eksempelvis var billeder af maden relevante i flere sammenhænge. Det pegede på, at
+                                indhold
+                                ikke nødvendigvis kun skulle optræde ét sted, men kunne understøtte forskellige veje
+                                gennem websitet. Diagrammet gav en foreløbig struktur, som efterfølgende kunne
+                                sammenholdes med brugernes egen organisering gennem card sorting.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/affinity_diagram.webp"
+                                alt="Affinity diagram med websitets indhold grupperet i seks kategorier" loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'card-sorting'">
+                        <div class="case-step-text">
+                            <h3>Card Sorting</h3>
+                            <p>Den foreløbige indholdsstruktur byggede på vores fortolkning af brugerindsigterne. En
+                                åben
+                                card sorting skulle derfor undersøge, om brugerne oplevede de samme sammenhænge, og
+                                hvilke
+                                betegnelser der gav mening for dem.</p>
+                            <p>Deltagerne samlede ofte indhold om menu, selskaber og praktiske informationer, selvom
+                                kategoriernes navne varierede. Flere skelnede desuden mellem at spise på restauranten og
+                                at bestille takeaway. Det understøttede valget om at give takeaway en selvstændig
+                                indgang,
+                                så brugeren hurtigt kunne finde den relevante vej.</p>
+                            <p>Besvarelserne viste samtidig relationer mellem kategorierne. Menu, priser og booking
+                                kunne
+                                være relevante på tværs af forskellige formål, hvilket talte for at forbinde siderne
+                                gennem relevante links og handlingsknapper. Testen gav dermed et grundlag for at justere
+                                strukturen efter brugernes forståelse frem for udelukkende at følge vores første
+                                gruppering.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/card_sorting.webp" alt="Resultater fra den åbne card sorting"
+                                loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'content-sitemap'">
+                        <div class="case-step-text">
+                            <h3>Content sitemap</h3>
+                            <p>Indholdsarbejdet viste, hvilke oplysninger websitet skulle rumme, mens card sorting gav
+                                indsigt i, hvordan brugerne forventede at finde dem. Disse resultater blev samlet i et
+                                content sitemap, som beskrev sidernes hierarki og forbindelser.</p>
+                            <p>Forsiden skulle give en hurtig forståelse af restaurantens koncept og samtidig føre
+                                videre
+                                til centrale områder. Derfor blev menukort og selskabsmuligheder prioriteret som
+                                tydelige
+                                indgange med korte tekster, billeder og handlingsknapper. Det skulle gøre det muligt at
+                                orientere sig uden først at læse alle detaljer.</p>
+                            <p>Uddybende information blev placeret på undersiderne, mens åbningstider, adresse og
+                                kontaktoplysninger blev samlet i footeren på tværs af websitet. Denne opdeling skulle
+                                understøtte både den besøgende, der undersøger restauranten, og den, der allerede ved,
+                                hvilken information vedkommende søger. Sitemappet blev samtidig et fælles grundlag for
+                                sidernes efterfølgende design.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/content_sitemap.webp"
+                                alt="Content sitemap med websitets sider og deres indhold" loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'informationsdesign'">
+                        <div class="case-step-text">
+                            <h3>Informationsdesign</h3>
+                            <p>At have de rigtige oplysninger på websitet var ikke tilstrækkeligt, hvis de var svære at
+                                overskue. Informationsdesignet fokuserede derfor på, hvordan indholdets rækkefølge og
+                                visuelle opbygning kunne støtte gæsternes vurdering og valg.</p>
+                            <p>På menukortet blev retterne samlet i kategorier og præsenteret med samme struktur: navn,
+                                beskrivelse, eventuel vægt og pris. Den faste placering af oplysningerne skulle gøre det
+                                lettere at skimme menuen og sammenligne retter. Prisen blev placeret til højre, så den
+                                var
+                                let at finde på tværs af punkterne.</p>
+                            <p>På selskabssiden blev buffetmulighederne opbygget ensartet med oplysninger om indhold,
+                                antal kuverter og booking. Bookingknapperne blev knyttet direkte til tilbuddene, så
+                                næste
+                                handling var tydelig, når gæsten havde orienteret sig. Supplerende spørgsmål blev samlet
+                                i
+                                en FAQ, så de kunne findes uden at fylde i præsentationen af selve buffetmulighederne.
+                            </p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/informationsdesign.webp"
+                                alt="Informationsdesign af menukortet og selskabssiden" loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+
+                    <!-- 03 Prototyping -->
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'design-sprint'">
+                        <div class="case-step-text">
+                            <h3>Design sprint (Crazy 8 & Dot-voting)</h3>
+                            <p>Den fastlagte indholdsstruktur gav et fælles udgangspunkt, men kunne omsættes til flere
+                                forskellige visuelle løsninger. Crazy 8 blev derfor brugt til at udforske alternative
+                                opstillinger, inden gruppen lagde sig fast på et design.</p>
+                            <p>Otte skitser på otte minutter gav mulighed for hurtigt at undersøge forskellige
+                                placeringer
+                                af billeder, information og navigation. Forslagene omfattede både mobil og desktop, så
+                                forskellene i plads og prioritering kunne indgå tidligt i overvejelserne.</p>
+                            <p>Gennem dot voting blev de elementer, gruppen vurderede som de stærkeste, udvalgt og
+                                samlet
+                                i nye skitser. Det gjorde det muligt at kombinere idéer fra flere forslag frem for at
+                                videreføre én persons samlede løsning. Udvælgelsen gav retning for wireframes, men var
+                                fortsat en intern vurdering, som senere skulle afprøves med brugere.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/design_sprint.webp" alt="Skitser fra Crazy 8 med dot voting"
+                                loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'atomic-design'">
+                        <div class="case-step-text">
+                            <h3>Atomic Design</h3>
+                            <p>Inden wireframes blev udarbejdet, var der behov for at fastlægge, hvilke elementer der
+                                skulle
+                                gå igen på tværs af websitets sider. Principperne fra Atomic Design blev derfor brugt
+                                til at
+                                opbygge designet af mindre, genbrugelige dele.</p>
+                            <p>Knapper, tekstfelter og ikoner blev identificeret som molekyler, mens større sektioner
+                                som
+                                footer og anmeldelsesmoduler fungerede som organismer. Opdelingen gjorde det muligt at
+                                arbejde med designet både som en samlet helhed og som en opbygning af mindre dele.</p>
+                            <p>Når de samme komponenter blev genbrugt, skulle siderne fremstå sammenhængende, og
+                                brugeren
+                                lettere kunne genkende deres funktion. Komponenterne blev dermed et fælles grundlag for
+                                de
+                                efterfølgende wireframes og mockups.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/atomic.webp"
+                                alt="Genbrugelige komponenter opdelt efter Atomic Design" loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'wireframes'">
+                        <div class="case-step-text">
+                            <h3>Wireframes</h3>
+                            <p>De udvalgte skitser gav en retning for layoutet, mens wireframes gjorde det muligt at
+                                konkretisere forholdet mellem indhold, navigation og handlinger. For websitets otte
+                                sider blev
+                                opbygningen undersøgt i både mobil- og desktopversioner, før farver, typografi og
+                                billeder blev
+                                tilføjet i mockups.</p>
+                            <p>Forsiden blev holdt på et overordnet niveau med mulighed for at gå videre til detaljer.
+                                Menukort og selskabsmuligheder kunne tilgås gennem både navigationen og relevante
+                                knapper i
+                                indholdet.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/wireframes.webp"
+                                alt="Wireframes af forsiden til mobil og desktop" loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'mockups'">
+                        <div class="case-step-text">
+                            <h3>Mockups</h3>
+                            <p>I mockups blev wireframes videreudviklet med farver, typografi og billeder. De
+                                genbrugelige
+                                elementer skulle skabe sammenhæng mellem siderne. Når knapper, anmeldelser og andre
+                                tilbagevendende sektioner fulgte samme mønster, skulle brugeren lettere kunne genkende
+                                deres
+                                funktion og orientere sig på tværs af websitet.</p>
+                            <p>Den klikbare prototype samlede disse valg i en løsning, hvor brugernes forståelse og
+                                navigation
+                                kunne undersøges inden kodningen.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/mockups.webp"
+                                alt="Mockup af forsiden med farver, typografi og billeder" loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'brugertest'">
+                        <div class="case-step-text">
+                            <h3>Brugertest</h3>
+                            <p>Brugertestene skulle undersøge, om designets prioriteringer også gav mening for personer
+                                uden for projektgruppen. I en 5-second test af selskabssidens øverste del bemærkede
+                                deltagerne især billedet af lokalet og overskriften. Alle identificerede sidens formål,
+                                hvilket understøttede, at introduktionen kommunikerede selskabsmulighederne tydeligt.
+                            </p>
+                            <p>Think-aloud testen undersøgte derefter navigationen gennem konkrete opgaver. Deltagerne
+                                fandt hurtigt menukort, takeaway og selskaber, men oplysninger om lokationerne gav
+                                anledning til søgning på ”Om os” og i footeren. Det viste en forskel mellem vores
+                                placering af informationen og brugernes forventninger.</p>
+                            <p>Derfor blev oplysninger om Skagen også tilføjet på ”Om os”. Det skulle gøre informationen
+                                tilgængelig dér, hvor flere allerede søgte efter den. Der blev desuden tilføjet ikoner
+                                ved
+                                pris og vægt på menukortet. Ændringerne var rettet mod de identificerede udfordringer,
+                                men
+                                rapporten dokumenterer ikke en ny brugertest af deres effekt.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/brugertest.webp"
+                                alt="Resultater fra 5-second testen og think-aloud testen" loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+
+                    <!-- 04 Udvikling -->
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'rest-api'">
+                        <div class="case-step-text">
+                            <h3>Opsætning af WordPress</h3>
+                            <p>Menukortet bestod af gentagne indholdselementer med oplysninger, der skulle kunne
+                                vedligeholdes ensartet. Derfor blev WordPress anvendt som headless CMS, hvor indholdet
+                                kunne administreres separat fra den frontend, gæsterne møder.</p>
+                            <p>Retter og drikkevarer blev oprettet som indlæg og tilknyttet kategorier, der kunne bruges
+                                til at organisere menukortet. Advanced Custom Fields gav faste felter til blandt andet
+                                beskrivelse, vægt og pris. Det skabte en forudsigelig datastruktur, som JavaScript kunne
+                                hente gennem REST API og præsentere i samme format.</p>
+                            <p>Den endelige opsætning blev afgrænset i forhold til indholdsmodellerne. Selskabssiden
+                                havde
+                                to faste buffettilbud og blev derfor præsenteret statisk, mens menukortet blev gjort
+                                dynamisk. Det betød, at udviklingen blev koncentreret om den del af indholdet, hvor den
+                                fælles struktur og administration skulle anvendes på mange forskellige retter og
+                                drikkevarer.</p>
+                        </div>
+
+                        <!-- Flere billeder under hinanden – hvert billede kan åbnes for sig -->
+                        <div class="case-figures">
+                            <button class="image-zoom case-figure" type="button"
+                                aria-label="Se billedet i stor størrelse">
+                                <img src="./assets/img/highway/acf.webp"
+                                    alt="Felter til retterne i Advanced Custom Fields" loading="lazy">
+                                <span class="case-figure-link" aria-hidden="true">
+                                    Åbn billede i fuld størrelse
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button"
+                                aria-label="Se billedet i stor størrelse">
+                                <img src="./assets/img/highway/kategorier.webp"
+                                    alt="Kategorier til menukortet i WordPress" loading="lazy">
+                                <span class="case-figure-link" aria-hidden="true">
+                                    Åbn billede i fuld størrelse
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button"
+                                aria-label="Se billedet i stor størrelse">
+                                <img src="./assets/img/highway/indlaeg.webp"
+                                    alt="Retter oprettet som indlæg i WordPress" loading="lazy">
+                                <span class="case-figure-link" aria-hidden="true">
+                                    Åbn billede i fuld størrelse
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'github'">
+                        <div class="case-step-text">
+                            <h3>GitHub</h3>
+                            <p>Udviklingen krævede, at flere gruppemedlemmer kunne arbejde på løsningen samtidig uden
+                                løbende at overskrive hinandens ændringer. GitHub blev derfor anvendt til at holde styr
+                                på
+                                kodeversioner og samle arbejdet.</p>
+                            <p>Separate branches gav plads til at udvikle funktioner og sider uden direkte at ændre
+                                main-
+                                branchen. Når arbejdet var klar til at blive samlet, blev ændringerne gennemgået via
+                                pull
+                                requests og efterfølgende merged. Denne opdeling skulle gøre det lettere at bevare
+                                overblikket over, hvilke ændringer der blev føjet til den fælles løsning.</p>
+                            <p>Versionshistorikken gjorde det desuden muligt at følge udviklingen og finde tidligere
+                                udgaver af koden. GitHub fungerede dermed både som teknisk versionsstyring og som en
+                                fælles ramme for at koordinere gruppens bidrag gennem udviklingsfasen.</p>
+                        </div>
+
+                        <!-- Flere billeder under hinanden – hvert billede kan åbnes for sig -->
+                        <div class="case-figures">
+                            <button class="image-zoom case-figure" type="button"
+                                aria-label="Se billedet i stor størrelse">
+                                <img src="./assets/img/highway/branches.webp"
+                                    alt="Branches i projektets GitHub-repository" loading="lazy">
+                                <span class="case-figure-link" aria-hidden="true">
+                                    Åbn billede i fuld størrelse
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button"
+                                aria-label="Se billedet i stor størrelse">
+                                <img src="./assets/img/highway/commits.webp"
+                                    alt="Commits i projektets GitHub-repository" loading="lazy">
+                                <span class="case-figure-link" aria-hidden="true">
+                                    Åbn billede i fuld størrelse
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'frontend'">
+                        <div class="case-step-text">
+                            <h3>Kode</h3>
+                            <p>Designets fokus på let adgang til information skulle også fungere på tværs af
+                                skærmstørrelser. Frontenden blev derfor udviklet med HTML, CSS og JavaScript med en
+                                mobile-first tilgang. Layoutet tog udgangspunkt i mobilens begrænsede plads og blev
+                                tilpasset større skærme gennem media queries.</p>
+                            <p>HTML gav indholdet struktur, mens CSS styrede opstilling, visuelle prioriteringer og
+                                mindre
+                                animationer. Det skulle bevare sammenhængen mellem prototypens design og den færdige
+                                brugergrænseflade, selv når indholdet blev præsenteret i forskellige layouts.</p>
+                            <p>Menukortet blev koblet til WordPress gennem REST API. Ved valg af en kategori filtrerede
+                                JavaScript de relevante retter og opdaterede overskrift, ikon og indhold. Dermed kunne
+                                gæsten orientere sig i udvalget gennem kategorier, mens oplysningerne kunne
+                                vedligeholdes
+                                i WordPress uden at redigere hver ret direkte i HTML. Løsningen forbandt således
+                                indholdsmodellens faste struktur med menukortets visuelle præsentation.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                            <img src="./assets/img/highway/kode.webp"
+                                alt="JavaScript, der filtrerer menukortet efter kategori" loading="lazy">
+                            <span class="case-figure-link" aria-hidden="true">
+                                Åbn billede i fuld størrelse
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'lighthouse'">
+                        <div class="case-step-text">
+                            <h3>Lighthouse-test</h3>
+                            <p>Lighthouse-testen gav et teknisk supplement til brugertestene ved at pege på områder
+                                inden
+                                for performance, tilgængelighed, best practices og SEO. Den første måling af forsiden
+                                viste en tilgængelighedsscore på 81 på begge enheder og performance på 70 på mobil og 75
+                                på desktop.</p>
+                            <p>Resultaterne gav anledning til at arbejde videre med billedbeskrivelser, tilgængelige
+                                navne
+                                på interaktive elementer og billedindlæsning. Heroens slideshow blev desuden ændret fra
+                                en
+                                CSS-animation til en JavaScript-løsning med henblik på at forbedre håndteringen af
+                                billederne.</p>
+                            <p>Efter ændringerne steg tilgængelighedsscoren til 95 på begge enheder, mens SEO fortsat lå
+                                på 100. Performance steg til 72 på mobil, men faldt på desktop. Målingerne dokumenterede
+                                derfor ikke en samlet forbedring af hastigheden. De viste, at ændringerne skulle
+                                vurderes
+                                på flere parametre, og at performance fortsat var et område med behov for yderligere
+                                undersøgelse og optimering.</p>
+                        </div>
+
+                        <!-- Flere billeder under hinanden – hvert billede kan åbnes for sig -->
+                        <div class="case-figures">
+                            <button class="image-zoom case-figure" type="button"
+                                aria-label="Se billedet i stor størrelse">
+                                <img src="./assets/img/highway/lighthouse_mobil.webp"
+                                    alt="Lighthouse-resultater for forsiden på mobil" loading="lazy">
+                                <span class="case-figure-link" aria-hidden="true">
+                                    Åbn billede i fuld størrelse
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button"
+                                aria-label="Se billedet i stor størrelse">
+                                <img src="./assets/img/highway/lighthouse_desktop.webp"
+                                    alt="Lighthouse-resultater for forsiden på desktop" loading="lazy">
+                                <span class="case-figure-link" aria-hidden="true">
+                                    Åbn billede i fuld størrelse
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <a class="to-top" href="#">
+                Til toppen
+                <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+            </a>
+
+            <!-- Modal til billeder i stor størrelse. Inspiration: https://www.w3schools.com/howto/howto_css_modal_images.asp -->
+            <dialog class="image-modal" aria-label="Billede i stor størrelse">
+                <button class="image-modal-close" type="button" aria-label="Luk billedet">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+                <img class="image-modal-img" src="" alt="">
+                <p class="image-modal-caption"></p>
+            </dialog>
+        </main>
+
+        <!-- Footer indsættes med Vue -->
+        <the-footer></the-footer>
+    </div>
+</body>
+
+</html>
