@@ -30,6 +30,13 @@
             <!-- Intro til casen -->
             <section class="case-hero">
                 <div class="case-hero-text">
+                    <a class="back-link" href="./portfolio.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 12.013L3.211 12m6.776 7L3 12l6.988-7" />
+                        </svg>
+                        Tilbage
+                    </a>
                     <h1>Full Plate</h1>
                     <p>Et madunivers med opskrifter, madhistorier og anbefalinger af køkkenredskaber. Full Plate blev
                         udviklet som et proof of concept. Projektet gik fra en udleveret case og personaer til en
@@ -56,7 +63,7 @@
                 </div>
 
                 <img class="case-hero-image" src="./assets/img/full_plate/full-plate.png"
-                    alt="Forsiden af Full Plate med opskrifter og navigation">
+                    alt="Forsiden af Full Plate vist på en bærbar computer">
             </section>
 
             <!-- Processen – tab-navigationen styres med Vue (assets/js/case.js) -->
@@ -78,7 +85,7 @@
                         <div class="phase-tabs" ref="phaseTabs" @scroll="updateArrows" role="tablist"
                             aria-label="Faser i processen">
                             <button class="phase-tab" type="button" role="tab" data-phase="indhold"
-                                data-first-step="afgraensning" :class="{ 'is-active': activePhase === 'indhold' }"
+                                data-first-step="maalgrupper" :class="{ 'is-active': activePhase === 'indhold' }"
                                 :aria-selected="activePhase === 'indhold'" @click="selectPhase('indhold', $event)">01
                                 Indhold og data</button>
                             <button class="phase-tab" type="button" role="tab" data-phase="prototyping"
@@ -100,11 +107,6 @@
 
                     <div class="step-tabs" role="tablist" aria-label="Trin i indhold og data"
                         v-show="activePhase === 'indhold'">
-                        <button class="step-tab" type="button" role="tab"
-                            :class="{ 'is-active': activeStep === 'afgraensning' }"
-                            :aria-selected="activeStep === 'afgraensning'" @click="selectStep('afgraensning')">
-                            Afgrænsning
-                        </button>
                         <button class="step-tab" type="button" role="tab"
                             :class="{ 'is-active': activeStep === 'maalgrupper' }"
                             :aria-selected="activeStep === 'maalgrupper'" @click="selectStep('maalgrupper')">
@@ -150,91 +152,106 @@
                             @click="selectStep('kode')">
                             Kode
                         </button>
-                        <button class="step-tab" type="button" role="tab"
-                            :class="{ 'is-active': activeStep === 'deployment' }"
-                            :aria-selected="activeStep === 'deployment'" @click="selectStep('deployment')">
-                            Deployment
-                        </button>
                     </div>
 
                     <!-- Indholdet til hvert trin – kun det aktive trin vises -->
 
                     <!-- 01 Indhold og data -->
                     <!-- v-show viser kun det valgte trin. Kilde: https://vuejs.org/guide/essentials/conditional -->
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'afgraensning'">
-                        <div class="case-step-text">
-                            <h3>Afgrænsning</h3>
-                            <p>Opgaven var at udvikle en dynamisk prototype af et CMS-baseret website med et
-                                skræddersyet WordPress-tema. Målgruppe og personaer var udleveret, så vores arbejde tog
-                                udgangspunkt i at omsætte casens behov og krav til indhold, design og funktionalitet.
-                            </p>
-                            <p>Vi skulle planlægge strukturen for det samlede website, men kun udvikle udvalgte sider og
-                                funktioner som et proof of concept. Derfor fokuserede vi på opskrifter, madhistorier og
-                                køkkenredskaber med tilhørende oversigts- og enkeltsider. De gav os mulighed for at
-                                vise, hvordan forskellige indholdstyper kunne administreres i WordPress og forbindes på
-                                tværs.</p>
-                            <p>Afgrænsningen gav plads til at arbejde med fælles skabeloner, strukturerede oplysninger
-                                og dynamiske relationer frem for at færdiggøre alle funktioner i casen.</p>
-                        </div>
-
-                        <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/full_plate/afgraensning.webp"
-                                alt="Casens krav og afgrænsning af projektet" loading="lazy">
-                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label" aria-hidden="true">
-                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand"></i>
-                            </span>
-                        </button>
-                    </article>
-
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'maalgrupper'">
                         <div class="case-step-text">
                             <h3>Målgrupper og indsigter</h3>
-                            <!-- TODO: skriv teksten til dette trin -->
-                            <p>Tekst følger.</p>
+                            <p>Platformen skulle henvende sig til tre brugergrupper med forskellig erfaring i
+                                køkkenet:
+                                professionelle
+                                kokke, amatørkokke og hjemmekokke. Hver gruppe var repræsenteret af en udleveret
+                                persona, som vi brugte til
+                                at forstå, hvad de forskellige brugere havde brug for.</p>
+                            <p>Mads er chefkok på en Michelinrestaurant og vil gerne dele sin viden og blive set som
+                                et
+                                brand. Det
+                                understøttede madhistorierne som en indholdstype, hvor kokke kan fortælle om retter
+                                og
+                                madkultur fra hele
+                                verden. Han går også meget op i gode køkkenredskaber, hvilket gav mening at koble
+                                til
+                                opskrifterne.</p>
+                            <p>Catherine er amatørkok med en baggrund i kemi og går op i, at ingredienser, mængder
+                                og
+                                teknikker er helt
+                                præcise. Det betød, at opskrifterne skulle have en fast struktur med ingredienser,
+                                enheder og
+                                fremgangsmåde, så oplysningerne var lette at følge og stole på.</p>
+                            <p>Anna er hjemmekok og ser opskrifter som inspiration. For hende skal maden se rigtig
+                                ud,
+                                og hun laver mad til
+                                familie og venner. Store billeder og oplysninger som tid, sværhedsgrad og antal
+                                portioner skulle derfor
+                                hjælpe hende med hurtigt at finde en ret, der passede til hende.</p>
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/full_plate/personaer.webp"
-                                alt="Casens krav og afgrænsning af projektet" loading="lazy">
-                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label" aria-hidden="true">
-                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand"></i>
-                            </span>
-                        </button>
+
+                        <div class="case-figures">
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/full_plate/mads.webp"
+                                    alt="Persona for den professionelle kok Mads" loading="lazy">
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/full_plate/catherine.webp"
+                                    alt="Persona for amatørkokken Catherine" loading="lazy">
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/full_plate/anna.webp" alt="Persona for hjemmekokken Anna"
+                                    loading="lazy">
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
                     </article>
 
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'content-sitemap'">
                         <div class="case-step-text">
                             <h3>Content sitemap</h3>
-                            <p>Med udgangspunkt i casen udarbejdede vi et content sitemap, hvor vi fastlagde indholdet
-                                på de enkelte sider og forbindelserne mellem dem. Her blev det tydeligt, at opskrifterne
+                            <p>Med udgangspunkt i casen udarbejdede vi et content sitemap, hvor vi fastlagde
+                                indholdet
+                                på de enkelte sider og forbindelserne mellem dem. Her blev det tydeligt, at
+                                opskrifterne
                                 skulle være centrale, men også kunne forbindes med madhistorier, tips og
                                 køkkenredskaber.</p>
                             <p>Vi skelnede mellem oversigtssider, hvor brugeren skulle kunne finde og vurdere flere
                                 muligheder, og enkeltsider med plads til det uddybende indhold. På en opskriftsside
                                 definerede vi blandt andet titel, billede, forfatter, tid, sværhedsgrad, portioner,
                                 ingredienser og fremgangsmåde. Billedet viser Recipe Archive og Single Recipe som et
-                                eksempel på, hvordan vi arbejdede med indholdet. Det samlede sitemap omfattede hele
-                                websitet og kan åbnes via linket under billedet.</p>
+                                eksempel på, hvordan vi arbejdede med indholdet.</p>
                             <p>Det fik betydning senere i udviklingen, fordi vi allerede havde taget stilling til,
-                                hvilke oplysninger der skulle kunne oprettes i WordPress. Sitemappet blev dermed både et
+                                hvilke oplysninger der skulle kunne oprettes i WordPress. Sitemappet blev dermed
+                                både et
                                 udgangspunkt for vores wireframes og for arbejdet med indholdstyper, ACF-felter og
                                 relationer.</p>
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/full_plate/content-sitemap-fullplate.webp"
-                                alt="Casens krav og afgrænsning af projektet" loading="lazy">
+                                data-full="./assets/img/full_plate/content_sitemap_hele.webp"
+                                alt="Content sitemap for Recipe Archive og Single Recipe" loading="lazy">
                             <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label" aria-hidden="true">
+                            <span class="image-zoom-label">
                                 Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand"></i>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
                     </article>
@@ -242,26 +259,32 @@
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'erd'">
                         <div class="case-step-text">
                             <h3>ERD</h3>
-                            <p>Da vi havde styr på designet af hver side, udviklede vi et ER-diagram med udgangspunkt i
-                                et opskriftsunivers. Formålet var at forstå, hvordan oplysninger kan fordeles i tabeller
+                            <p>Da vi havde styr på designet af hver side, udviklede vi et ER-diagram med
+                                udgangspunkt i
+                                et opskriftsunivers. Formålet var at forstå, hvordan oplysninger kan fordeles i
+                                tabeller
                                 og forbindes gennem relationer.</p>
                             <p>Diagrammet omfattede blandt andet brugere, opskrifter, ingredienser, måleenheder og
                                 historier. En ingrediens kan indgå i flere opskrifter, men med forskellige mængder.
-                                Derfor blev opskrifter og ingredienser forbundet gennem en mellemtabel med oplysninger
+                                Derfor blev opskrifter og ingredienser forbundet gennem en mellemtabel med
+                                oplysninger
                                 om blandt andet mængde, enhed og rækkefølge.</p>
-                            <p>Arbejdet gjorde det tydeligt, hvorfor oplysninger skal adskilles og forbindes frem for at
-                                gentages. Diagrammet var en model af en selvstændig database og beskrev ikke WordPress’
+                            <p>Arbejdet gjorde det tydeligt, hvorfor oplysninger skal adskilles og forbindes frem
+                                for at
+                                gentages. Diagrammet var en model af en selvstændig database og beskrev ikke
+                                WordPress’
                                 faktiske databasestruktur.</p>
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/full_plate/erd-fullplate.webp"
-                                alt="Casens krav og afgrænsning af projektet" loading="lazy">
+                                alt="ER-diagram med brugere, opskrifter, ingredienser, måleenheder og historier"
+                                loading="lazy">
                             <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label" aria-hidden="true">
+                            <span class="image-zoom-label">
                                 Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand"></i>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
                     </article>
@@ -271,27 +294,32 @@
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'wireframes'">
                         <div class="case-step-text">
                             <h3>Wireframes</h3>
-                            <p>Da vi havde fået overblik over, hvilket indhold vi ønskede på alle siderne, gik vi videre
-                                til at udvikle wireframes. Her arbejdede vi med, hvordan indholdet skulle placeres, så
+                            <p>Da vi havde fået overblik over, hvilket indhold vi ønskede på alle siderne, gik vi
+                                videre
+                                til at udvikle wireframes. Her arbejdede vi med, hvordan indholdet skulle placeres,
+                                så
                                 brugeren hurtigt kunne få overblik. Oversigtssiderne blev bygget op med kort, hvor
                                 billeder og korte oplysninger skulle gøre det nemt at vurdere indholdet, inden man
                                 klikkede videre.</p>
                             <p>På opskriftssiden blev tid, sværhedsgrad og antal portioner placeret tæt på
-                                introduktionen. Ingredienser og fremgangsmåde fik hver deres område, så de var lette at
+                                introduktionen. Ingredienser og fremgangsmåde fik hver deres område, så de var lette
+                                at
                                 skelne fra hinanden under madlavningen.</p>
-                            <p>Vi planlagde også forbindelser mellem indholdstyperne. En opskrift kunne eksempelvis føre
-                                videre til relevante køkkenredskaber, mens en madhistorie kunne inspirere til en bestemt
+                            <p>Vi planlagde også forbindelser mellem indholdstyperne. En opskrift kunne eksempelvis
+                                føre
+                                videre til relevante køkkenredskaber, mens en madhistorie kunne inspirere til en
+                                bestemt
                                 ret. Det skulle give brugeren en naturlig vej videre gennem websitet.</p>
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/full_plate/wireframes-full-plate.webp"
-                                alt="Casens krav og afgrænsning af projektet" loading="lazy">
+                        <button class="image-zoom case-figure" type="button">
+                            <img src="./assets/img/full_plate/wireframes_full_plate.webp"
+                                alt="Wireframes af opskriftssiden og oversigtssiderne" loading="lazy">
                             <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label" aria-hidden="true">
+                            <span class="image-zoom-label">
                                 Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand"></i>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
                     </article>
@@ -299,18 +327,35 @@
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'styletiles'">
                         <div class="case-step-text">
                             <h3>Styletiles</h3>
-                            <!-- TODO: skriv teksten til dette trin -->
-                            <p>Tekst følger.</p>
+                            <p>Før vi gik i gang med mockups, samlede vi den visuelle stil i en styletile med logo,
+                                typografi og farver.
+                                Casen lagde vægt på et eksklusivt udtryk, så vi ville have en stil, der føltes rolig
+                                og
+                                gennemarbejdet og
+                                samtidig lod madbillederne være i fokus.</p>
+                            <p>Farvepaletten bestod af mørk navy, en lys gråblå, en varm off-white og en camelfarve.
+                                Navy og off-white gav
+                                kontrast og ro, mens camel tilføjede varme og blev brugt til logoet og små detaljer.
+                                Vi
+                                lavede logoet i både
+                                en lys og en mørk version, så det kunne bruges på forskellige baggrunde.</p>
+                            <p>For at teste farverne i praksis afprøvede vi flere versioner af headeren med
+                                forskellige
+                                kombinationer af
+                                baggrund, tekst og logo. Det gjorde det lettere at vurdere kontrasten og vælge den
+                                løsning, der passede
+                                bedst til platformens udtryk, inden vi brugte stilen i vores mockups.</p>
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/full_plate/styletiles.webp"
-                                alt="Casens krav og afgrænsning af projektet" loading="lazy">
+                                alt="Styletile med logo, typografi, farvepalette og forskellige versioner af header og footer"
+                                loading="lazy">
                             <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label" aria-hidden="true">
+                            <span class="image-zoom-label">
                                 Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand"></i>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
                     </article>
@@ -319,25 +364,28 @@
                         <div class="case-step-text">
                             <h3>Mockups</h3>
                             <p>I vores mockups blev wireframes videreudviklet med farver, typografi og billeder. Vi
-                                valgte en lys, varm baggrund kombineret med mørkeblå elementer, som blandt andet blev
+                                valgte en lys, varm baggrund kombineret med mørkeblå elementer, som blandt andet
+                                blev
                                 brugt i navigationen og til at fremhæve udvalgte historier og tips.</p>
                             <p>Store billeder fik en central rolle, da maden skulle vække interesse og give brugeren
                                 lyst til at undersøge opskrifterne. Overskrifter med seriffer blev kombineret med en
                                 enkel brødtekst for at give siden et simpelt udtryk og samtidig holde de praktiske
                                 oplysninger lette at læse.</p>
-                            <p>Kort, knapper og informationsfelter fulgte samme opbygning på tværs af siderne. Det gav
-                                sammenhæng i designet og et konkret udgangspunkt for de skabeloner, vi senere udviklede
+                            <p>Kort, knapper og informationsfelter fulgte samme opbygning på tværs af siderne. Det
+                                gav
+                                sammenhæng i designet og et konkret udgangspunkt for de skabeloner, vi senere
+                                udviklede
                                 i WordPress.</p>
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/full_plate/mockups.webp"
-                                alt="Casens krav og afgrænsning af projektet" loading="lazy">
+                                alt="Mockups af Full Plate med farver, typografi og billeder" loading="lazy">
                             <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label" aria-hidden="true">
+                            <span class="image-zoom-label">
                                 Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand"></i>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
                     </article>
@@ -348,23 +396,29 @@
                         <div class="case-step-text">
                             <h3>WordPress-tema og PHP</h3>
                             <p>Som en del af udviklingen byggede vi et skræddersyet WordPress-tema, hvor PHP blev
-                                anvendt til at hente indhold dynamisk og vise det i fælles skabeloner. Vi arbejdede med
+                                anvendt til at hente indhold dynamisk og vise det i fælles skabeloner. Vi arbejdede
+                                med
                                 single-skabeloner til de enkelte opskrifter, madhistorier og køkkenredskaber samt
-                                archive-skabeloner til oversigtssiderne. Det betød, at nye opskrifter kunne vises i det
+                                archive-skabeloner til oversigtssiderne. Det betød, at nye opskrifter kunne vises i
+                                det
                                 samme layout, uden at vi skulle kode en ny side hver gang.</p>
                             <p>Opskrifter, madhistorier og køkkenredskaber blev registreret som separate Custom Post
                                 Types med PHP. Det gav hver indholdstype sit eget område i WordPress’
-                                administrationspanel, hvor indholdet kunne oprettes og redigeres. Da hver type havde en
+                                administrationspanel, hvor indholdet kunne oprettes og redigeres. Da hver type havde
+                                en
                                 række fælles oplysninger, brugte vi ACF til at strukturere dem. En opskrift havde
-                                eksempelvis felter til tid, sværhedsgrad, portioner, ingredienser og fremgangsmåde, som
+                                eksempelvis felter til tid, sværhedsgrad, portioner, ingredienser og fremgangsmåde,
+                                som
                                 blev vist på faste pladser i skabelonen.</p>
                             <p>Vi arbejdede desuden med relationer mellem indholdet. På en opskrift kunne der vises
                                 tilknyttede køkkenredskaber, mens en redskabsside kunne vise de opskrifter, hvor
-                                redskabet blev brugt. Med PHP og WordPress-forespørgsler kunne vi hente det relaterede
+                                redskabet blev brugt. Med PHP og WordPress-forespørgsler kunne vi hente det
+                                relaterede
                                 indhold dynamisk og give brugeren mulighed for at gå videre mellem opskrifter og
                                 redskaber.</p>
                             <p>I WordPress’ administrationspanel oprettede vi brugere og tildelte dem rollerne
-                                Professional, Amateur og Home Cook med forskellige rettigheder. Roller og rettigheder
+                                Professional, Amateur og Home Cook med forskellige rettigheder. Roller og
+                                rettigheder
                                 bestemte, hvad den enkelte bruger havde adgang til at gøre i systemet. Rollen blev
                                 desuden vist sammen med forfatterens navn på hjemmesiden, så man kunne se, hvilken
                                 madlavningsbaggrund personen bag indholdet havde.</p>
@@ -372,38 +426,35 @@
 
                         <!-- Flere billeder under hinanden – hvert billede kan åbnes for sig -->
                         <div class="case-figures">
-
                             <!-- Åbner billedet i stor størrelse -->
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
-                                <img src="./assets/img/full_plate/acf-full-plate.webp"
-                                    alt="Casens krav og afgrænsning af projektet" loading="lazy">
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/full_plate/acf-full-plate.webp" alt="ACF-felter til opskrifterne"
+                                    loading="lazy">
                                 <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                                <span class="image-zoom-label" aria-hidden="true">
+                                <span class="image-zoom-label">
                                     Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                    <i class="fa-solid fa-expand"></i>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
                                 </span>
                             </button>
                             <!-- Åbner billedet i stor størrelse -->
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
+                            <button class="image-zoom case-figure" type="button">
                                 <img src="./assets/img/full_plate/amateur-fullplate.webp"
-                                    alt="Casens krav og afgrænsning af projektet" loading="lazy">
+                                    alt="Brugerrollen Amateur med sine rettigheder i WordPress" loading="lazy">
                                 <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                                <span class="image-zoom-label" aria-hidden="true">
+                                <span class="image-zoom-label">
                                     Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                    <i class="fa-solid fa-expand"></i>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
                                 </span>
                             </button>
                             <!-- Åbner billedet i stor størrelse -->
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
+                            <button class="image-zoom case-figure" type="button">
                                 <img src="./assets/img/full_plate/custom-post-type-fullplate.webp"
-                                    alt="Casens krav og afgrænsning af projektet" loading="lazy">
+                                    alt="Custom Post Types til opskrifter, madhistorier, køkkenredskaber og tips i WordPress"
+                                    loading="lazy">
                                 <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                                <span class="image-zoom-label" aria-hidden="true">
+                                <span class="image-zoom-label">
                                     Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                    <i class="fa-solid fa-expand"></i>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
                                 </span>
                             </button>
 
@@ -413,56 +464,50 @@
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'kode'">
                         <div class="case-step-text">
                             <h3>Kode</h3>
-                            <p>Vi startede med at opbygge siderne statisk med HTML og CSS for at omsætte vores mockups
-                                til et fungerende layout. Herefter blev siderne gjort dynamiske med WordPress og PHP. Vi
-                                arbejdede med single-skabeloner som single-recipe.php, der viste den enkelte opskrift,
-                                og archive-skabeloner som archive-recipe.php, der samlede opskrifterne på en
-                                oversigtsside. På den måde kunne samme skabelon bruges til forskelligt indhold, som blev
-                                hentet fra WordPress.</p>
-                            <p>Undervejs opdelte vi koden i genbrugelige dele. Header og footer fik hver deres PHP-fil,
-                                mens indholdskort blev samlet i template-parts og brugt på tværs af siderne. Det betød,
-                                at vi kunne rette et kort ét sted og få ændringen vist alle de steder, hvor det blev
-                                brugt.</p>
+                            <p>Vi startede med at opbygge siderne statisk med HTML og CSS for at omsætte vores
+                                mockups
+                                til et
+                                fungerende layout. Herefter blev siderne gjort dynamiske med WordPress og PHP.
+                                Forsiden
+                                blev bygget i
+                                front-page.php, hvor vi brugte WP_Query til at hente indhold fra alle tre
+                                indholdstyper:
+                                de fire nyeste
+                                opskrifter, den nyeste madhistorie og to køkkenredskaber. Når der blev oprettet nyt
+                                indhold i WordPress,
+                                blev forsiden derfor opdateret automatisk.</p>
+                            <p>På opskriftskortene hentede vi titel, billede og forfatter fra WordPress og
+                                tilberedningstiden fra et
+                                ACF-felt. Ved madhistorien tjekkede PHP forfatterens rolle, så der stod ved navnet,
+                                om
+                                historien var skrevet
+                                af en hjemmekok, en amatørkok eller en professionel kok. Efter hver forespørgsel
+                                nulstillede vi med
+                                wp_reset_postdata(), så de næste dele af siden hentede det rigtige indhold.</p>
+                            <p>Undervejs opdelte vi også koden i genbrugelige dele. Header og footer fik hver deres
+                                PHP-fil, og kortene på
+                                oversigtssiderne blev samlet i template-parts, så vi kunne rette et kort ét sted og
+                                få
+                                ændringen vist alle
+                                steder.</p>
                             <p>JavaScript blev blandt andet anvendt til søgefeltet, som kunne åbnes fra navigationen
-                                eller med en tastaturgenvej og lukkes med Escape.</p>
-                            <p>GitHub blev brugt til versionsstyring og til at samle gruppens kode. Med løbende commits
-                                kunne vi følge ændringerne og vende tilbage til tidligere versioner ved behov.</p>
+                                eller med en
+                                tastaturgenvej og lukkes med Escape. GitHub blev brugt til versionsstyring og til at
+                                samle gruppens kode.</p>
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/full_plate/kode-full-plate.webp"
-                                alt="Casens krav og afgrænsning af projektet" loading="lazy">
-                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label" aria-hidden="true">
-                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand"></i>
-                            </span>
-                        </button>
-                    </article>
-
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'deployment'">
-                        <div class="case-step-text">
-                            <h3>Deployment</h3>
-                            <p>For at gøre projektet tilgængeligt online migrerede vi WordPress-sitet til one.com. Her
-                                anvendte vi WordPress-pluginet All-in-One WP Migration til at eksportere og importere
-                                hjemmesiden, så indhold, database, tema og plugins kom med over på serveren.</p>
-                            <p>Som det sidste i projektet opsatte vi GitHub Actions til automatisk deployment. Når kode
-                                blev sendt til main- eller master-branchen, startede et workflow, som overførte filerne
-                                til serveren på one.com. Det gav os en løsning til fremtidige kodeopdateringer, så
-                                filerne ikke skulle overføres manuelt.</p>
-                        </div>
-
-                        <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/full_plate/deploy.webp" alt="Casens krav og afgrænsning af projektet"
+                        <button class="image-zoom case-figure" type="button">
+                            <img src="./assets/img/full_plate/kode.webp"
+                                alt="Kode fra front-page.php, der henter de fire nyeste opskrifter med WP_Query"
                                 loading="lazy">
                             <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label" aria-hidden="true">
+                            <span class="image-zoom-label">
                                 Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand"></i>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
+
                     </article>
                 </div>
             </section>

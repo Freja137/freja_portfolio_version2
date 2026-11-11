@@ -30,6 +30,13 @@
             <!-- Intro til casen -->
             <section class="case-hero">
                 <div class="case-hero-text">
+                    <a class="back-link" href="./portfolio.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 12.013L3.211 12m6.776 7L3 12l6.988-7" />
+                        </svg>
+                        Tilbage
+                    </a>
                     <h1>Highway 69</h1>
                     <p>Et komplet redesign af hjemmesiden for Highway 69, en amerikansk diner i Sæby. Projektet gik fra
                         brugerresearch og interviews til et responsivt website med fokus på tydelig navigation og et
@@ -57,7 +64,7 @@
                 </div>
 
                 <img class="case-hero-image" src="./assets/img/highway/highway.png"
-                    alt="Forsiden af Highway 69 med restaurantens bar">
+                    alt="Forsiden af Highway 69 med restaurantens bar på en bærbar computer">
             </section>
 
             <!-- Processen – tab-navigationen styres med Vue (assets/js/case.js) -->
@@ -126,7 +133,7 @@
                         <button class="step-tab" type="button" role="tab"
                             :class="{ 'is-active': activeStep === 'personaer' }"
                             :aria-selected="activeStep === 'personaer'" @click="selectStep('personaer')">
-                            Personaer og scenarier
+                            Personaer, situationer og scenarier
                         </button>
                     </div>
 
@@ -233,15 +240,14 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/desk_research.webp"
                                 alt="Udvalgte nøgletal om gastroturisterne i Kyst- og naturdanmark fra VisitDenmark"
                                 loading="lazy">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
                     </article>
@@ -266,15 +272,14 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/segmentering.webp"
                                 alt="Segmentering af målgruppen med objektive og subjektive parametre" loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
 
@@ -299,16 +304,15 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
-                            <img src="./assets/img/highway/interviewundersøgelse.webp"
+                        <button class="image-zoom case-figure" type="button">
+                            <img src="./assets/img/highway/interviewundersoegelse.webp"
                                 alt="Uddrag af interviewguiden med spørgsmål om restaurantvaner og takeaway"
                                 loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
 
@@ -332,22 +336,21 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/tematisk_analyse.webp"
                                 alt="Tematisk analyse i Figma med citater fra interviewene sorteret i temaer"
                                 loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
 
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'personaer'">
                         <div class="case-step-text">
-                            <h3>Personaer og scenarier</h3>
+                            <h3>Personaer, situationer og scenarier</h3>
                             <p>Brugerindsigterne viste, at et spontant restaurantbesøg, planlægningen af et selskab og
                                 bestilling af takeaway stiller forskellige krav til websitet. Derfor blev der udviklet
                                 tre
@@ -367,27 +370,23 @@
 
                         <!-- Flere billeder under hinanden – hvert billede kan åbnes for sig -->
                         <div class="case-figures">
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
-                                <span class="case-figure-link" aria-hidden="true">
-                                    Åbn billede i fuld størrelse
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                    </svg>
-                                </span>
+                            <button class="image-zoom case-figure" type="button">
                                 <img src="./assets/img/highway/personaer.webp"
                                     alt="De tre personaer Lena, Henrik og Tilde" loading="lazy">
-                            </button>
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
-                                <span class="case-figure-link" aria-hidden="true">
-                                    Åbn billede i fuld størrelse
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                    </svg>
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
                                 </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
                                 <img src="./assets/img/highway/situationer_scenarier.webp"
                                     alt="Situationer og scenarier for de tre personaer" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
                             </button>
                         </div>
                     </article>
@@ -419,16 +418,15 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/meta_data.webp"
                                 alt="Indholdsmodel med core content og metadata for mad, drikkevarer og selskaber"
                                 loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
 
@@ -453,15 +451,14 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/affinity_diagram.webp"
                                 alt="Affinity diagram med websitets indhold grupperet i seks kategorier" loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
 
@@ -487,15 +484,14 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/card_sorting.webp" alt="Resultater fra den åbne card sorting"
                                 loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
 
@@ -519,15 +515,14 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/content_sitemap.webp"
                                 alt="Content sitemap med websitets sider og deres indhold" loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
 
@@ -552,15 +547,14 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/informationsdesign.webp"
                                 alt="Informationsdesign af menukortet og selskabssiden" loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
 
@@ -584,15 +578,14 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/design_sprint.webp" alt="Skitser fra Crazy 8 med dot voting"
                                 loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'atomic-design'">
@@ -615,15 +608,14 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/atomic.webp"
                                 alt="Genbrugelige komponenter opdelt efter Atomic Design" loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'wireframes'">
@@ -642,15 +634,14 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/wireframes.webp"
                                 alt="Wireframes af forsiden til mobil og desktop" loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
 
@@ -669,15 +660,14 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/mockups.webp"
                                 alt="Mockup af forsiden med farver, typografi og billeder" loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
 
@@ -702,15 +692,14 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/brugertest.webp"
                                 alt="Resultater fra 5-second testen og think-aloud testen" loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
 
@@ -736,38 +725,32 @@
 
                         <!-- Flere billeder under hinanden – hvert billede kan åbnes for sig -->
                         <div class="case-figures">
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
-                                <span class="case-figure-link" aria-hidden="true">
-                                    Åbn billede i fuld størrelse
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                    </svg>
-                                </span>
+                            <button class="image-zoom case-figure" type="button">
                                 <img src="./assets/img/highway/acf.webp"
                                     alt="Felter til retterne i Advanced Custom Fields" loading="lazy">
-                            </button>
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
-                                <span class="case-figure-link" aria-hidden="true">
-                                    Åbn billede i fuld størrelse
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                    </svg>
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
                                 </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
                                 <img src="./assets/img/highway/kategorier.webp"
                                     alt="Kategorier til menukortet i WordPress" loading="lazy">
-                            </button>
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
-                                <span class="case-figure-link" aria-hidden="true">
-                                    Åbn billede i fuld størrelse
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                    </svg>
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
                                 </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
                                 <img src="./assets/img/highway/indlaeg.webp"
                                     alt="Retter oprettet som indlæg i WordPress" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
                             </button>
                         </div>
                     </article>
@@ -792,27 +775,23 @@
 
                         <!-- Flere billeder under hinanden – hvert billede kan åbnes for sig -->
                         <div class="case-figures">
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
-                                <span class="case-figure-link" aria-hidden="true">
-                                    Åbn billede i fuld størrelse
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                    </svg>
-                                </span>
+                            <button class="image-zoom case-figure" type="button">
                                 <img src="./assets/img/highway/branches.webp"
                                     alt="Branches i projektets GitHub-repository" loading="lazy">
-                            </button>
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
-                                <span class="case-figure-link" aria-hidden="true">
-                                    Åbn billede i fuld størrelse
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                    </svg>
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
                                 </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
                                 <img src="./assets/img/highway/commits.webp"
                                     alt="Commits i projektets GitHub-repository" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
                             </button>
                         </div>
                     </article>
@@ -837,15 +816,14 @@
                         </div>
 
                         <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <span class="case-figure-link" aria-hidden="true">
-                                Åbn billede i fuld størrelse
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                </svg>
-                            </span>
+                        <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/highway/kode.webp"
                                 alt="JavaScript, der filtrerer menukortet efter kategori" loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
                         </button>
                     </article>
 
@@ -873,27 +851,23 @@
 
                         <!-- Flere billeder under hinanden – hvert billede kan åbnes for sig -->
                         <div class="case-figures">
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
-                                <span class="case-figure-link" aria-hidden="true">
-                                    Åbn billede i fuld størrelse
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                    </svg>
-                                </span>
+                            <button class="image-zoom case-figure" type="button">
                                 <img src="./assets/img/highway/lighthouse_mobil.webp"
                                     alt="Lighthouse-resultater for forsiden på mobil" loading="lazy">
-                            </button>
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
-                                <span class="case-figure-link" aria-hidden="true">
-                                    Åbn billede i fuld størrelse
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                    </svg>
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
                                 </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
                                 <img src="./assets/img/highway/lighthouse_desktop.webp"
                                     alt="Lighthouse-resultater for forsiden på desktop" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
                             </button>
                         </div>
                     </article>

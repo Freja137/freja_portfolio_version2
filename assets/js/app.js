@@ -299,3 +299,86 @@ if (imageModal) {
         modalImg.classList.remove("is-zoomed");
     });
 }
+
+/* ----- Typing-effekt i kodekortet på forsiden ----- */
+//  Koden i kortet bliver skrevet ét bogstav ad gangen. Inspiration: https://www.w3schools.com/howto/howto_js_typewriter.asp
+
+// Henter alle linjerne i kodekortet. Kortet findes kun på forsiden, så på de andre sider er listen tom
+const codeLines = document.querySelectorAll(".profile-code .code-line");
+
+// Koden kører kun, hvis der er linjer – length er mere end 0
+if (codeLines.length) {
+    // const, fordi tallet aldrig ændres – tid mellem hvert bogstav i millisekunder. Jo højere tal, jo langsommere
+    const typingSpeed = 130;
+
+    // Et tomt array, som bliver fyldt med alle tekststykkerne i kortet i den rækkefølge, de skal skrives
+    const parts = [];
+
+    // Gennemgår hver linje i kortet
+    codeLines.forEach((line) => {
+        // childNodes er alt indhold i linjen – både almindelig tekst og <span>'erne med farve
+        line.childNodes.forEach((node) => {
+            // Finder alle steder med et eller flere mellemrum, tabs eller linjeskift, og erstatter dem med ét mellemrum
+            const text = node.textContent.replace(/\s+/g, " ");
+
+            // trim() fjerner mellemrum i begge ender
+            if (text.trim()) {
+                // Gemmer element, text og line i et objekt
+                // element er selve stykket på siden, hvor teksten skal skrives
+                // text er den fulde tekst, der skal skrives
+                // line er den linje, stykket ligger på, så markøren kan flyttes derhen
+                parts.push({ element: node, text: text, line: line });
+            }
+
+            // Tømmer stykket på siden, så det kan skrives igen bogstav for bogstav
+            node.textContent = "";
+        });
+    });
+
+    let partIndex = 0; // Nummeret på det stykke der bliver skrevet nu 
+    let characterIndex = 0; // Hvor mange bogstaver af stykket der vises lige nu
+
+    // Funktionen skriver ét bogstav og kalder så sig selv igen med setTimeout
+    function writeCode() {
+        // Henter det stykke, vi er nået til
+        const part = parts[partIndex];
+
+        // Markøren er et "|" i CSS'en, som vises efter den linje, der har klassen is-typing
+        // Først fjernes klassen fra den linje, der har den nu – ?. betyder "hvis der er en", så første gang springes det bare over
+        document.querySelector(".code-line.is-typing")?.classList.remove("is-typing");
+
+        // Derefter får den linje, vi skriver på, klassen – så flytter markøren med ned på næste linje
+        part.line.classList.add("is-typing");
+
+        // Tæller ét bogstav op
+        characterIndex++;
+
+        // slice(0, characterIndex) tager teksten fra starten og frem til characterIndex
+        part.element.textContent = part.text.slice(0, characterIndex);
+
+        // Er hele stykket skrevet?
+        if (characterIndex === part.text.length) {
+            // Var det også det sidste stykke i parts? length - 1, fordi arrays tæller fra 0
+            if (partIndex === parts.length - 1) {
+                // Klassen is-done på kortet starter blinke-animationen på markøren i CSS'en
+                document.querySelector(".profile-code").classList.add("is-done");
+
+                // return stopper funktionen, så setTimeout nedenfor ikke kører igen – effekten er færdig
+                return;
+            }
+
+            // Ellers går vi videre til næste stykke og starter fra dets første bogstav
+            partIndex++;
+            characterIndex = 0;
+        }
+
+        // Kører funktionen igen efter typingSpeed millisekunder – så kommer næste bogstav
+        setTimeout(writeCode, typingSpeed);
+    }
+
+    // Starter først, hvis der faktisk er noget at skrive
+    if (parts.length) {
+        // Venter et halvt sekund, så siden når at vise sig, før der skrives
+        setTimeout(writeCode, 500);
+    }
+}

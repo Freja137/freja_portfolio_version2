@@ -281,8 +281,7 @@ body.menu-open {
 }
 
 /* ----- CTA ----- */
-.text-link,
-.case-figure-link {
+.text-link {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
@@ -298,8 +297,7 @@ body.menu-open {
     text-transform: uppercase;
 }
 
-.text-link svg,
-.case-figure-link svg {
+.text-link svg {
     flex-shrink: 0;
     width: 1.2rem;
     height: 1.2rem;
@@ -307,9 +305,7 @@ body.menu-open {
 }
 
 .text-link:hover svg,
-.text-link:focus-visible svg,
-.case-figure:hover .case-figure-link svg,
-.case-figure:focus-visible .case-figure-link svg {
+.text-link:focus-visible svg {
     transform: translateX(4px);
 }
 
@@ -504,6 +500,17 @@ body.menu-open {
     background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0 28px 45px rgba(62, 43, 36, 0.09);
+}
+
+/* Markøren står fast efter det, der bliver skrevet */
+.code-line.is-typing::after {
+    content: "|";
+    margin-left: 1px;
+}
+
+/* Når koden er skrevet færdig, begynder markøren at blinke */
+.profile-code.is-done .code-line.is-typing::after {
+    animation: caret-blink 1s step-end infinite;
 }
 
 .code-toolbar {
@@ -731,11 +738,6 @@ body.menu-open {
     font-size: 15px;
 }
 
-/* Det bidrager jeg med – accordions */
-.bidrag h2 {
-    padding-bottom: var(--smallPadding);
-}
-
 .accordion {
     border-bottom: 1px solid var(--chocolate);
 }
@@ -946,6 +948,30 @@ body.menu-open {
 }
 
 /* ----- Case study ----- */
+/* Tilbage-link øverst på case-siderne – samme udtryk som Kontakt i navigationen */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 0.75rem;
+    margin-bottom: var(--mediumPadding);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 250ms ease;
+}
+
+.back-link svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Linket hopper lidt op ved hover */
+.back-link:hover,
+.back-link:focus-visible {
+    transform: translateY(-4px);
+}
+
 .case-hero {
     display: grid;
     gap: var(--mediumPadding);
@@ -973,7 +999,7 @@ body.menu-open {
 .case-links {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--mediumPadding) var(--mediumPadding);
+    gap: var(--mediumPadding);
     margin-top: var(--mediumPadding);
 }
 
@@ -1130,9 +1156,8 @@ body.menu-open {
     align-items: start;
     gap: var(--smallPadding);
     align-self: start;
-    min-width: 0;
-    gap: 0.5rem;
 }
+
 
 .case-figure {
     display: flex;
@@ -1140,10 +1165,18 @@ body.menu-open {
     align-self: start;
 }
 
+
 .case-figure img {
     display: block;
     width: 100%;
     height: auto;
+}
+
+.case-figures img {
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    padding: 0.5rem;
+    background-color: #ffffff;
 }
 
 
@@ -1203,7 +1236,7 @@ body.menu-open {
 
 .kontakt-link-label {
     grid-column: 1;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .kontakt-link-name {
@@ -1212,7 +1245,7 @@ body.menu-open {
     align-items: center;
     gap: 0.75rem;
     font-family: var(--font-heading);
-    font-size: 25px;
+    font-size: 20px;
     line-height: 1;
 }
 
@@ -1326,6 +1359,12 @@ body.menu-open {
 
     to {
         transform: scale(1);
+    }
+}
+
+@keyframes caret-blink {
+    50% {
+        opacity: 0;
     }
 }
 
@@ -1935,6 +1974,10 @@ body.menu-open {
 
     .phase-tab:last-child {
         text-align: right;
+    }
+
+    .phase-tab:not(:first-child):not(:last-child) {
+        text-align: center;
     }
 
     .step-tab {

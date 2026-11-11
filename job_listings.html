@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Job listings</title>
+    <meta name="description"
+        content="Case study: Job listings – en Frontend Mentor-challenge bygget i Vue 3 og Vite, hvor brugeren kan filtrere jobopslag efter rolle, niveau, sprog og værktøjer.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script type="module" src="./assets/js/main.js"></script>
+    <script src="./assets/js/app.js" defer></script>
+</head>
+
+<body>
+    <!-- Alt ligger i <div id="app">, fordi det er her, Vue starter (.mount("#app")). Vue kan kun styre indholdet inde i den, så header, footer og tabs skal ligge her -->
+    <div id="app">
+        <!-- Custom cursor -->
+        <div class="cursor" aria-hidden="true">
+            <div class="cursor-inner"></div>
+        </div>
+        <!-- Header indsættes med Vue -->
+        <the-header></the-header>
+
+        <main class="main-home">
+            <!-- Intro til casen -->
+            <section class="case-hero">
+                <div class="case-hero-text">
+                    <a class="back-link" href="./portfolio.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 12.013L3.211 12m6.776 7L3 12l6.988-7" />
+                        </svg>
+                        Tilbage
+                    </a>
+                    <h1>Job listings</h1>
+                    <p>En jobliste, hvor brugeren kan filtrere stillinger efter rolle, niveau, sprog og værktøjer.
+                        Projektet er en challenge fra Frontend Mentor, en platform med opgaver bygget over rigtige
+                        designs. Jeg valgte et design, hvortil jeg fik designfiler, en style guide og en datafil.</p>
+                    <p>Løsningen blev bygget med frameworket Vue 3, så jeg kunne styrke mine kompetencer i Vue og bruge
+                        det, vi har lært i undervisningen.</p>
+
+                    <div class="case-links">
+                        <a class="case-link"
+                            href="https://mmd.ucn.dk/class/MMD-CSD-S25/10700522/MMD3/vue/job_listings/index.html"
+                            target="_blank" rel="noopener">
+                            Se løsningen i brug
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                aria-hidden="true">
+                                <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                            </svg>
+                        </a>
+                        <a class="case-link" href="https://github.com/Freja137/job_listing" target="_blank"
+                            rel="noopener">
+                            Se koden i GitHub
+                            <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <img class="case-hero-image" src="./assets/img/job_listing/job_listings.png"
+                    alt="Forsiden af Job listings vist på en bærbar computer">
+            </section>
+
+            <!-- Processen – tab-navigationen styres med Vue (assets/js/case.js) -->
+            <section class="case-process">
+                <h2 class="case-process-title">Processen</h2>
+
+                <!-- v-cloak skjuler tabs, indtil Vue er klar, så alle trin ikke blinker frem. Kilde: https://vuejs.org/api/built-in-directives.html#v-cloak -->
+                <!-- :class markerer den valgte fase og det valgte trin. Kilde: https://vuejs.org/guide/essentials/class-and-style -->
+                <div id="case-tabs" v-cloak>
+                    <!-- Faserne med pile – pilene vises kun på mobil
+                    @click og @scroll kører funktioner i case.js, og $event sender klikket med. Kilde: https://vuejs.org/guide/essentials/event-handling
+                    ref="phaseTabs" kobler rækken til case.js. Kilde: https://vuejs.org/guide/essentials/template-refs
+                    data-phase og data-first-step fortæller case.js, hvad fasen hedder, og hvilket trin den starter på -->
+                    <div class="phase-nav">
+                        <button class="phase-arrow" type="button" aria-label="Vis tidligere faser"
+                            :disabled="!canScrollLeft" @click="scrollTabs(-1)">
+                            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <div class="phase-tabs" ref="phaseTabs" @scroll="updateArrows" role="tablist"
+                            aria-label="Faser i processen">
+                            <button class="phase-tab" type="button" role="tab" data-phase="opgaven"
+                                data-first-step="brief" :class="{ 'is-active': activePhase === 'opgaven' }"
+                                :aria-selected="activePhase === 'opgaven'" @click="selectPhase('opgaven', $event)">01
+                                Opgaven</button>
+                            <button class="phase-tab" type="button" role="tab" data-phase="udvikling"
+                                data-first-step="struktur" :class="{ 'is-active': activePhase === 'udvikling' }"
+                                :aria-selected="activePhase === 'udvikling'"
+                                @click="selectPhase('udvikling', $event)">02 Udvikling</button>
+                            <button class="phase-tab" type="button" role="tab" data-phase="deployment"
+                                data-first-step="github" :class="{ 'is-active': activePhase === 'deployment' }"
+                                :aria-selected="activePhase === 'deployment'"
+                                @click="selectPhase('deployment', $event)">03 Deployment</button>
+                        </div>
+                        <button class="phase-arrow" type="button" aria-label="Vis flere faser"
+                            :disabled="!canScrollRight" @click="scrollTabs(1)">
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <!-- Trinene i hver fase – kun den aktive fase vises -->
+
+                    <div class="step-tabs" role="tablist" aria-label="Trin i opgaven"
+                        v-show="activePhase === 'opgaven'">
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'brief' }" :aria-selected="activeStep === 'brief'"
+                            @click="selectStep('brief')">
+                            Brief
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'afgraensning' }"
+                            :aria-selected="activeStep === 'afgraensning'" @click="selectStep('afgraensning')">
+                            Afgrænsning og værktøjer
+                        </button>
+                    </div>
+                    <div class="step-tabs" role="tablist" aria-label="Trin i udvikling"
+                        v-show="activePhase === 'udvikling'">
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'struktur' }"
+                            :aria-selected="activeStep === 'struktur'" @click="selectStep('struktur')">
+                            Struktur og data
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'styling' }" :aria-selected="activeStep === 'styling'"
+                            @click="selectStep('styling')">
+                            Styling
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'filtrering' }"
+                            :aria-selected="activeStep === 'filtrering'" @click="selectStep('filtrering')">
+                            Filtrering
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'tilgaengelighed' }"
+                            :aria-selected="activeStep === 'tilgaengelighed'" @click="selectStep('tilgaengelighed')">
+                            Interaktivitet og tilgængelighed
+                        </button>
+                    </div>
+                    <div class="step-tabs" role="tablist" aria-label="Trin i deployment"
+                        v-show="activePhase === 'deployment'">
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'github' }" :aria-selected="activeStep === 'github'"
+                            @click="selectStep('github')">
+                            GitHub
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'build' }" :aria-selected="activeStep === 'build'"
+                            @click="selectStep('build')">
+                            Build og server
+                        </button>
+                    </div>
+
+                    <!-- Indholdet til hvert trin – kun det aktive trin vises -->
+
+                    <!-- 01 Opgaven -->
+                    <!-- v-show viser kun det valgte trin. Kilde: https://vuejs.org/guide/essentials/conditional -->
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'brief'">
+                        <div class="case-step-text">
+                            <h3>Brief</h3>
+                            <p>Opgaven var at bygge en jobliste, der lå så tæt på det udleverede design som muligt. Til
+                                opgaven fulgte designfiler til mobil og desktop, en style guide med farver og typografi,
+                                logoer og ikoner samt en datafil med indholdet.</p>
+                            <p>Briefen beskrev tre krav til løsningen. Brugeren skulle kunne filtrere jobs ud fra de
+                                valgte kategorier, få et layout tilpasset skærmstørrelsen og se hover- og
+                                fokustilstande på alle interaktive elementer.</p>
+                            <p>Kravene gav et klart udgangspunkt for, hvad løsningen skulle kunne. De blev brugt som en
+                                tjekliste gennem udviklingen og til sidst til at vurdere, om løsningen levede op til
+                                opgaven.</p>
+                        </div>
+
+                        <!-- To billeder side om side – hvert billede kan åbnes for sig -->
+                        <div class="case-figures">
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/job_listing/brief_mobile.webp"
+                                    alt="Det udleverede design af joblisten til mobil" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/job_listing/brief_desktop.webp"
+                                    alt="Det udleverede design af joblisten til desktop" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'afgraensning'">
+                        <div class="case-step-text">
+                            <h3>Afgrænsning og valg af værktøjer</h3>
+                            <p>Designet var udleveret, så projektet fokuserede på udvikling frem for research og
+                                prototyping. Det gav mulighed for at arbejde målrettet med at omsætte et færdigt design
+                                til kode.</p>
+                            <p>Challengen foreslog at bruge et JavaScript-framework som React eller Vue. Ud over at
+                                styrke mine kompetencer passede Vue godt til opgaven, fordi dataen kunne kobles direkte
+                                til det, der blev vist på siden, og listen kunne opdatere sig selv, når brugeren valgte
+                                et filter. Vite blev brugt til at sætte projektet op og bygge den færdige version.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button">
+                            <img src="./assets/img/job_listing/vaerktoejer.webp"
+                                alt="Projektets mappestruktur i VS Code med Vue-komponenten, datafilen og Vite-konfigurationen"
+                                loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </article>
+
+
+                    <!-- 02 Udvikling -->
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'struktur'">
+                        <div class="case-step-text">
+                            <h3>Struktur og data</h3>
+                            <p>Før jeg begyndte at style, byggede jeg sidens struktur og fik dataen vist. JSON-filen
+                                blev importeret i komponenten og gemt i en reaktiv variabel med <code>ref</code>. Med
+                                directivet <code>v-for</code> blev der genereret et kort for hvert job-objekt i
+                                arrayet, og <code>:key</code> gav hvert kort et unikt id, så Vue kunne holde styr på
+                                elementerne.</p>
+                            <p>Rolle, niveau, sprog og værktøjer lå som forskellige egenskaber i objektet. Rolle og
+                                niveau var enkelte værdier, mens sprog og værktøjer var arrays. Jeg skrev derfor en
+                                funktion, der samlede dem i ét array af tags pr. job, hvor spread-operatoren foldede de
+                                to arrays ud.</p>
+                            <p>Strukturen blev opbygget med semantisk HTML, så indholdet gav mening uden styling.
+                                Joblisten blev opbygget som en uordnet liste, og tags blev lavet som
+                                <code>&lt;button&gt;</code>-elementer, fordi de skulle kunne klikkes og bruges med
+                                tastaturet. Med conditional rendering via <code>v-if</code> blev mærkerne "New!" og
+                                "Featured" kun vist på de jobs, hvor de var relevante, og med class binding fik
+                                fremhævede jobs en ekstra klasse til styling.
+                            </p>
+                        </div>
+
+                        <!-- To billeder side om side – hvert billede kan åbnes for sig -->
+                        <div class="case-figures">
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/job_listing/data_json.webp"
+                                    alt="Et job-objekt i data.json med rolle, niveau, sprog og værktøjer"
+                                    loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/job_listing/kode_template.webp"
+                                    alt="Templaten i App.vue, hvor v-for viser et kort for hvert job" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'styling'">
+                        <div class="case-step-text">
+                            <h3>Styling</h3>
+                            <p>Farver fra style guiden blev opsat som variabler i <code>:root</code>, så de kunne
+                                genbruges på tværs af stylesheetet og ændres ét sted. Den udleverede font blev hentet
+                                fra Google Fonts.</p>
+                            <p>Jeg arbejdede med en mobile first-tilgang, og layoutet blev derfor opbygget ud fra den.
+                                Basisreglerne var skrevet til små skærme og blev tilpasset større skærme med media
+                                queries, hvor kortene gik fra at stå stablet på mobil til at samle logo, tekst og tags
+                                på én række med flexbox på desktop.</p>
+                            <p>To dele af designet krævede særlige løsninger. På mobil sidder logoet halvt over kortets
+                                kant, hvilket blev løst med positionering i forhold til kortet. Prikkerne mellem dato,
+                                kontrakttype og lokation blev tilføjet med et pseudo-element i CSS, så de fungerede som
+                                visuel adskillelse uden at blive en del af indholdet. Fremhævede jobs fik en farvet kant
+                                via den klasse, Vue tilføjede med class binding, hvilket koblede stylingen direkte til
+                                dataen.</p>
+                        </div>
+
+                        <!-- To billeder side om side – hvert billede kan åbnes for sig -->
+                        <div class="case-figures">
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/job_listing/style_mobile.webp"
+                                    alt="Joblisten på mobil med logoet halvt over kortets kant" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/job_listing/job_listings.webp"
+                                    alt="Joblisten på desktop med logo, tekst og tags på én række" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'filtrering'">
+                        <div class="case-step-text">
+                            <h3>Filtrering</h3>
+                            <p>En stor del af opgaven handlede om, at brugeren skulle kunne filtrere jobbene. Jeg
+                                valgte at gemme de valgte filtre i et reaktivt array, som startede tomt. Til det brugte
+                                jeg directivet <code>@click</code>, en forkortelse for <code>v-on:click</code>, som
+                                lytter efter klik og tilføjer tagget til arrayet. Funktionen tjekkede først med
+                                <code>includes()</code>, om tagget allerede var valgt, så man ikke kunne tilføje det
+                                samme tag mere end én gang.
+                            </p>
+                            <p>Selve filtreringen blev løst med en computed property. Den gennemgik joblisten med
+                                array-metoden <code>filter()</code> og brugte <code>every()</code> til at tjekke, om et
+                                job indeholdt alle de valgte tags. Det betød, at hvert nyt filter indsnævrede resultatet
+                                yderligere. Hvis der ikke var valgt nogen filtre, returnerede <code>every()</code> sand,
+                                og hele listen blev vist.</p>
+                            <p>Med en computed property holder Vue selv øje med de værdier, den afhænger af. Listen blev
+                                derfor kun beregnet igen, når filtrene ændrede sig, og den oprindelige data forblev
+                                uændret, fordi <code>filter()</code> returnerer et nyt array.</p>
+                            <p>De valgte filtre blev vist i en filtersektion, som med <code>v-if</code> kun blev
+                                renderet, når arrayet indeholdt mindst ét filter. Hvert filter kunne fjernes enkeltvis,
+                                hvor arrayet blev erstattet af en ny version uden det valgte tag. Derudover lavede jeg
+                                en "Clear"-knap, som nulstillede hele arrayet. Fordi filtrene var reaktive, opdaterede
+                                både filtersektionen og joblisten sig automatisk ved hver ændring.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button">
+                            <img src="./assets/img/job_listing/filter.webp"
+                                alt="Joblisten med valgte filtre i filtersektionen øverst" loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'tilgaengelighed'">
+                        <div class="case-step-text">
+                            <h3>Interaktivitet og tilgængelighed</h3>
+                            <p>Tags og knapper blev bygget som native <code>&lt;button&gt;</code>-elementer frem for
+                                klikbare <code>&lt;span&gt;</code>- eller <code>&lt;div&gt;</code>-elementer. Det betød,
+                                at de automatisk kunne nås med Tab-tasten, aktiveres med Enter og mellemrum og blev
+                                genkendt som knapper af skærmlæsere.</p>
+                            <p>Til fokustilstandene brugte jeg pseudo-klassen <code>:focus-visible</code>, så
+                                markeringen kun blev vist, når brugeren navigerede med tastaturet, og ikke ved klik med
+                                musen. Hover og fokus fik samme visuelle udtryk, så brugeren fik samme feedback, uanset
+                                om de brugte mus eller tastatur.</p>
+                            <p>Designet havde ingen synlig hovedoverskrift, men jobtitlerne var
+                                <code>&lt;h2&gt;</code>-elementer. For at bevare en logisk overskriftsstruktur tilføjede
+                                jeg en <code>&lt;h1&gt;</code>, der var skjult visuelt med CSS, men stadig tilgængelig
+                                for skærmlæsere. Logoer og ikoner fik alt-tekster, hvor kryds-ikonet beskrev, hvilket
+                                filter det fjernede. Derudover blev sidens sprog angivet med <code>lang="en"</code>, så
+                                skærmlæsere udtalte de engelske tekster korrekt, og mærket "New!" blev vist med store
+                                bogstaver via <code>text-transform</code>, så det blev læst som et ord og ikke stavet
+                                bogstav for bogstav.
+                            </p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button">
+                            <img src="./assets/img/job_listing/kode_tilgaengelighed.webp"
+                                alt="Templaten i App.vue med en visuelt skjult h1 og alt-tekst til kryds-knappen"
+                                loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </article>
+
+
+                    <!-- 03 Deployment -->
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'github'">
+                        <div class="case-step-text">
+                            <h3>GitHub</h3>
+                            <p>Projektet blev versionsstyret med Git og lagt i et repository på GitHub. Jeg arbejdede
+                                alene og committede direkte til main-branchen efter hvert afsluttet trin, fx når en
+                                funktion virkede, eller en del af stylingen var færdig. Hvert commit fik en beskrivende
+                                besked, så versionshistorikken viste, hvordan løsningen var bygget op trin for trin.</p>
+                            <p>De små, hyppige commits gjorde det muligt at vende tilbage til en tidligere version, hvis
+                                noget gik galt. Ved at pushe ændringerne til GitHub løbende var koden samtidig sikret
+                                uden for min egen computer.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button">
+                            <img src="./assets/img/job_listing/github_commits.webp"
+                                alt="Commits i projektets GitHub-repository" loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'build'">
+                        <div class="case-step-text">
+                            <h3>Build og server</h3>
+                            <p>Vue-komponenter kan ikke læses direkte af browseren, så løsningen skulle bygges, før den
+                                kunne lægges online. Da jeg var færdig med at udvikle produktet, kørte jeg kommandoen
+                                <code>npm run build</code> i terminalen inde i VS Code, hvor Vite samlede HTML-, CSS- og
+                                JavaScript-filer i en <code>dist</code>-mappe. Filer i <code>public</code>-mappen, som
+                                logoer og baggrundsbilleder, blev kopieret direkte med.
+                            </p>
+                            <p>Siden skulle ligge i en undermappe på serveren og ikke i roden af domænet. Derfor satte
+                                jeg <code>base: "./"</code> i Vites konfiguration, så alle stier blev relative og
+                                virkede uanset placering.</p>
+                            <p>Som den sidste del af processen uploadede jeg indholdet af <code>dist</code>-mappen til
+                                MMD's studentserver med FileZilla via skolens VPN.</p>
+                        </div>
+
+                        <!-- Åbner billedet i stor størrelse -->
+                        <button class="image-zoom case-figure" type="button">
+                            <img src="./assets/img/job_listing/build.webp"
+                                alt="Terminalen efter npm run build, hvor Vite har samlet filerne i dist-mappen"
+                                loading="lazy">
+                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                            <span class="image-zoom-label">
+                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Modal til billeder i stor størrelse. Inspiration: https://www.w3schools.com/howto/howto_css_modal_images.asp -->
+            <dialog class="image-modal" aria-label="Billede i stor størrelse">
+                <button class="image-modal-close" type="button" aria-label="Luk billedet">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+                <img class="image-modal-img" src="" alt="">
+                <p class="image-modal-caption"></p>
+            </dialog>
+        </main>
+
+        <!-- Footer indsættes med Vue -->
+        <the-footer></the-footer>
+    </div>
+</body>
+
+</html>
