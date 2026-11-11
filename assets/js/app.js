@@ -5,7 +5,7 @@ const menuDropdown = document.querySelector("#navDropdown");
 
 // Koden kører kun, hvis siden har en mobilmenu
 if (menuButton && menuDropdown) {
-    // Ikonet skifter mellem burger ikon og kryds ikon.
+    // Henter ikonet inde i knappen – det skifter senere mellem burger og kryds
     const menuIcon = menuButton.querySelector("i");
 
     // Gemmer indholdet bag menuen, som ikke må kunne nås, mens menuen er åben, i en variabel.
@@ -41,7 +41,7 @@ if (menuButton && menuDropdown) {
         });
     }
 
-    // Tilføjer et eventlistener der lytter efter et Klik på knappen, der åbner menuen, hvis den er lukket, og lukker den, hvis den er åben
+    // Tilføjer en eventlistener, der lytter efter klik på knappen – åbner menuen, hvis den er lukket, og lukker den, hvis den er åben
     menuButton.addEventListener("click", () => {
         const isOpen =
             menuButton.getAttribute("aria-expanded") === "true";
@@ -73,27 +73,6 @@ if (menuButton && menuDropdown) {
     });
 }
 
-/* ----- Markér den aktuelle side i navigationen ----- */
-// Finder filnavnet på den side, man er på, fx "kontakt.html" – forsiden har intet filnavn, så den bliver "index.html"
-const currentPage = window.location.pathname.split("/").pop() || "index.html";
-
-// Henter alle links i både mobil- og desktopnavigationen
-const navLinks = document.querySelectorAll(
-    ".nav-list a, .nav-desktop a"
-);
-
-navLinks.forEach((link) => {
-    // Finder filnavnet, linket peger på
-    const linkPage = new URL(link.href).pathname.split("/").pop();
-
-    // Linket til den side, man er på, får aria-current, som CSS'en bruger til at sætte en streg under
-    if (linkPage === currentPage) {
-        link.setAttribute("aria-current", "page");
-    } else {
-        link.removeAttribute("aria-current");
-    }
-});
-
 /* ----- Fade-in animation på sektioner ----- */
 /* Kilde: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API */
 // Henter alle sektioner i main
@@ -112,7 +91,10 @@ revealSections.forEach((section) => {
     section.classList.add("reveal");
 });
 
-// Vent to frames, så browseren når at tegne sektionerne skjult, før animationen starter
+// Venter, til browseren har vist sektionerne med klassen "reveal" på skærmen, før observeren begynder at holde øje
+// Ellers bliver den første sektion bare vist med det samme, fordi der ikke er noget "før" at fade ind fra
+// To requestAnimationFrame inde i hinanden gør, at skærmen er opdateret mindst én gang imellem
+// Kilde: https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame
 requestAnimationFrame(() => {
     requestAnimationFrame(() => {
         revealSections.forEach((section) => {
@@ -127,6 +109,7 @@ const accordions = document.querySelectorAll(".accordion");
 
 // Åbn eller luk ét punkt – open er true eller false
 function setAccordion(accordion, open) {
+    // Finder knappen, teksten, billedet og ikonet inde i det punkt, der skal åbnes eller lukkes
     const button = accordion.querySelector(".accordion-title");
     const panel = accordion.querySelector(".accordion-panel");
     const media = accordion.querySelector(".accordion-media");
@@ -171,7 +154,7 @@ accordions.forEach((accordion) => {
 });
 
 /* ----- Til toppen knap ----- */
-/* Kilde: https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin */
+// Kilde: https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin 
 // Skjul "Til toppen", mens den første sektion er på skærmen
 const toTop = document.querySelector(".to-top");
 const heroSection = document.querySelector("main section");
@@ -197,44 +180,53 @@ if (toTop && heroSection) {
 // Henter cirklen fra DOM'en
 const cursor = document.querySelector(".cursor");
 
-// Gemmer musens placering
-const mouse = { x: 300, y: 300 };
+// Koden kører kun, hvis siden har en cirkel
+if (cursor) {
+    // Gemmer musens placering
+    const mouse = { x: 300, y: 300 };
 
-// Gemmer cirklens placering – den halter lidt efter musen
-const pos = { x: 0, y: 0 };
+    // Gemmer cirklens placering
+    const pos = { x: 0, y: 0 };
 
-// Hvor stor en del af afstanden cirklen flytter sig hver gang – mellem 0 og 1, lavere tal giver mere forsinkelse
-const speed = 0.1;
+    // Hvor stor en del af afstanden cirklen flytter sig hver gang – mellem 0 og 1, jo lavere tallet er, jo større forsinkelse giver det
+    const speed = 0.1;
 
-// Flytter cirklen et stykke hen mod musen
-const updatePosition = () => {
-    // Afstanden til musen ganges med speed, så cirklen kun flytter sig 10 % af vejen
-    pos.x += (mouse.x - pos.x) * speed;
-    pos.y += (mouse.y - pos.y) * speed;
+    // Flytter cirklen et stykke hen mod musen
+    const updatePosition = () => {
+        // Afstanden til musen ganges med speed, så cirklen kun flytter sig 10 % af vejen
+        pos.x += (mouse.x - pos.x) * speed;
+        pos.y += (mouse.y - pos.y) * speed;
 
-    // Flytter cirklen til den nye position
-    cursor.style.transform = "translate3d(" + pos.x + "px, " + pos.y + "px, 0)";
-};
+        // Flytter cirklen til den nye position
+        cursor.style.transform = "translate3d(" + pos.x + "px, " + pos.y + "px, 0)";
+    };
 
-// Gemmer musens position fra eventet i mouse
-const updateCoordinates = (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-};
+    // Gemmer musens position fra eventet i mouse
+    const updateCoordinates = (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
 
-// Kører updateCoordinates, hver gang musen bevæger sig
-window.addEventListener("mousemove", updateCoordinates);
+        // Viser cirklen, når musen har bevæget sig – i CSS'en er den usynlig fra start
+        cursor.classList.add("is-visible");
 
-// Kører igen og igen, så cirklen hele tiden glider efter musen
-function loop() {
-    updatePosition();
+        // Cirklen vokser, når musen er over et link eller en knap – closest tjekker, om elementet er, eller ligger inde i, et link eller en knap
+        cursor.classList.toggle("is-hovering", e.target.closest("a, button") !== null);
+    };
 
-    // Beder browseren om at køre loop igen før næste billede tegnes
+    // Kører updateCoordinates, hver gang musen bevæger sig
+    window.addEventListener("mousemove", updateCoordinates);
+
+    // Kører igen og igen, så cirklen hele tiden glider efter musen
+    function loop() {
+        updatePosition();
+
+        // Beder browseren om at køre loop igen før næste billede tegnes
+        requestAnimationFrame(loop);
+    }
+
+    // Starter løkken
     requestAnimationFrame(loop);
 }
-
-// Starter løkken
-requestAnimationFrame(loop);
 
 /* ----- Billed-modal ----- */
 /* Kilde: https://www.w3schools.com/howto/howto_css_modal_images.asp */
@@ -243,7 +235,7 @@ const imageModal = document.querySelector(".image-modal");
 
 // Koden kører kun på sider med en modal
 if (imageModal) {
-    // Billedet, krydset og billedteksten inde i modalen
+    // Billedet, krydset og billedteksten inde i modalen gemmes i variabler
     const modalImg = imageModal.querySelector(".image-modal-img");
     const closeButton = imageModal.querySelector(".image-modal-close");
     const modalCaption = imageModal.querySelector(".image-modal-caption");
@@ -287,7 +279,7 @@ if (imageModal) {
     modalImg.addEventListener("mousemove", (e) => {
         // Tjekker, om billedet har klassen is-zoomed. Den får klassen, når man klikker på det.
         if (modalImg.classList.contains("is-zoomed")) {
-            //Hvis overstående er sandt køres moveZoom(e), så zoomet følger musen
+            // Hvis ovenstående er sandt, køres moveZoom(e), så zoomet følger musen
             moveZoom(e);
         }
     });

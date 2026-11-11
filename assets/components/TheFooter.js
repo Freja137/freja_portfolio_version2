@@ -1,6 +1,15 @@
-/* Footer komponent, kilde: https://vuejs.org/guide/essentials/component-basics */
+/* Footerkomponent – skabelonen til footeren, så den kun skal skrives ét sted.
+   Hentes i main.js og indsættes på alle sider med <the-footer></the-footer>.
+   Kilde: https://vuejs.org/guide/essentials/component-basics */
 
+// Export gør det muligt for main.js at hente den med import{TheFooter} from "../components/TheFooter.js"
 export const TheFooter = {
+    setup() {
+        // Henter årstallet, så det altid er det nuværende år
+        const year = new Date().getFullYear();
+        return { year };
+    },
+
     template: `
             <footer class="site-footer">
         <div class="footer-inner">
@@ -24,7 +33,8 @@ export const TheFooter = {
                     </a>
                 </li>
             </ul>
-            <p class="footer-copy">&copy;Freja Fischer 2026</p>
+            <!-- {{ year }} skriver årstallet fra setup() ind i teksten. Kilde: https://vuejs.org/guide/essentials/template-syntax#text-interpolation -->
+             <p class="footer-copy">&copy;Freja Fischer {{ year }}</p>
         </div>
     </footer>
     `

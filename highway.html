@@ -4,12 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio | Faglig profil</title>
+    <title>Portfolio | Highway 69</title>
     <meta name="description"
-        content="Jeg er Freja Fischer, multimediedesignstuderende med interesse for frontendudvikling og UX/UI-design. Lær mig at kende og se mine projekter.">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap"
-        rel="stylesheet">
+        content="Case study: redesign af Highway 69's hjemmeside – fra brugerresearch til responsivt website med menukort hentet fra WordPress via REST API.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap"
@@ -20,7 +17,7 @@
 </head>
 
 <body>
-    <!-- Samlede det i et div-element da vue styrer det er det element vi mounter på. Med .mount(#app) kigger Vue kun efter TheHeader og TheFooter inde i <div id="app"> -->
+    <!-- Alt ligger i <div id="app">, fordi det er her, Vue starter (.mount("#app")). Vue kan kun styre indholdet inde i den, så header, footer og tabs skal ligge her -->
     <div id="app">
         <!-- Custom cursor -->
         <div class="cursor" aria-hidden="true">
@@ -67,11 +64,12 @@
             <section class="case-process">
                 <h2 class="case-process-title">Processen</h2>
 
-                <!-- v-cloak skjuler tabs, indtil Vue er klar, så alle trin ikke blinker frem -->
+                <!-- v-cloak skjuler tabs, indtil Vue er klar, så alle trin ikke blinker frem. Kilde: https://vuejs.org/api/built-in-directives.html#v-cloak -->
                 <!-- :class markerer den valgte fase og det valgte trin. Kilde: https://vuejs.org/guide/essentials/class-and-style -->
                 <div id="case-tabs" v-cloak>
-                    <!-- Faserne -->
-                    <!-- Faserne med pile – pilene vises kun på mobil -->
+                    <!-- Faserne med pile – pilene vises kun på mobil
+                    @click og @scroll kører funktioner i case.js, og $event sender klikket med. Kilde: https://vuejs.org/guide/essentials/event-handling
+                    ref="phaseTabs" kobler rækken til case.js. Kilde: https://vuejs.org/guide/essentials/template-refs -->
                     <div class="phase-nav">
                         <button class="phase-arrow" type="button" aria-label="Vis tidligere faser"
                             :disabled="!canScrollLeft" @click="scrollTabs(-1)">

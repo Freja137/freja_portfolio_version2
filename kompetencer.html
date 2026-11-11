@@ -4,12 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio | Faglig profil</title>
+    <title>Portfolio | Kompetencer </title>
     <meta name="description"
-        content="Jeg er Freja Fischer, multimediedesignstuderende med interesse for frontendudvikling og UX/UI-design. Lær mig at kende og se mine projekter.">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap"
-        rel="stylesheet">
+        content="Mine kompetencer inden for frontendudvikling, design og brugerforståelse – og hvordan jeg arbejder med HTML, CSS, JavaScript, Vue, WordPress og Figma.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap"
@@ -20,7 +17,7 @@
 </head>
 
 <body>
-    <!-- Samlede det i et div-element da vue styrer det er det element vi mounter på. Med .mount(#app) kigger Vue kun efter TheHeader og TheFooter inde i <div id="app"> -->
+    <!-- Alt ligger i <div id="app">, fordi det er her, Vue starter (.mount("#app")). Vue kan kun styre indholdet inde i den, så header, footer og tabs skal ligge her -->
     <div id="app">
         <!-- Custom cursor -->
         <div class="cursor" aria-hidden="true">

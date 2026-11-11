@@ -5,30 +5,16 @@
     --chocolate: #3E2B24;
     --caramel: #8C6248;
     --color-line: #b7a596;
-    /* Skrifttyper */
     --font-heading: "Instrument Serif", serif;
     --font-body: "Instrument Sans", sans-serif;
     --font-code: monospace;
-    /* Skriftstørrelser */
     --h1-size: 40px;
-    /* Afstande */
     --smallPadding: 20px;
     --mediumPadding: 40px;
     --largePadding: 80px;
-    /* Sidebredde */
     --page-padding: 50px;
     --page-max-width: 1300px;
-    /* Afstand mellem sektioner */
     --section-space: 100px;
-}
-
-/* Variabler, der ændrer sig fra tablet og op */
-@media (min-width: 768px) {
-    :root {
-        --page-padding: var(--mediumPadding);
-        --section-space: 150px;
-        --h1-size: 60px;
-    }
 }
 
 /* ----- Generel styling ----- */
@@ -40,7 +26,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Footeren står altid i bunden */
 body {
     display: flex;
     flex-direction: column;
@@ -56,7 +41,6 @@ body {
     display: none;
 }
 
-/* Plads til den faste mobil nav */
 main {
     flex: 1;
     padding-top: 60px;
@@ -74,7 +58,6 @@ a {
     font-weight: 300;
 }
 
-/* Samme h1 på alle sider */
 h1 {
     font-family: var(--font-heading);
     font-size: var(--h1-size);
@@ -85,27 +68,23 @@ h1 {
     display: contents;
 }
 
-/* Lige meget luft mellem alle sektioner */
 .main-home>section {
     padding-block: 0;
 }
 
-/* Luft mellem navbaren og den første sektion */
 .main-home>section:first-child {
     padding-top: var(--mediumPadding);
 }
 
-/* Afstanden ligger kun mellem sektionerne */
 .main-home>section+section {
     margin-top: var(--largePadding);
 }
 
-/* Markering af den aktuelle side */
-.nav-list a[aria-current="page"],
-.nav-desktop a[aria-current="page"]:not(.site-logo) {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 8px;
+.section-label {
+    margin: 0;
+    margin-top: var(--smallPadding);
+    margin-bottom: var(--mediumPadding);
+    font-size: 10px;
 }
 
 /* Skjuler tekst visuelt, men skærmlæsere kan stadig læse den */
@@ -121,6 +100,53 @@ h1 {
 /* Skjuler Vue-skabelonen, indtil Vue har fyldt den ud https://www.w3schools.com/vue/ref_v-cloak.php */
 [v-cloak] {
     display: none;
+}
+
+/* Indholdet på alle sider har samme maksbredde og sideafstand */
+.home-hero,
+.about,
+.hero,
+.fp-qoute,
+.kompetencer-container,
+.process-container,
+.bidrag,
+.fun-facts,
+.portfolio,
+.case-hero,
+.case-process,
+.kontakt {
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+}
+
+/* Knapper uden browserens egen kant og baggrund */
+.burgerMenuIcon,
+.image-zoom,
+.image-modal-close,
+.accordion-title,
+.phase-tab,
+.phase-arrow,
+.step-tab {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* Fælles fokus-markering, når man bruger tastaturet */
+.burgerMenuIcon:focus-visible,
+.nav-mobile a:focus-visible,
+.text-link:focus-visible,
+.to-top:focus-visible,
+.scroll-link:focus-visible,
+.marquee:focus-visible,
+.accordion-title:focus-visible,
+.case-link:focus-visible,
+.kontakt-link:focus-visible,
+.footer-links a:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 6px;
 }
 
 /* ----- Header og nav til mobil ----- */
@@ -147,9 +173,16 @@ header {
 
 .site-logo {
     text-decoration: none;
-    color: var(--chocolate);
     font-family: var(--font-heading);
     font-size: 1.5rem;
+}
+
+/* Markering af den aktuelle side */
+.nav-list a[aria-current="page"],
+.nav-desktop a[aria-current="page"]:not(.site-logo) {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 8px;
 }
 
 /* Menuknap */
@@ -160,12 +193,8 @@ header {
     width: 44px;
     height: 44px;
     margin-left: auto;
-    padding: 0;
-    border: 0;
-    background: transparent;
     color: var(--chocolate);
     font-size: 1.25rem;
-    cursor: pointer;
 }
 
 /* Menuen fylder resten af skærmen */
@@ -208,7 +237,6 @@ header {
 
 .nav-list a {
     display: block;
-    color: var(--chocolate);
     text-decoration: none;
     text-align: center;
     font-family: var(--font-heading);
@@ -252,12 +280,6 @@ body.menu-open {
     overflow: hidden;
 }
 
-.burgerMenuIcon:focus-visible,
-.nav-mobile a:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 6px;
-}
-
 /* ----- CTA ----- */
 .text-link,
 .case-figure-link {
@@ -291,11 +313,6 @@ body.menu-open {
     transform: translateX(4px);
 }
 
-.text-link:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 6px;
-}
-
 /* ----- Fade-in animation på sektioner ----- */
 .reveal {
     opacity: 0;
@@ -310,13 +327,143 @@ body.menu-open {
     transform: translateY(0);
 }
 
+/* ----- Til toppen knap ----- */
+.to-top {
+    position: fixed;
+    right: var(--page-padding);
+    bottom: var(--largePadding);
+    z-index: 900;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 15px;
+    border-radius: 2rem;
+    background-color: var(--chocolate);
+    color: var(--color-background);
+    text-decoration: none;
+    font-size: 10px;
+    transition: opacity 300ms ease, visibility 300ms;
+}
+
+/* Skjult, indtil man når den anden sektion */
+.to-top.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.to-top i {
+    font-size: 10px;
+    transition: transform 250ms ease;
+}
+
+/* Pilen hopper lidt op ved hover */
+.to-top:hover i,
+.to-top:focus-visible i {
+    transform: translateY(-4px);
+}
+
+/* ----- Billed-modal ----- */
+.image-zoom {
+    position: relative;
+    display: block;
+    width: 100%;
+    cursor: zoom-in;
+}
+
+.image-zoom:focus-visible {
+    outline: 2px solid var(--color-background);
+    outline-offset: -8px;
+}
+
+.image-zoom-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: rgb(62 43 36 / 0.8);
+    color: var(--color-background);
+    font-family: var(--font-heading);
+    font-size: 25px;
+    opacity: 0;
+    transition: opacity 300ms ease;
+}
+
+.image-zoom-label svg {
+    width: 28px;
+    height: 28px;
+}
+
+.image-zoom:hover .image-zoom-label,
+.image-zoom:focus-visible .image-zoom-label {
+    opacity: 1;
+}
+
+/* Modalen. Inspiration: https://www.w3schools.com/howto/howto_css_modal_images.asp */
+.image-modal {
+    max-width: 90vw;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: hidden;
+}
+
+/* Mørk baggrund bag billedet */
+.image-modal::backdrop {
+    background-color: rgb(62 43 36 / 0.9);
+}
+
+/* Billedet zoomer ind, når modalen åbner */
+.image-modal-img {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    max-height: 75vh;
+    margin-inline: auto;
+    object-fit: contain;
+    cursor: zoom-in;
+    animation: modal-zoom 600ms ease;
+    transition: transform 300ms ease;
+}
+
+/* Zoomet ind */
+.image-modal-img.is-zoomed {
+    transform: scale(2.5);
+    cursor: zoom-out;
+}
+
+/* Billedtekst under billedet */
+.image-modal-caption {
+    max-width: 700px;
+    margin: var(--smallPadding) auto 0;
+    color: var(--color-background);
+    font-size: 15px;
+    text-align: center;
+}
+
+/* Krydset står oppe i højre hjørne af skærmen */
+.image-modal-close {
+    position: fixed;
+    top: 15px;
+    right: 35px;
+    color: var(--color-background);
+    font-size: 40px;
+    transition: opacity 250ms ease;
+}
+
+.image-modal-close:hover {
+    opacity: 0.7;
+}
+
+.image-modal-close:focus-visible {
+    outline: 2px solid var(--color-background);
+    outline-offset: 4px;
+}
+
 /* ----- Forside ----- */
-/* Hero */
 .home-hero {
     position: relative;
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
 }
 
 .home-hero-layout {
@@ -390,7 +537,6 @@ body.menu-open {
     white-space: nowrap;
 }
 
-/* Indrykker linjerne inde i objektet med 2 tegn – ligesom rigtig kode */
 .code-line:not(:first-child):not(:last-child) {
     padding-left: 2ch;
 }
@@ -416,14 +562,12 @@ body.menu-open {
     object-position: bottom;
 }
 
-/* Scrollpil – vises først på desktop */
 .scroll-link {
     display: none;
     position: absolute;
     left: 50%;
     bottom: 135px;
     padding: 8px;
-    color: var(--chocolate);
     font-size: 32px;
     transform: translateX(-50%);
 }
@@ -431,12 +575,6 @@ body.menu-open {
 .scroll-link i {
     display: inline-block;
     animation: arrow-bounce 1.8s ease-in-out infinite;
-}
-
-.scroll-link:focus-visible,
-.marquee:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 6px;
 }
 
 /* Marquee. Inspiration: https://markodenic.tech/seamless-css-marquees/ */
@@ -480,48 +618,10 @@ body.menu-open {
     background-color: var(--chocolate);
 }
 
-/* Animationer til hero */
-@keyframes dot-pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(0.75);
-    }
-}
-
-@keyframes arrow-bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(10px);
-    }
-}
-
-@keyframes marquee-scroll {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-50%);
-    }
-}
-
 /* Kort om mig */
 .about {
     display: grid;
     gap: 1.25rem;
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
 }
 
 .about-image {
@@ -531,13 +631,6 @@ body.menu-open {
     aspect-ratio: 7 / 4;
     object-fit: cover;
     object-position: center;
-}
-
-.section-label {
-    margin: 0;
-    margin-top: var(--smallPadding);
-    margin-bottom: var(--mediumPadding);
-    font-size: 10px;
 }
 
 .about-title {
@@ -561,14 +654,7 @@ body.menu-open {
     margin-top: 5rem;
 }
 
-/* ----- Faglig profil ----- */
-/* Hero */
-.hero {
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
-}
-
+/* ----- Kompetencer (faglig profil) ----- */
 .hero img {
     width: 100%;
     height: 300px;
@@ -577,7 +663,6 @@ body.menu-open {
 }
 
 .hero p {
-    font-family: var(--font-body);
     padding-bottom: var(--mediumPadding);
     font-size: 15px;
 }
@@ -587,13 +672,9 @@ body.menu-open {
     line-height: 1;
 }
 
-/* Citat */
 .fp-qoute {
     display: flex;
     flex-direction: column;
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
 }
 
 .fp-qoute>.section-label {
@@ -603,7 +684,6 @@ body.menu-open {
 
 .fp-qoute span {
     margin: 0 auto;
-    font-family: var(--font-body);
     font-size: 50px;
     line-height: 1;
 }
@@ -621,23 +701,14 @@ body.menu-open {
     font-weight: 300;
 }
 
-/* Det nørder jeg med + Sådan arbejder jeg */
+/* Det arbejder jeg i + Som kollega – bruges også til "Sådan er jeg" på Om mig */
 .kompetencer-container,
 .process-container {
     display: flex;
     flex-direction: column;
     gap: var(--smallPadding);
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
-    font-family: var(--font-body);
 }
 
-.bidrag h2 {
-    padding-bottom: var(--smallPadding);
-}
-
-/* Titler med streg efter */
 .kompetencer-title,
 .process-title {
     display: flex;
@@ -657,18 +728,14 @@ body.menu-open {
 
 .kompetencer-content,
 .process-text {
-    font-family: var(--font-body);
     font-size: 15px;
 }
 
 /* Det bidrager jeg med – accordions */
-.bidrag {
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
+.bidrag h2 {
+    padding-bottom: var(--smallPadding);
 }
 
-/* Streg under hvert punkt og over det første */
 .accordion {
     border-bottom: 1px solid var(--chocolate);
 }
@@ -681,7 +748,6 @@ body.menu-open {
     margin: 0;
 }
 
-/* Knappen fylder hele rækken */
 .accordion-title {
     display: flex;
     align-items: center;
@@ -689,19 +755,11 @@ body.menu-open {
     gap: 1rem;
     width: 100%;
     padding: 1.75rem 0;
-    border: 0;
-    background: transparent;
     color: var(--chocolate);
     font-family: var(--font-heading);
     font-size: 20px;
     font-weight: 400;
     text-align: left;
-    cursor: pointer;
-}
-
-.accordion-title:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 6px;
 }
 
 .accordion-title i {
@@ -714,18 +772,20 @@ body.menu-open {
     transform: rotate(180deg);
 }
 
-/* Indholdet glider op og ned */
-.accordion-panel {
+.accordion-panel,
+.accordion-media {
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 400ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.accordion.is-open .accordion-panel {
+.accordion.is-open .accordion-panel,
+.accordion.is-open .accordion-media {
     grid-template-rows: 1fr;
 }
 
-.accordion-inner {
+.accordion-inner,
+.accordion-media-inner {
     min-height: 0;
     overflow: hidden;
 }
@@ -739,25 +799,8 @@ body.menu-open {
     font-size: 15px;
 }
 
-/* Fremhævede ord */
 .accordion-text strong {
     font-style: italic;
-}
-
-/* Billedet glider op og ned sammen med teksten */
-.accordion-media {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 400ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.accordion.is-open .accordion-media {
-    grid-template-rows: 1fr;
-}
-
-.accordion-media-inner {
-    min-height: 0;
-    overflow: hidden;
 }
 
 .accordion-media .image-zoom {
@@ -771,13 +814,10 @@ body.menu-open {
     object-fit: cover;
 }
 
-/* ----- Om mig – random facts ----- */
+/* ----- Om mig ----- */
 .fun-facts {
     display: grid;
     gap: var(--smallPadding);
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
 }
 
 .fun-facts h2 {
@@ -817,7 +857,6 @@ body.menu-open {
     grid-row: 1;
 }
 
-/* Streg mellem tal og tekst */
 .facts-list li::after {
     content: "";
     grid-column: 2;
@@ -832,7 +871,6 @@ body.menu-open {
     min-width: 0;
 }
 
-/* Billeder under hinanden på mobil */
 .facts-images {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -854,12 +892,6 @@ body.menu-open {
 }
 
 /* ----- Portfolio ----- */
-.portfolio {
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
-}
-
 .portfolio h1 {
     margin: 0;
     line-height: 1;
@@ -871,15 +903,12 @@ body.menu-open {
     font-size: 15px;
 }
 
-/* Listen med projekter */
 .project-list {
-    /* Fjerner prikker og browserens luft */
     list-style: none;
     margin: var(--largePadding) 0 0;
     padding: 0;
 }
 
-/* Ét projekt: titel, billede og tekst under hinanden på mobil */
 .project-row {
     display: grid;
     grid-template-areas:
@@ -888,11 +917,6 @@ body.menu-open {
         "text";
     gap: var(--smallPadding);
     padding-block: var(--mediumPadding);
-}
-
-/* Ingen streg og luft over det første projekt */
-.project-row:first-child {
-    border-top: 0;
 }
 
 .project-row-title {
@@ -912,184 +936,219 @@ body.menu-open {
     font-size: 15px;
 }
 
-/* Skærmbilledet af projektet */
 .project-row-image {
     grid-area: image;
     display: block;
     width: 100%;
-    /* Samme format på alle billeder, beskåret fra toppen */
     aspect-ratio: 16 / 10;
     object-fit: cover;
     object-position: top;
 }
 
-/* ----- Til toppen knap ----- */
-.to-top {
-    position: fixed;
-    right: var(--page-padding);
-    bottom: var(--largePadding);
-    z-index: 900;
+/* ----- Case study ----- */
+.case-hero {
+    display: grid;
+    gap: var(--mediumPadding);
+}
+
+.case-hero h1 {
+    margin: 0 0 var(--smallPadding);
+    line-height: 1;
+}
+
+.case-hero-text p {
+    max-width: 36rem;
+    margin: 0 0 1rem;
+    font-size: 15px;
+}
+
+.case-hero-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.case-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--mediumPadding) var(--mediumPadding);
+    margin-top: var(--mediumPadding);
+}
+
+.case-link {
     display: inline-flex;
     align-items: center;
-    gap: 1rem;
-    padding: 15px;
-    border-radius: 2rem;
-    background-color: var(--chocolate);
-    color: var(--color-background);
+    gap: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--chocolate);
     text-decoration: none;
-    font-size: 10px;
-    transition: opacity 300ms ease, visibility 300ms;
+    font-size: 15px;
 }
 
-/* Skjult, indtil man når den anden sektion */
-.to-top.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.to-top i {
-    font-size: 10px;
+.case-link svg {
+    width: 1.3rem;
+    height: 1.3rem;
     transition: transform 250ms ease;
 }
 
-/* Pilen hopper lidt op ved hover */
-.to-top:hover i,
-.to-top:focus-visible i {
-    transform: translateY(-4px);
+.case-link i {
+    font-size: 1.2rem;
 }
 
-.to-top:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 6px;
+.case-link:hover svg,
+.case-link:focus-visible svg,
+.kontakt-link:hover svg,
+.kontakt-link:focus-visible svg {
+    transform: translate(3px, -3px);
 }
 
-/* ----- Billed-modal ----- */
-/* Billeder, der kan åbnes i stor størrelse */
-.image-zoom {
-    position: relative;
-    display: block;
-    width: 100%;
-    padding: 0;
-    border: 0;
-    background: none;
-    cursor: zoom-in;
+/* Processen */
+.case-process-title {
+    margin: 0 0 var(--mediumPadding);
+    font-family: var(--font-heading);
+    font-size: 36px;
+    line-height: 1;
 }
 
-/* Outline ligger inde i billedet, så den ikke bliver skåret af */
-.image-zoom:focus-visible {
-    outline: 2px solid var(--color-background);
-    outline-offset: -8px;
-}
-
-/* Overlay med tekst og pil – skjult, indtil man holder musen over */
-.image-zoom-label {
-    position: absolute;
-    inset: 0;
+/* Faserne med pile – pilene vises kun på mobil */
+.phase-nav {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background-color: rgb(62 43 36 / 0.8);
-    color: var(--color-background);
+    border-bottom: 1px solid var(--chocolate);
+}
+
+/* Faserne kan scrolles vandret på små skærme */
+.phase-tabs {
+    position: relative;
+    display: flex;
+    flex: 1;
+    gap: var(--mediumPadding);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.phase-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.phase-tab {
+    position: relative;
+    flex-shrink: 0;
+    padding: 0 0 0.75rem;
+    color: var(--chocolate);
     font-family: var(--font-heading);
-    font-size: 25px;
-    opacity: 0;
-    transition: opacity 300ms ease;
+    font-size: 22px;
 }
 
-.image-zoom-label svg {
-    width: 28px;
-    height: 28px;
+/* Den fede streg glider hen under den valgte fase – placeringen sættes i case.js */
+.phase-tabs::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: var(--indicator-width, 0);
+    height: 4px;
+    background-color: var(--chocolate);
+    transform: translateX(var(--indicator-left, 0));
+    transition:
+        transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+        width 400ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.image-zoom:hover .image-zoom-label,
-.image-zoom:focus-visible .image-zoom-label {
-    opacity: 1;
+/* Pilene ude i siderne */
+.phase-arrow {
+    flex-shrink: 0;
+    width: 32px;
+    height: 44px;
+    margin-bottom: 0.75rem;
+    color: var(--chocolate);
+    font-size: 16px;
+    font-weight: 200;
 }
 
-/* Modalen. Inspiration: https://www.w3schools.com/howto/howto_css_modal_images.asp */
-.image-modal {
-    max-width: 90vw;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    /* Det zoomede billede bliver inden for modalen */
-    overflow: hidden;
+.phase-arrow:disabled {
+    opacity: 0.25;
+    cursor: default;
 }
 
-/* Mørk baggrund bag billedet */
-.image-modal::backdrop {
-    background-color: rgb(62 43 36 / 0.9);
+.phase-arrow:focus-visible {
+    outline: 2px solid var(--chocolate);
+    outline-offset: 2px;
 }
 
-/* Billedet zoomer ind, når modalen åbner */
-.image-modal-img {
-    display: block;
-    width: 100%;
-    max-width: 800px;
-    max-height: 75vh;
-    margin-inline: auto;
-    object-fit: contain;
-    cursor: zoom-in;
-    animation: modal-zoom 600ms ease;
-    transition: transform 300ms ease;
+/* Trinene i den valgte fase */
+.step-tabs {
+    display: flex;
+    gap: var(--mediumPadding);
+    overflow-x: auto;
+    padding-block: var(--smallPadding);
 }
 
-/* Zoomet ind */
-.image-modal-img.is-zoomed {
-    transform: scale(2.5);
-    cursor: zoom-out;
-}
-
-/* Billedtekst under billedet */
-.image-modal-caption {
-    max-width: 700px;
-    margin: var(--smallPadding) auto 0;
-    color: var(--color-background);
+.step-tab {
+    flex-shrink: 0;
+    color: var(--chocolate);
+    font-family: var(--font-body);
     font-size: 15px;
-    text-align: center;
+    font-weight: 300;
 }
 
-/* Krydset står oppe i højre hjørne af skærmen */
-.image-modal-close {
-    position: fixed;
-    top: 15px;
-    right: 35px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: var(--color-background);
-    font-size: 40px;
-    cursor: pointer;
-    transition: opacity 250ms ease;
+.step-tab.is-active {
+    font-weight: 600;
 }
 
-.image-modal-close:hover {
-    opacity: 0.7;
-}
-
-.image-modal-close:focus-visible {
-    outline: 2px solid var(--color-background);
+.phase-tab:focus-visible,
+.step-tab:focus-visible {
+    outline: 2px solid var(--chocolate);
     outline-offset: 4px;
 }
 
-@keyframes modal-zoom {
-    from {
-        transform: scale(0);
-    }
+.case-step {
+    display: grid;
+    gap: var(--mediumPadding);
+    padding-top: var(--mediumPadding);
+}
 
-    to {
-        transform: scale(1);
-    }
+.case-step h3 {
+    margin: 0 0 var(--smallPadding);
+    font-family: var(--font-heading);
+    font-size: 30px;
+    line-height: 1.1;
+}
+
+.case-step-text p {
+    max-width: 36rem;
+    margin: 0 0 1rem;
+    font-size: 15px;
+}
+
+.case-figures {
+    display: grid;
+    gap: var(--mediumPadding);
+    align-self: start;
+}
+
+/* Billedet med link under – åbner modalen */
+.case-figure {
+    align-self: start;
+    text-align: left;
+}
+
+.case-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.case-figure-link {
+    margin-top: 1rem;
+    font-family: var(--font-body);
 }
 
 /* ----- Kontakt ----- */
 .kontakt {
     display: grid;
     gap: var(--smallPadding);
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
 }
 
 .kontakt-label {
@@ -1131,7 +1190,6 @@ body.menu-open {
     align-items: center;
     column-gap: 1rem;
     padding-block: 1.5rem;
-    color: var(--chocolate);
     text-decoration: none;
 }
 
@@ -1142,9 +1200,18 @@ body.menu-open {
 
 .kontakt-link-name {
     grid-column: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     font-family: var(--font-heading);
     font-size: 25px;
     line-height: 1;
+}
+
+.kontakt-link-name i {
+    width: 1.1em;
+    font-size: 0.75em;
+    text-align: center;
 }
 
 .kontakt-link svg {
@@ -1153,253 +1220,6 @@ body.menu-open {
     width: 25px;
     height: 25px;
     transition: transform 250ms ease;
-}
-
-/* Pilen skubber sig lidt op mod højre ved hover */
-.kontakt-link:hover svg,
-.kontakt-link:focus-visible svg {
-    transform: translate(3px, -3px);
-}
-
-.kontakt-link:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 6px;
-}
-
-/* ----- Case study ----- */
-/* Intro */
-.case-hero {
-    display: grid;
-    gap: var(--mediumPadding);
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
-}
-
-.case-hero h1 {
-    margin: 0 0 var(--smallPadding);
-    line-height: 1;
-}
-
-.case-hero-text p {
-    max-width: 36rem;
-    margin: 0 0 1rem;
-    font-size: 15px;
-}
-
-.case-hero-image {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-/* Links til løsningen og koden */
-.case-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--mediumPadding) var(--mediumPadding);
-    margin-top: var(--mediumPadding);
-}
-
-.case-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--chocolate);
-    color: var(--chocolate);
-    text-decoration: none;
-    font-size: 15px;
-}
-
-.case-link svg {
-    width: 1.3rem;
-    height: 1.3rem;
-    transition: transform 250ms ease;
-}
-
-.case-link i {
-    font-size: 1.2rem;
-}
-
-/* Pilen skubber sig lidt op mod højre ved hover */
-.case-link:hover svg,
-.case-link:focus-visible svg {
-    transform: translate(3px, -3px);
-}
-
-.case-link:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 6px;
-}
-
-/* Processen */
-.case-process {
-    max-width: var(--page-max-width);
-    margin-inline: auto;
-    padding-inline: var(--page-padding);
-}
-
-.case-process-title {
-    margin: 0 0 var(--mediumPadding);
-    font-family: var(--font-heading);
-    font-size: 36px;
-    line-height: 1;
-}
-
-
-/* Faserne med pile – pilene vises kun på mobil */
-
-.phase-nav {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid var(--chocolate);
-}
-
-/* Faserne kan scrolles vandret på små skærme */
-.phase-tabs {
-    position: relative;
-    display: flex;
-    flex: 1;
-    gap: var(--mediumPadding);
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    /* Skjuler scrollbaren, fordi pilene bruges i stedet */
-    scrollbar-width: none;
-}
-
-.phase-tabs::-webkit-scrollbar {
-    display: none;
-}
-
-.phase-tab {
-    position: relative;
-    flex-shrink: 0;
-    padding: 0 0 0.75rem;
-    border: 0;
-    background: transparent;
-    color: var(--chocolate);
-    font-family: var(--font-heading);
-    font-size: 22px;
-    cursor: pointer;
-}
-
-/* Den fede streg glider hen under den valgte fase – placeringen sættes i case.js */
-.phase-tabs::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: var(--indicator-width, 0);
-    height: 4px;
-    background-color: var(--chocolate);
-    transform: translateX(var(--indicator-left, 0));
-    transition:
-        transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
-        width 400ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Pilene ude i siderne */
-.phase-arrow {
-    flex-shrink: 0;
-    width: 32px;
-    height: 44px;
-    margin-bottom: 0.75rem;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: var(--chocolate);
-    font-size: 16px;
-    font-weight: 200;
-    cursor: pointer;
-}
-
-/* Pilen er svag, når der ikke er flere faser i den retning */
-.phase-arrow:disabled {
-    opacity: 0.25;
-    cursor: default;
-}
-
-.phase-arrow:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 2px;
-}
-
-
-/* Trinene i den valgte fase */
-.step-tabs {
-    display: flex;
-    gap: var(--mediumPadding);
-    overflow-x: auto;
-    padding-block: var(--smallPadding);
-}
-
-.step-tab {
-    flex-shrink: 0;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: var(--chocolate);
-    font-family: var(--font-body);
-    font-size: 15px;
-    font-weight: 300;
-    cursor: pointer;
-}
-
-.step-tab.is-active {
-    font-weight: 600;
-}
-
-.phase-tab:focus-visible,
-.step-tab:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 4px;
-}
-
-/* Ét trin: tekst og billede */
-.case-step {
-    display: grid;
-    gap: var(--mediumPadding);
-    padding-top: var(--mediumPadding);
-}
-
-.case-step h3 {
-    margin: 0 0 var(--smallPadding);
-    font-family: var(--font-heading);
-    font-size: 30px;
-    line-height: 1.1;
-}
-
-.case-step-text p {
-    max-width: 36rem;
-    margin: 0 0 1rem;
-    font-size: 15px;
-}
-
-/* Flere billeder i samme trin står under hinanden */
-.case-figures {
-    display: grid;
-    gap: var(--mediumPadding);
-    align-self: start;
-}
-
-/* Billedet med link under – åbner modalen */
-.case-figure {
-    align-self: start;
-    text-align: left;
-}
-
-/* Billedet fylder kolonnens bredde og ikke mere */
-.case-figure img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-/* Luft mellem billedet og linket – resten af stylingen deler den med .text-link */
-.case-figure-link {
-    margin-top: 1rem;
-    font-family: var(--font-body);
 }
 
 /* ----- Footer til mobil ----- */
@@ -1434,7 +1254,6 @@ body.menu-open {
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    color: var(--chocolate);
     text-decoration: none;
     font-size: 12px;
 }
@@ -1450,23 +1269,85 @@ body.menu-open {
     text-underline-offset: 6px;
 }
 
-.footer-links a:focus-visible {
-    outline: 2px solid var(--chocolate);
-    outline-offset: 6px;
-}
-
 .footer-copy {
     margin: 0;
     color: var(--color-line);
     font-size: 10px;
 }
 
+/* ----- Keyframes ----- */
+@keyframes dot-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.75);
+    }
+}
+
+@keyframes arrow-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Billedet i modalen zoomer ind, når den åbner */
+@keyframes modal-zoom {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
 /* ----- Tablet ----- */
 @media (min-width: 768px) {
 
-    /* Plads til desktopnav */
+    /* Variabler, der ændrer sig fra tablet og op */
+    :root {
+        --page-padding: var(--mediumPadding);
+        --section-space: 150px;
+        --h1-size: 60px;
+    }
+
     main {
         padding-top: 80px;
+    }
+
+    .main-home>section:first-child {
+        padding-top: var(--section-space);
+    }
+
+    .main-home>section.home-hero {
+        padding-top: var(--mediumPadding);
+    }
+
+    /* Fælles styling til små sektionslabels */
+    .section-label {
+        margin: 0;
+        padding-bottom: var(--mediumPadding);
+        font-size: 0.75rem;
     }
 
     /* Nav */
@@ -1474,7 +1355,6 @@ body.menu-open {
         display: none;
     }
 
-    /* Samme bredde og sideafstand som indholdet, så de flugter */
     .nav-desktop {
         display: grid;
         grid-template-columns: 1fr auto 1fr;
@@ -1500,7 +1380,6 @@ body.menu-open {
     }
 
     .nav-desktop a {
-        color: var(--chocolate);
         text-decoration: none;
     }
 
@@ -1557,7 +1436,6 @@ body.menu-open {
         color: var(--color-background);
     }
 
-    /* Ingen streg under Kontakt, når den bliver til en knap */
     .nav-desktop .contact-link[aria-current="page"]:hover,
     .nav-desktop .contact-link[aria-current="page"]:focus-visible {
         text-decoration: none;
@@ -1566,25 +1444,6 @@ body.menu-open {
     .nav-desktop a:focus-visible {
         outline: 2px solid var(--color-background);
         outline-offset: 6px;
-    }
-
-    .main-home>section:first-child {
-        padding-top: var(--section-space);
-    }
-
-    .main-home>section.home-hero {
-        padding-top: var(--mediumPadding);
-    }
-
-    /* Fælles styling til små sektionslabels */
-    .section-label {
-        margin: 0;
-        color: var(--chocolate);
-        font-family: var(--font-body);
-        font-size: 0.75rem;
-        font-weight: 300;
-        line-height: 1.5;
-        padding-bottom: var(--mediumPadding);
     }
 
     /* Forside – Hero */
@@ -1611,7 +1470,6 @@ body.menu-open {
         font-size: 12px;
     }
 
-    /* 4 tegns indrykning på større skærme */
     .code-line:not(:first-child):not(:last-child) {
         padding-left: 4ch;
     }
@@ -1649,24 +1507,19 @@ body.menu-open {
 
     .about-title {
         margin-top: 1.5rem;
-        font-size: 3rem;
         line-height: 1.1;
     }
 
     .about-text {
         margin-top: 2rem;
         font-size: 16px;
-        line-height: 1.5;
     }
 
     .about-links {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 3rem;
-        margin-top: 5rem;
     }
 
-    /* Faglig profil og Om mig – billede til venstre, tekst centreret til højre */
     .faglig-profil,
     .om-mig-hero {
         display: grid;
@@ -1681,7 +1534,6 @@ body.menu-open {
         grid-row: 1 / -1;
         width: 100%;
         max-height: none;
-        /* Billedet følger skærmens højde, så næste sektion kan anes i bunden */
         height: 400px;
     }
 
@@ -1711,7 +1563,7 @@ body.menu-open {
         grid-row: 3;
     }
 
-    /* Citat */
+    /* Kompetencer – citat */
     .qoute-content {
         margin: 0 auto;
         padding-top: var(--smallPadding);
@@ -1725,7 +1577,7 @@ body.menu-open {
         text-align: center;
     }
 
-    /* Accordions */
+    /* Kompetencer – accordions */
     .accordion-title {
         font-size: 30px;
     }
@@ -1733,7 +1585,6 @@ body.menu-open {
     /* Om mig – fun facts */
     .fun-facts {
         width: 100%;
-        margin-inline: auto;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-template-rows: auto auto 1fr;
         column-gap: var(--mediumPadding);
@@ -1776,10 +1627,7 @@ body.menu-open {
 
     .facts-images img,
     .facts-images img:first-child {
-        width: 100%;
         height: auto;
-        aspect-ratio: 2 / 3;
-        object-fit: cover;
         object-position: center;
     }
 
@@ -1792,72 +1640,28 @@ body.menu-open {
         font-size: 16px;
     }
 
-    /* Titel og tekst til venstre, billede til højre */
     .project-row {
         grid-template-columns: 1fr 1fr;
         grid-template-areas:
             "title image"
             "text  image";
-        /* Titel og tekst står i toppen i stedet for at blive strakt */
+
         align-content: start;
         column-gap: var(--mediumPadding);
         row-gap: var(--smallPadding);
         padding-block: var(--largePadding);
+        border-top: 1px solid var(--chocolate);
     }
 
     .project-row-title {
         font-size: 35px;
     }
 
-    .project-row {
-        border-top: 1px solid var(--chocolate);
-    }
-
-    /* Ingen streg over det første projekt */
     .project-row:first-child {
         border-top: 0;
     }
 
-    /* Kontakt */
-    body:has(.kontakt) main {
-        display: flex;
-    }
-
-    /* Ingen ekstra luft over og under, så indholdet står i midten mellem nav og footer */
-    .main-home>section.kontakt {
-        width: 100%;
-        min-height: auto;
-        padding-top: 0;
-    }
-
-    body:has(.kontakt) .site-footer {
-        margin-top: 0;
-    }
-
-    .kontakt {
-        grid-template-columns: 1fr 1fr;
-        column-gap: var(--largePadding);
-        row-gap: var(--smallPadding);
-        align-items: start;
-        align-content: center;
-    }
-
-    /* Labelen står tæt på indholdet, så det hele står samlet i midten */
-    .kontakt-label {
-        padding-bottom: 0;
-    }
-
-    .kontakt-links li:first-child .kontakt-link {
-        padding-top: 0;
-    }
-
     /* Case study */
-    .case-hero-text p,
-    .case-step-text p {
-        font-size: 15px;
-        font-weight: 300;
-    }
-
     .case-process-title {
         font-size: 48px;
     }
@@ -1872,6 +1676,36 @@ body.menu-open {
 
     .phase-arrow {
         display: none;
+    }
+
+    /* Kontakt */
+    body:has(.kontakt) main {
+        display: flex;
+    }
+
+    .main-home>section.kontakt {
+        width: 100%;
+        min-height: auto;
+        padding-top: 0;
+    }
+
+    body:has(.kontakt) .site-footer {
+        margin-top: 0;
+    }
+
+    .kontakt {
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--largePadding);
+        align-items: start;
+        align-content: center;
+    }
+
+    .kontakt-label {
+        padding-bottom: 0;
+    }
+
+    .kontakt-links li:first-child .kontakt-link {
+        padding-top: 0;
     }
 
     /* Footer */
@@ -1924,8 +1758,10 @@ body.menu-open {
 
 /* ----- Desktop ----- */
 @media (min-width: 1100px) {
+    .main-home>section+section {
+        margin-top: var(--section-space);
+    }
 
-    /* Nav */
     .nav-list-desktop {
         gap: 2rem;
     }
@@ -1939,8 +1775,10 @@ body.menu-open {
         padding-inline: 1.5rem;
     }
 
-    .main-home>section+section {
-        margin-top: var(--section-space);
+    /* Billed-modal – større billede på desktop */
+    .image-modal-img {
+        max-width: 1200px;
+        max-height: 82vh;
     }
 
     /* Forside – Hero i to kolonner */
@@ -1983,10 +1821,10 @@ body.menu-open {
         font-size: 3.5rem;
     }
 
-    /* Faglig profil */
+    /* Kompetencer og Om mig – hero */
     .faglig-profil img,
     .om-mig-hero img {
-        height: 480px
+        height: 480px;
     }
 
     .qoute-content {
@@ -2000,31 +1838,22 @@ body.menu-open {
         column-gap: var(--largePadding);
     }
 
-    /* Labelen fylder hele rækken over de to kolonner */
     .kompetencer-container h2,
     .process-container h2 {
         grid-column: 1/-1;
     }
 
-    .image-modal-img {
-        max-width: 1200px;
-        max-height: 82vh;
-    }
-
-    /* Teksten under titlen er rykket lidt ind */
     .kompetencer-content,
     .process-text {
         padding-left: var(--largePadding);
     }
 
-    /* Accordions – overskrift og ikon på første række, tekst og billede ved siden af hinanden under */
     .accordion {
         display: grid;
         grid-template-columns: 1fr 1fr;
         column-gap: var(--largePadding);
     }
 
-    /* Overskriften fylder hele bredden, så ikonet altid står ude til højre */
     .accordion-heading {
         grid-column: 1 / -1;
         grid-row: 1;
@@ -2035,7 +1864,6 @@ body.menu-open {
         grid-row: 2;
     }
 
-    /* Billedet starter samme sted som brødteksten */
     .accordion-media {
         grid-column: 2;
         grid-row: 2;
@@ -2061,7 +1889,6 @@ body.menu-open {
         gap: 2.5rem;
     }
 
-    /* Portfolio – titel, tekst og billede på én række */
     .project-row {
         grid-template-columns: 1fr 1fr 1.4fr;
         grid-template-areas: "title text image";
@@ -2073,7 +1900,6 @@ body.menu-open {
         font-size: 40px;
     }
 
-    /* Case study – intro: bred tekstkolonne og lidt smallere billede */
     .case-hero {
         grid-template-columns: 1.4fr 1fr;
         column-gap: var(--largePadding);
@@ -2086,18 +1912,15 @@ body.menu-open {
         height: 100%;
     }
 
-    /* Linkene står i bunden af tekstkolonnen, på linje med billedets bund */
     .case-links {
         margin-top: auto;
         padding-top: var(--mediumPadding);
     }
 
-    /* Faserne fordeles over hele bredden, så den sidste står ude til højre */
     .phase-tabs {
         justify-content: space-between;
     }
 
-    /* Hver fase er mindst en femtedel bred, så stregen under den valgte fase bliver lang */
     .phase-tab {
         min-width: 20%;
         text-align: left;
@@ -2109,10 +1932,8 @@ body.menu-open {
 
     .step-tab {
         font-size: 15px;
-        font-weight: 300;
     }
 
-    /* Trin – tekst til venstre, billede til højre */
     .case-step {
         grid-template-columns: 1fr 1.2fr;
         column-gap: var(--largePadding);
@@ -2122,18 +1943,15 @@ body.menu-open {
 
     .case-step h3 {
         height: 34px;
-        margin-bottom: var(--smallPadding);
         font-size: 34px;
         line-height: 1;
     }
 
-    /* Billedet starter ud for brødteksten – overskriftens højde plus afstanden under den */
     .case-figure,
     .case-figures {
         margin-top: 54px;
     }
 
-    /* Billeder inde i .case-figures skal ikke have ekstra afstand */
     .case-figures .case-figure {
         margin-top: 0;
     }
@@ -2146,7 +1964,6 @@ body.menu-open {
 
     .kontakt-link-name {
         font-size: 35px;
-        line-height: 1;
     }
 
     /* Footer */
@@ -2170,7 +1987,6 @@ body.menu-open {
         will-change: transform;
     }
 
-    /* Vises, når musen har bevæget sig */
     .cursor.is-visible {
         opacity: 1;
     }
@@ -2188,7 +2004,6 @@ body.menu-open {
             background-color 250ms ease;
     }
 
-    /* Cirklen vokser over links og knapper */
     .cursor.is-hovering .cursor-inner {
         width: 40px;
         height: 40px;
@@ -2196,7 +2011,7 @@ body.menu-open {
     }
 }
 
-/* Til skærme, hvor man ikke kan hover, viser en knap, at man kan åbne billedet i fuld størrelse */
+/* ----- Touch – skærme, hvor man ikke kan hover ----- */
 @media (hover: none) {
     .image-zoom-label {
         inset: auto auto var(--smallPadding) var(--smallPadding);
@@ -2219,7 +2034,7 @@ body.menu-open {
     }
 }
 
-/* Ingen animation for dem, der har slået bevægelse fra */
+/* ----- Ingen animation for dem, der har slået bevægelse fra ----- */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -2253,10 +2068,6 @@ body.menu-open {
     .image-zoom-label,
     .image-modal-close,
     .image-modal-img,
-    .to-top {
-        transition: none;
-    }
-
     .phase-tabs::after {
         transition: none;
     }

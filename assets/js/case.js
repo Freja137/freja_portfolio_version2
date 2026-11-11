@@ -14,27 +14,28 @@ export function caseTabs() {
         udvikling: "rest-api"
     };
 
-    // Gemmer den fase og det trin, der er valgt – siden starter på fase 01 og dens første trin
-    // Når værdien ændres, opdaterer Vue selv :class og v-show i HTML'en
-    // Kilde: https://vuejs.org/guide/essentials/reactivity-fundamentals
+    // Gemmer den fase og det trin, der er valgt. Når værdien ændres, opdaterer Vue selv :class og v-show i HTML'en
     const activePhase = ref("analyse");
     const activeStep = ref("desk-research");
 
     // Rækken med faser – Vue kobler den til elementet med ref="phaseTabs" i HTML'en, når siden er klar
+    // Kilde: https://vuejs.org/guide/essentials/template-refs
     const phaseTabs = ref(null);
 
-    // Om pilene kan bruges – false gør pilen svag (:disabled i HTML'en)
+    // Ser om pilene kan bruges – false gør pilen svag (:disabled i HTML'en)
     const canScrollLeft = ref(false);
     const canScrollRight = ref(false);
 
     // Kører, når man klikker på en fase – phase er navnet på fasen, og event er klikket fra $event i HTML'en
     // Kilde: https://vuejs.org/guide/essentials/event-handling
     function selectPhase(phase, event) {
-        // Gemmer den nye fase og viser fasens første trin
+        // Gemmer den nye fase
         activePhase.value = phase;
+
+        // Viser fasens første trin
         activeStep.value = firstStep[phase];
 
-        // event.currentTarget er den knap, der blev klikket på – stregen glider hen under den
+        // event.currentTarget er den knap, der blev klikket på – stregen glider hen under den, der er blevet valgt
         moveIndicator(event.currentTarget);
 
         // På mobil scrolles den valgte fase ind i midten af rækken, hvis den er delvist skjult
@@ -47,7 +48,6 @@ export function caseTabs() {
         phaseTabs.value.style.setProperty("--indicator-left", button.offsetLeft + "px");
 
         // offsetWidth er knappens bredde – stregen bliver lige så bred
-        // CSS'en bruger de to variabler og står selv for, at stregen glider
         phaseTabs.value.style.setProperty("--indicator-width", button.offsetWidth + "px");
     }
 
@@ -56,7 +56,7 @@ export function caseTabs() {
         // Stopper, hvis siden ikke har faser – fx på forsiden
         if (!phaseTabs.value) return;
 
-        // Finder knappen med klassen is-active og flytter stregen derhen
+        // Find den fase, der er markeret som valgt som har class = "is-active", og flyt stregen derhen.
         moveIndicator(phaseTabs.value.querySelector(".phase-tab.is-active"));
     }
 
@@ -69,7 +69,7 @@ export function caseTabs() {
     function updateArrows() {
         const row = phaseTabs.value;
 
-        // Stopper, hvis siden ikke har faser
+        // Er der ingen række, så stop.
         if (!row) return;
 
         // Venstre pil kan bruges, hvis rækken er scrollet bare lidt mod højre
@@ -81,18 +81,20 @@ export function caseTabs() {
     }
 
     // Kører, når man klikker på en pil – direction er -1 (venstre) eller 1 (højre)
+    // Kilde: https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollBy
     function scrollTabs(direction) {
-        // Scroller 70 % af det synlige stykke, så man stadig kan se lidt af den fase, man kom fra
-        phaseTabs.value.scrollBy({ left: direction * phaseTabs.value.clientWidth * 0.7 });
+        // Scroller 60 % af det synlige stykke, så man stadig kan se lidt af den fase, man kom fra
+        phaseTabs.value.scrollBy({ left: direction * phaseTabs.value.clientWidth * 0.6 });
     }
 
     // Kører én gang, når Vue har sat siden op, og elementerne findes
+    // Kilde: https://vuejs.org/guide/essentials/lifecycle
     onMounted(() => {
         // Sætter pilene og stregen rigtigt fra start
         updateArrows();
         updateIndicator();
 
-        // Skrifttypen hentes lidt efter siden og kan gøre faserne bredere, så stregen sættes igen, når den er klar
+        // Skrifttypen hentes lidt efter siden og kan ændre fasernes bredde, så stregen sættes igen, når den er klar
         document.fonts.ready.then(updateIndicator);
 
         // Faserne ændrer bredde, når vinduet ændrer størrelse, så pilene og stregen tjekkes igen
