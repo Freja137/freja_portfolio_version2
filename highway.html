@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                <img class="case-hero-image" src="./assets/img/highway/highway.webp"
+                <img class="case-hero-image" src="./assets/img/highway/highway.png"
                     alt="Forsiden af Highway 69 med restaurantens bar">
             </section>
 
@@ -77,23 +77,22 @@
                         </button>
                         <div class="phase-tabs" ref="phaseTabs" @scroll="updateArrows" role="tablist"
                             aria-label="Faser i processen">
-                            <button class="phase-tab" type="button" role="tab"
-                                :class="{ 'is-active': activePhase === 'analyse' }"
+                            <button class="phase-tab" type="button" role="tab" data-phase="analyse"
+                                data-first-step="desk-research" :class="{ 'is-active': activePhase === 'analyse' }"
                                 :aria-selected="activePhase === 'analyse'" @click="selectPhase('analyse', $event)">01
                                 Analyse</button>
-                            <button class="phase-tab" type="button" role="tab"
-                                :class="{ 'is-active': activePhase === 'indhold' }"
+                            <button class="phase-tab" type="button" role="tab" data-phase="indhold"
+                                data-first-step="indholdsmodel" :class="{ 'is-active': activePhase === 'indhold' }"
                                 :aria-selected="activePhase === 'indhold'" @click="selectPhase('indhold', $event)">02
                                 Indhold</button>
-                            <button class="phase-tab" type="button" role="tab"
-                                :class="{ 'is-active': activePhase === 'prototyping' }"
+                            <button class="phase-tab" type="button" role="tab" data-phase="prototyping"
+                                data-first-step="design-sprint" :class="{ 'is-active': activePhase === 'prototyping' }"
                                 :aria-selected="activePhase === 'prototyping'"
                                 @click="selectPhase('prototyping', $event)">03 Prototyping</button>
-                            <button class="phase-tab" type="button" role="tab"
-                                :class="{ 'is-active': activePhase === 'udvikling' }"
+                            <button class="phase-tab" type="button" role="tab" data-phase="udvikling"
+                                data-first-step="rest-api" :class="{ 'is-active': activePhase === 'udvikling' }"
                                 :aria-selected="activePhase === 'udvikling'"
-                                @click="selectPhase('udvikling', $event)">04
-                                Udvikling</button>
+                                @click="selectPhase('udvikling', $event)">04 Udvikling</button>
                         </div>
                         <button class="phase-arrow" type="button" aria-label="Vis flere faser"
                             :disabled="!canScrollRight" @click="scrollTabs(1)">
@@ -268,14 +267,14 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/segmentering.webp"
-                                alt="Segmentering af målgruppen med objektive og subjektive parametre" loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/segmentering.webp"
+                                alt="Segmentering af målgruppen med objektive og subjektive parametre" loading="lazy">
                         </button>
                     </article>
 
@@ -301,15 +300,15 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/interviewundersøgelse.webp"
-                                alt="Uddrag af interviewguiden med spørgsmål om restaurantvaner og takeaway"
-                                loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/interviewundersøgelse.webp"
+                                alt="Uddrag af interviewguiden med spørgsmål om restaurantvaner og takeaway"
+                                loading="lazy">
                         </button>
                     </article>
 
@@ -334,15 +333,15 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/tematisk_analyse.webp"
-                                alt="Tematisk analyse i Figma med citater fra interviewene sorteret i temaer"
-                                loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/tematisk_analyse.webp"
+                                alt="Tematisk analyse i Figma med citater fra interviewene sorteret i temaer"
+                                loading="lazy">
                         </button>
                     </article>
 
@@ -370,25 +369,25 @@
                         <div class="case-figures">
                             <button class="image-zoom case-figure" type="button"
                                 aria-label="Se billedet i stor størrelse">
-                                <img src="./assets/img/highway/personaer.webp"
-                                    alt="De tre personaer Lena, Henrik og Tilde" loading="lazy">
                                 <span class="case-figure-link" aria-hidden="true">
                                     Åbn billede i fuld størrelse
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                     </svg>
                                 </span>
+                                <img src="./assets/img/highway/personaer.webp"
+                                    alt="De tre personaer Lena, Henrik og Tilde" loading="lazy">
                             </button>
                             <button class="image-zoom case-figure" type="button"
                                 aria-label="Se billedet i stor størrelse">
-                                <img src="./assets/img/highway/situationer_scenarier.webp"
-                                    alt="Situationer og scenarier for de tre personaer" loading="lazy">
                                 <span class="case-figure-link" aria-hidden="true">
                                     Åbn billede i fuld størrelse
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                     </svg>
                                 </span>
+                                <img src="./assets/img/highway/situationer_scenarier.webp"
+                                    alt="Situationer og scenarier for de tre personaer" loading="lazy">
                             </button>
                         </div>
                     </article>
@@ -421,15 +420,15 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/meta_data.webp"
-                                alt="Indholdsmodel med core content og metadata for mad, drikkevarer og selskaber"
-                                loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/meta_data.webp"
+                                alt="Indholdsmodel med core content og metadata for mad, drikkevarer og selskaber"
+                                loading="lazy">
                         </button>
                     </article>
 
@@ -455,14 +454,14 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/affinity_diagram.webp"
-                                alt="Affinity diagram med websitets indhold grupperet i seks kategorier" loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/affinity_diagram.webp"
+                                alt="Affinity diagram med websitets indhold grupperet i seks kategorier" loading="lazy">
                         </button>
                     </article>
 
@@ -489,14 +488,14 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/card_sorting.webp" alt="Resultater fra den åbne card sorting"
-                                loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/card_sorting.webp" alt="Resultater fra den åbne card sorting"
+                                loading="lazy">
                         </button>
                     </article>
 
@@ -521,14 +520,14 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/content_sitemap.webp"
-                                alt="Content sitemap med websitets sider og deres indhold" loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/content_sitemap.webp"
+                                alt="Content sitemap med websitets sider og deres indhold" loading="lazy">
                         </button>
                     </article>
 
@@ -554,14 +553,14 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/informationsdesign.webp"
-                                alt="Informationsdesign af menukortet og selskabssiden" loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/informationsdesign.webp"
+                                alt="Informationsdesign af menukortet og selskabssiden" loading="lazy">
                         </button>
                     </article>
 
@@ -586,14 +585,14 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/design_sprint.webp" alt="Skitser fra Crazy 8 med dot voting"
-                                loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/design_sprint.webp" alt="Skitser fra Crazy 8 med dot voting"
+                                loading="lazy">
                         </button>
                     </article>
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'atomic-design'">
@@ -617,14 +616,14 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/atomic.webp"
-                                alt="Genbrugelige komponenter opdelt efter Atomic Design" loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/atomic.webp"
+                                alt="Genbrugelige komponenter opdelt efter Atomic Design" loading="lazy">
                         </button>
                     </article>
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'wireframes'">
@@ -644,14 +643,14 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/wireframes.webp"
-                                alt="Wireframes af forsiden til mobil og desktop" loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/wireframes.webp"
+                                alt="Wireframes af forsiden til mobil og desktop" loading="lazy">
                         </button>
                     </article>
 
@@ -671,14 +670,14 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/mockups.webp"
-                                alt="Mockup af forsiden med farver, typografi og billeder" loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/mockups.webp"
+                                alt="Mockup af forsiden med farver, typografi og billeder" loading="lazy">
                         </button>
                     </article>
 
@@ -704,14 +703,14 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/brugertest.webp"
-                                alt="Resultater fra 5-second testen og think-aloud testen" loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/brugertest.webp"
+                                alt="Resultater fra 5-second testen og think-aloud testen" loading="lazy">
                         </button>
                     </article>
 
@@ -739,36 +738,36 @@
                         <div class="case-figures">
                             <button class="image-zoom case-figure" type="button"
                                 aria-label="Se billedet i stor størrelse">
+                                <span class="case-figure-link" aria-hidden="true">
+                                    Åbn billede i fuld størrelse
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
+                                    </svg>
+                                </span>
                                 <img src="./assets/img/highway/acf.webp"
                                     alt="Felter til retterne i Advanced Custom Fields" loading="lazy">
+                            </button>
+                            <button class="image-zoom case-figure" type="button"
+                                aria-label="Se billedet i stor størrelse">
                                 <span class="case-figure-link" aria-hidden="true">
                                     Åbn billede i fuld størrelse
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                     </svg>
                                 </span>
-                            </button>
-                            <button class="image-zoom case-figure" type="button"
-                                aria-label="Se billedet i stor størrelse">
                                 <img src="./assets/img/highway/kategorier.webp"
                                     alt="Kategorier til menukortet i WordPress" loading="lazy">
-                                <span class="case-figure-link" aria-hidden="true">
-                                    Åbn billede i fuld størrelse
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
-                                    </svg>
-                                </span>
                             </button>
                             <button class="image-zoom case-figure" type="button"
                                 aria-label="Se billedet i stor størrelse">
-                                <img src="./assets/img/highway/indlaeg.webp"
-                                    alt="Retter oprettet som indlæg i WordPress" loading="lazy">
                                 <span class="case-figure-link" aria-hidden="true">
                                     Åbn billede i fuld størrelse
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                     </svg>
                                 </span>
+                                <img src="./assets/img/highway/indlaeg.webp"
+                                    alt="Retter oprettet som indlæg i WordPress" loading="lazy">
                             </button>
                         </div>
                     </article>
@@ -795,25 +794,25 @@
                         <div class="case-figures">
                             <button class="image-zoom case-figure" type="button"
                                 aria-label="Se billedet i stor størrelse">
-                                <img src="./assets/img/highway/branches.webp"
-                                    alt="Branches i projektets GitHub-repository" loading="lazy">
                                 <span class="case-figure-link" aria-hidden="true">
                                     Åbn billede i fuld størrelse
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                     </svg>
                                 </span>
+                                <img src="./assets/img/highway/branches.webp"
+                                    alt="Branches i projektets GitHub-repository" loading="lazy">
                             </button>
                             <button class="image-zoom case-figure" type="button"
                                 aria-label="Se billedet i stor størrelse">
-                                <img src="./assets/img/highway/commits.webp"
-                                    alt="Commits i projektets GitHub-repository" loading="lazy">
                                 <span class="case-figure-link" aria-hidden="true">
                                     Åbn billede i fuld størrelse
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                     </svg>
                                 </span>
+                                <img src="./assets/img/highway/commits.webp"
+                                    alt="Commits i projektets GitHub-repository" loading="lazy">
                             </button>
                         </div>
                     </article>
@@ -839,14 +838,14 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button" aria-label="Se billedet i stor størrelse">
-                            <img src="./assets/img/highway/kode.webp"
-                                alt="JavaScript, der filtrerer menukortet efter kategori" loading="lazy">
                             <span class="case-figure-link" aria-hidden="true">
                                 Åbn billede i fuld størrelse
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                 </svg>
                             </span>
+                            <img src="./assets/img/highway/kode.webp"
+                                alt="JavaScript, der filtrerer menukortet efter kategori" loading="lazy">
                         </button>
                     </article>
 
@@ -876,36 +875,30 @@
                         <div class="case-figures">
                             <button class="image-zoom case-figure" type="button"
                                 aria-label="Se billedet i stor størrelse">
-                                <img src="./assets/img/highway/lighthouse_mobil.webp"
-                                    alt="Lighthouse-resultater for forsiden på mobil" loading="lazy">
                                 <span class="case-figure-link" aria-hidden="true">
                                     Åbn billede i fuld størrelse
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                     </svg>
                                 </span>
+                                <img src="./assets/img/highway/lighthouse_mobil.webp"
+                                    alt="Lighthouse-resultater for forsiden på mobil" loading="lazy">
                             </button>
                             <button class="image-zoom case-figure" type="button"
                                 aria-label="Se billedet i stor størrelse">
-                                <img src="./assets/img/highway/lighthouse_desktop.webp"
-                                    alt="Lighthouse-resultater for forsiden på desktop" loading="lazy">
                                 <span class="case-figure-link" aria-hidden="true">
                                     Åbn billede i fuld størrelse
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
                                     </svg>
                                 </span>
+                                <img src="./assets/img/highway/lighthouse_desktop.webp"
+                                    alt="Lighthouse-resultater for forsiden på desktop" loading="lazy">
                             </button>
                         </div>
                     </article>
                 </div>
             </section>
-
-            <a class="to-top" href="#">
-                Til toppen
-                <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
-            </a>
-
             <!-- Modal til billeder i stor størrelse. Inspiration: https://www.w3schools.com/howto/howto_css_modal_images.asp -->
             <dialog class="image-modal" aria-label="Billede i stor størrelse">
                 <button class="image-modal-close" type="button" aria-label="Luk billedet">

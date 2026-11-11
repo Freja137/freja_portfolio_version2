@@ -403,10 +403,12 @@ body.menu-open {
 /* Modalen. Inspiration: https://www.w3schools.com/howto/howto_css_modal_images.asp */
 .image-modal {
     max-width: 90vw;
+    max-height: 90vh;
     padding: 0;
     border: 0;
     background: transparent;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* Mørk baggrund bag billedet */
@@ -419,9 +421,7 @@ body.menu-open {
     display: block;
     width: 100%;
     max-width: 800px;
-    max-height: 75vh;
     margin-inline: auto;
-    object-fit: contain;
     cursor: zoom-in;
     animation: modal-zoom 600ms ease;
     transition: transform 300ms ease;
@@ -966,6 +966,8 @@ body.menu-open {
     display: block;
     width: 100%;
     height: auto;
+    object-fit: cover;
+    aspect-ratio: 16 / 10;
 }
 
 .case-links {
@@ -1124,14 +1126,18 @@ body.menu-open {
 
 .case-figures {
     display: grid;
-    gap: var(--mediumPadding);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: var(--smallPadding);
     align-self: start;
+    min-width: 0;
+    gap: 0.5rem;
 }
 
-/* Billedet med link under – åbner modalen */
 .case-figure {
+    display: flex;
+    flex-direction: column;
     align-self: start;
-    text-align: left;
 }
 
 .case-figure img {
@@ -1140,8 +1146,10 @@ body.menu-open {
     height: auto;
 }
 
+
 .case-figure-link {
-    margin-top: 1rem;
+    align-self: flex-end;
+    margin-bottom: 1rem;
     font-family: var(--font-body);
 }
 
@@ -1778,7 +1786,6 @@ body.menu-open {
     /* Billed-modal – større billede på desktop */
     .image-modal-img {
         max-width: 1200px;
-        max-height: 82vh;
     }
 
     /* Forside – Hero i to kolonner */
@@ -1901,7 +1908,7 @@ body.menu-open {
     }
 
     .case-hero {
-        grid-template-columns: 1.4fr 1fr;
+        grid-template-columns: 1fr 1fr;
         column-gap: var(--largePadding);
         align-items: start;
     }

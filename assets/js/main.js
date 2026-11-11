@@ -4,7 +4,7 @@
            https://vuejs.org/guide/components/registration#local-registration */
 
 // Henter createApp fra Vue på et CDN, så Vue ikke skal installeres eller bygges
-import { createApp } from "https://unpkg.com/vue@3.5.13/dist/vue.esm-browser.prod.js";
+import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 
 // Henter header- og footerkomponenten fra deres egne filer
 import { TheHeader } from "../components/TheHeader.js";

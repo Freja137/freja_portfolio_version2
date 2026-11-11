@@ -16,11 +16,11 @@ export const TheHeader = {
     },
 
     // Skabelon for headeren, som bliver hentet ind i main.js, og på hver side skriver jeg <the-header>, så sætter Vue headeren ind. Hvis jeg retter i menuen, ændres den på alle sider på én gang.
-    // :aria-current bruger isCurrent, så linket til den side, man er på, får aria-current="page"
+    // :aria-current bruger isCurrent, så linket til den side, man er på, får aria-current="page".
     template: `
     <header>
         <nav class="nav-mobile" aria-label="Mobilnavigation">
-            <a class="site-logo" href="./index.html" aria-label="Freja Fischer – forside">
+            <a class="site-logo" href="./index.html" aria-label="Freja Fischer - forside">
                 FF.
             </a>
 

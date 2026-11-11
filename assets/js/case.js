@@ -2,21 +2,13 @@
    Inspiration til designet: https://vuetifyjs.com/en/components/tabs/ */
 
 // Henter ref og onMounted fra Vue – ref gemmer værdier, der opdaterer siden, og onMounted kører kode, når siden er klar
-import { ref, onMounted } from "https://unpkg.com/vue@3.5.13/dist/vue.esm-browser.prod.js";
+import { ref, onMounted } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 
 // Samler alt til tabs i én funktion, som main.js henter og giver videre til Vue-appen
 export function caseTabs() {
-    // Det første trin i hver fase vises som standard, når man skifter fase
-    const firstStep = {
-        analyse: "desk-research",
-        indhold: "indholdsmodel",
-        prototyping: "design-sprint",
-        udvikling: "rest-api"
-    };
-
     // Gemmer den fase og det trin, der er valgt. Når værdien ændres, opdaterer Vue selv :class og v-show i HTML'en
-    const activePhase = ref("analyse");
-    const activeStep = ref("desk-research");
+    const activePhase = ref("");
+    const activeStep = ref("");
 
     // Rækken med faser – Vue kobler den til elementet med ref="phaseTabs" i HTML'en, når siden er klar
     // Kilde: https://vuejs.org/guide/essentials/template-refs
@@ -32,8 +24,8 @@ export function caseTabs() {
         // Gemmer den nye fase
         activePhase.value = phase;
 
-        // Viser fasens første trin
-        activeStep.value = firstStep[phase];
+        // Viser fasens første trin - det som står i knappens data-first-step i HTML'en
+        activeStep.value = event.currentTarget.dataset.firstStep;
 
         // event.currentTarget er den knap, der blev klikket på – stregen glider hen under den, der er blevet valgt
         moveIndicator(event.currentTarget);
@@ -90,9 +82,17 @@ export function caseTabs() {
     // Kører én gang, når Vue har sat siden op, og elementerne findes
     // Kilde: https://vuejs.org/guide/essentials/lifecycle
     onMounted(() => {
-        // Sætter pilene og stregen rigtigt fra start
+        // Stopper, hvis siden ikke har faser – fx på forsiden
+        if (!phaseTabs.value) return;
+
+        // Siden starter på den første fase og dens første trin
+        const firstPhase = phaseTabs.value.querySelector(".phase-tab");
+        activePhase.value = firstPhase.dataset.phase;
+        activeStep.value = firstPhase.dataset.firstStep;
+
+        // Sætter stregen under den første fase og tjekker pilene
+        moveIndicator(firstPhase);
         updateArrows();
-        updateIndicator();
 
         // Skrifttypen hentes lidt efter siden og kan ændre fasernes bredde, så stregen sættes igen, når den er klar
         document.fonts.ready.then(updateIndicator);
