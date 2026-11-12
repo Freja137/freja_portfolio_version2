@@ -736,7 +736,7 @@ body.menu-open {
     display: flex;
     gap: 1rem;
     text-decoration: none;
-    font-size: var(--font-size-body);
+    font-size: var(--font-size-small);
 }
 
 .page-nav a::before {
@@ -1676,6 +1676,10 @@ body.menu-open {
         flex-wrap: wrap;
     }
 
+    .page-nav a {
+        font-size: 12px;
+    }
+
     /* Kompetencer – citat */
     .qoute-content {
         margin: 0 auto;
@@ -1907,7 +1911,7 @@ body.menu-open {
     /* Hero – tekst til venstre og billede til højre (Kompetencer og Om mig) */
     /* Mindre luft over heroen, så navigationen kan ses uden at scrolle – ligesom på forsiden */
     .main-home>section.page-hero {
-        padding-top: var(--mediumPadding);
+        padding-top: var(--largePadding);
     }
 
     .page-hero {
@@ -1923,7 +1927,8 @@ body.menu-open {
     }
 
     .page-hero h1 {
-        font-size: 5.5rem;
+        font-size: 70px;
+        margin: 0 0 var(--largePadding)
     }
 
     .page-nav {
@@ -1931,7 +1936,7 @@ body.menu-open {
     }
 
     .page-hero-media {
-        margin-top: var(--largePadding);
+        margin-top: 0;
     }
 
     .page-hero-media img {

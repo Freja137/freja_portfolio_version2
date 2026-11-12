@@ -32,7 +32,7 @@ export const TheHeader = {
             <div class="navDropdown" id="navDropdown" inert>
                 <ul class="nav-list">
                     <li class="links">
-                        <a href="./kompetencer.html" :aria-current="isCurrent('kompetencer.html')">Kompetencer</a>
+                        <a href="./faglig-profil.html" :aria-current="isCurrent('faglig-profil.html')">Faglig profil</a>
                     </li>
                     <li class="links">
                         <a href="./om-mig.html" :aria-current="isCurrent('om-mig.html')">Om mig</a>
@@ -49,7 +49,7 @@ export const TheHeader = {
 
         <nav class="nav-desktop" aria-label="Hovednavigation">
             <ul class="nav-list-desktop">
-                <li><a href="./kompetencer.html" :aria-current="isCurrent('kompetencer.html')">Kompetencer</a></li>
+                <li><a href="./faglig-profil.html" :aria-current="isCurrent('faglig-profil.html')">Faglig profil</a></li>
                 <li><a href="./om-mig.html" :aria-current="isCurrent('om-mig.html')">Om mig</a></li>
                 <li><a href="./portfolio.html" :aria-current="isCurrent('portfolio.html')">Portfolio</a></li>
             </ul>
