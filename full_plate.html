@@ -45,7 +45,6 @@
                     <p>Vi tog udgangspunkt i at omsætte casens krav til design og udvikling. Vi byggede et skræddersyet
                         WordPress-tema med HTML, CSS, JavaScript og PHP og brugte Custom Post Types og ACF til at
                         strukturere indholdet, så det kunne oprettes og redigeres i WordPress.</p>
-
                     <div class="case-links">
                         <a class="case-link" href="https://full-plate.fischerdesign.dk/" target="_blank" rel="noopener">
                             Se løsningen i brug
@@ -61,9 +60,12 @@
                         </a>
                     </div>
                 </div>
+                <div>
+                    <img class="case-hero-image" src="./assets/img/full_plate/full-plate.png"
+                        alt="Forsiden af Full Plate vist på en bærbar computer">
+                    <p>copyright: www.bbc.co.uk/food/recipes</p>
+                </div>
 
-                <img class="case-hero-image" src="./assets/img/full_plate/full-plate.png"
-                    alt="Forsiden af Full Plate vist på en bærbar computer">
             </section>
 
             <!-- Processen – tab-navigationen styres med Vue (assets/js/case.js) -->
@@ -260,23 +262,19 @@
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'erd'">
                         <div class="case-step-text">
                             <h3>ERD</h3>
-                            <p>Da vi havde styr på designet af hver side, udviklede vi et ER-diagram med
-                                udgangspunkt i
-                                et opskriftsunivers. Formålet var at forstå, hvordan oplysninger kan fordeles i
-                                tabeller
-                                og forbindes gennem relationer.</p>
+                            <p>Som en del af opgaven skulle vi lave et ER-diagram til det mini-CMS, vi arbejdede med i
+                                teknologiundervisningen. Formålet var at vise, at vi forstod, hvordan data kan fordeles
+                                i
+                                tabeller og forbindes gennem relationer.</p>
                             <p>Diagrammet omfattede blandt andet brugere, opskrifter, ingredienser, måleenheder og
                                 historier. En ingrediens kan indgå i flere opskrifter, men med forskellige mængder.
-                                Derfor blev opskrifter og ingredienser forbundet gennem en mellemtabel med
-                                oplysninger
+                                Derfor blev opskrifter og ingredienser forbundet gennem en mellemtabel med oplysninger
                                 om blandt andet mængde, enhed og rækkefølge.</p>
-                            <p>Arbejdet gjorde det tydeligt, hvorfor oplysninger skal adskilles og forbindes frem
-                                for at
-                                gentages. Diagrammet var en model af en selvstændig database og beskrev ikke
-                                WordPress’
-                                faktiske databasestruktur.</p>
+                            <p>ER-diagrammet er ikke den database, Full Plate bygger på. Det var en separat øvelse i
+                                datarelationer og har ikke noget med WordPress' database at gøre. I selve løsningen
+                                brugte vi WordPress' egen databasestruktur og organiserede vores indhold med Custom Post
+                                Types og ACF.</p>
                         </div>
-
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button">
                             <img src="./assets/img/full_plate/erd-fullplate.webp"

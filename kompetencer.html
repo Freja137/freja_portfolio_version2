@@ -27,26 +27,42 @@
         <!-- Indsætter header med Vue -->
         <the-header></the-header>
         <main class="main-home">
-            <section class="hero faglig-profil">
-                <h1 class="fp-title">Hvordan jeg arbejder</h1>
-                <p>Jeg arbejder i krydsfeltet mellem UX-design og frontendudvikling – fra research og prototyping til
-                    responsiv, tilgængelig kode. Jeg er nysgerrig på, hvordan tingene hænger sammen, og følger gerne en
-                    idé
-                    hele vejen fra skitse til færdig løsning.</p>
-                <p>Jeg arbejder struktureret og lægger vægt på overblik, kvalitet og gennemarbejdede detaljer. Jeg kan
-                    lide
-                    at fordybe mig og blive udfordret, især når jeg kan omsætte det, jeg lærer, til noget, der virker i
-                    praksis.</p>
-                <img src="./assets/img/freja_arbejdsprocess.webp"
-                    alt="Freja sidder ved spisebordet og skitserer wireframes på papir">
+            <section class="page-hero" aria-labelledby="page-title">
+                <div class="page-hero-text">
+                    <p class="section-label">&lt;/&gt; Kompetencer</p>
+                    <h1 id="page-title">Hvordan jeg arbejder</h1>
+                    <p class="page-hero-intro">Mit arbejde spænder fra research og prototyping til responsiv og
+                        tilgængelig
+                        kode. Jeg er nysgerrig på, hvordan tingene hænger sammen, og følger gerne en idé hele vejen fra
+                        skitse
+                        til færdig løsning.</p>
+                    <p class="page-hero-intro">Jeg lægger vægt på struktur, overblik og gennemarbejdede detaljer. Jeg
+                        kan lide
+                        at fordybe mig og blive udfordret – især når jeg kan omsætte det, jeg lærer, til noget, der
+                        virker.</p>
+
+                    <!-- Lokal navigation – linker ned til sektionerne på siden via deres id -->
+                    <nav class="page-nav" aria-label="På denne side">
+                        <p class="page-nav-title">På denne side</p>
+                        <ol>
+                            <li><a href="#driver-mig">Det driver mig</a></li>
+                            <li><a href="#arbejder-i">Det arbejder jeg i</a></li>
+                            <li><a href="#bidrag-title">Det bidrager jeg med</a></li>
+                            <li><a href="#som-kollega">Som kollega</a></li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class="page-hero-media">
+                    <img src="./assets/img/freja_arbejdsprocess.webp"
+                        alt="Freja sidder ved spisebordet og skitserer wireframes på papir">
+                </div>
             </section>
             <section class="fp-quote">
                 <span aria-hidden="true">"</span>
-                <p class="section-label">&lt;/&gt; Det der driver mig</p>
+                <p class="section-label" id="driver-mig">&lt;/&gt; Det der driver mig</p>
                 <p class="qoute-content">“Jeg kan godt lide at se et design blive til en fungerende løsning gennem kode.
-                    Det
-                    motiverer mig at
-                    skabe intuitive websites, der er nemme at bruge og fungerer i praksis.”</p>
+                    Det motiverer mig at skabe intuitive websites, som er nemme at bruge.”</p>
                 <a class="text-link fp-link" href="./portfolio.html">
                     Udforsk mine projekter
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
@@ -55,8 +71,8 @@
                     </svg>
                 </a>
             </section>
-            <section class="kompetencer-container">
-                <h2 class="section-label">&lt;/&gt; Det arbejder jeg i</h2>
+            <section class="kompetencer-container" aria-labelledby="arbejder-i">
+                <h2 class="section-label" id="arbejder-i">&lt;/&gt; Det arbejder jeg i</h2>
 
                 <article class="kompetencer">
                     <h3 class="kompetencer-title"><i class="fa-brands fa-figma" aria-hidden="true"></i> Design</h3>
@@ -79,7 +95,7 @@
                     <h3 class="kompetencer-title"><i class="fa-brands fa-wordpress-simple" aria-hidden="true"></i>
                         WordPress
                     </h3>
-                    <p class="kompetencer-content">Jeg bruger WordPress både som klassisk og som headless CMS. Jeg
+                    <p class="kompetencer-content">Jeg bruger WordPress som headless CMS. Jeg
                         udvikler
                         skræddersyede temaer med PHP-skabeloner, Custom Post Types og Advanced Custom Fields, så
                         indholdet
@@ -160,10 +176,9 @@
                                         siderne hænger sammen.
                                     </p>
                                     <p>Derefter udforsker jeg forskellige løsninger gennem skitser og metoder som fx
-                                        Crazy
-                                        8,
+                                        Crazy 8s,
                                         før de bliver til
-                                        wireframes og mockups til både mobil og desktop. Genbrugelige komponenter, med
+                                        wireframes og mockups til både mobil og desktop. Genbrugelige komponenter med
                                         inspiration fra Atomic
                                         Design, giver sammenhæng på tværs af siderne.</p>
                                     <p>Gennem <strong>iterative processer</strong> tester jeg klikbare prototyper med
@@ -244,8 +259,8 @@
                     </div>
                 </div>
             </section>
-            <section class="process-container">
-                <h2 class="section-label">&lt;/&gt; Som kollega</h2>
+            <section class="process-container" aria-labelledby="som-kollega">
+                <h2 class="section-label" id="som-kollega">&lt;/&gt; Som kollega</h2>
                 <article class="process-content">
                     <h3 class="process-title"><i class="fa-regular fa-handshake" aria-hidden="true"></i> Samarbejde</h3>
                     <p class="process-text">Jeg er rolig og lyttende og lægger vægt på dialog og gensidig forståelse.

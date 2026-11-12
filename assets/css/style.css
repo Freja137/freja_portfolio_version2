@@ -33,6 +33,8 @@
 
 html {
     scroll-behavior: smooth;
+    /* Plads til den faste header, når man hopper til en sektion via et link. Kilde: https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-padding-top */
+    scroll-padding-top: calc(var(--header-height) + var(--largePadding) + var(--mediumPadding));
 }
 
 body {
@@ -91,13 +93,13 @@ img {
 }
 
 .main-home>section+section {
-    margin-top: var(--largePadding);
+    margin-top: var(--mediumPadding);
 }
 
 /* Indholdet på alle sider har samme maksbredde og sideafstand */
 .home-hero,
 .about,
-.hero,
+.page-hero,
 .fp-quote,
 .kompetencer-container,
 .process-container,
@@ -115,7 +117,7 @@ img {
 
 /* Små labels over sektionerne, fx "</> Kontakt" */
 .section-label {
-    margin: var(--smallPadding) 0 var(--mediumPadding);
+    margin: var(--smallPadding) 0 var(--smallPadding);
     font-family: var(--font-body);
     font-size: var(--font-size-small);
 }
@@ -162,7 +164,8 @@ img {
 .accordion-title:focus-visible,
 .case-link:focus-visible,
 .kontakt-link:focus-visible,
-.footer-links a:focus-visible {
+.footer-links a:focus-visible,
+.page-nav a:focus-visible {
     outline: 2px solid var(--chocolate);
     outline-offset: 6px;
 }
@@ -458,12 +461,8 @@ body.menu-open {
 
 /* ----- Footer (mobil) ----- */
 .site-footer {
-    width: 100%;
-    max-width: var(--page-max-width);
-    margin-inline: auto;
     margin-top: var(--largePadding);
-    padding-inline: var(--page-padding);
-    padding-bottom: var(--mediumPadding);
+    border-top: 1px solid var(--chocolate);
 }
 
 .footer-inner {
@@ -471,8 +470,11 @@ body.menu-open {
     justify-content: space-between;
     align-items: last baseline;
     gap: 1rem;
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
     padding-top: var(--smallPadding);
-    border-top: 1px solid var(--chocolate);
+    padding-bottom: var(--mediumPadding);
 }
 
 .footer-links {
@@ -682,27 +684,80 @@ body.menu-open {
 .about-links {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 3rem;
     margin-top: var(--largePadding);
 }
 
 
 /* ----- Kompetencer ----- */
-.hero h1 {
-    margin-top: 0;
+/* Hero på Kompetencer og Om mig – tekst, lokal navigation og billede */
+.page-hero h1 {
+    margin: 0 0 var(--smallPadding);
 }
 
-.hero p {
-    padding-bottom: var(--mediumPadding);
+.page-hero-intro {
+    max-width: 34rem;
+    margin: 0 0 1rem;
     font-size: var(--font-size-body);
 }
 
-.hero img {
+/* Lokal navigation – "På denne side" */
+.page-nav {
+    max-width: 360px;
+    margin-top: var(--mediumPadding);
+    padding-top: var(--smallPadding);
+    border-top: 1px solid var(--chocolate);
+}
+
+.page-nav-title {
+    margin: 0 0 1rem;
+    font-size: var(--font-size-small);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Tallene 01, 02, 03 laves med en counter ligesom i fun facts */
+.page-nav ol {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: nav;
+}
+
+.page-nav li {
+    counter-increment: nav;
+}
+
+.page-nav a {
+    display: flex;
+    gap: 1rem;
+    text-decoration: none;
+    font-size: var(--font-size-body);
+}
+
+.page-nav a::before {
+    content: counter(nav, decimal-leading-zero);
+    color: var(--caramel);
+}
+
+.page-nav a:hover {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+.page-hero-media {
+    margin-top: var(--mediumPadding);
+}
+
+.page-hero-media img {
     width: 100%;
-    height: 300px;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
-    object-position: 40% 65%;
+    object-position: 50% 60%;
 }
 
 /* Citat */
@@ -925,7 +980,7 @@ body.menu-open {
 
 .project-list {
     list-style: none;
-    margin: var(--largePadding) 0 0;
+    margin: var(--smallPadding) 0 0;
     padding: 0;
 }
 
@@ -942,7 +997,7 @@ body.menu-open {
 .project-row-title {
     grid-area: title;
     margin: 0;
-    font-size: 36px;
+    font-size: 30px;
     line-height: 1.1;
 }
 
@@ -1233,6 +1288,7 @@ body.menu-open {
     grid-template-columns: 1fr auto;
     align-items: center;
     column-gap: 1rem;
+    row-gap: 1rem;
     padding-block: 1.5rem;
     text-decoration: none;
 }
@@ -1506,20 +1562,9 @@ body.menu-open {
     }
 
     /* Footer */
-    .site-footer {
-        max-width: none;
-        padding-inline: 0;
-        padding-bottom: 0;
-        border-top: 1px solid var(--chocolate);
-    }
-
     .footer-inner {
         align-items: center;
-        max-width: var(--page-max-width);
-        margin-inline: auto;
-        padding-inline: var(--page-padding);
         padding-block: 1.5rem;
-        border-top: 0;
     }
 
     .footer-links {
@@ -1629,41 +1674,6 @@ body.menu-open {
     .about-links {
         flex-direction: row;
         flex-wrap: wrap;
-    }
-
-    /* Kompetencer – hero i to kolonner (også på Om mig) */
-    .hero {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto auto 1fr;
-        column-gap: var(--largePadding);
-    }
-
-    .hero img {
-        grid-column: 1;
-        grid-row: 1 / -1;
-        height: 400px;
-    }
-
-    .hero h1 {
-        grid-column: 2;
-        grid-row: 1;
-        margin: 0 0 var(--mediumPadding);
-    }
-
-    .hero p {
-        grid-column: 2;
-        max-width: 34rem;
-        margin: 0 0 1rem;
-        padding-bottom: 0;
-    }
-
-    .hero p:nth-of-type(1) {
-        grid-row: 2;
-    }
-
-    .hero p:nth-of-type(2) {
-        grid-row: 3;
     }
 
     /* Kompetencer – citat */
@@ -1894,9 +1904,38 @@ body.menu-open {
         font-size: 3.5rem;
     }
 
-    /* Kompetencer – hero (også på Om mig) */
-    .hero img {
-        height: 480px;
+    /* Hero – tekst til venstre og billede til højre (Kompetencer og Om mig) */
+    /* Mindre luft over heroen, så navigationen kan ses uden at scrolle – ligesom på forsiden */
+    .main-home>section.page-hero {
+        padding-top: var(--mediumPadding);
+    }
+
+    .page-hero {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        column-gap: var(--largePadding);
+    }
+
+    /* Navigationen skubbes ned i bunden af venstre kolonne */
+    .page-hero-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .page-hero h1 {
+        font-size: 5.5rem;
+    }
+
+    .page-nav {
+        margin-top: auto;
+    }
+
+    .page-hero-media {
+        margin-top: var(--largePadding);
+    }
+
+    .page-hero-media img {
+        aspect-ratio: 1 / 1;
     }
 
     /* Kompetencer – citat */
@@ -1940,10 +1979,6 @@ body.menu-open {
     }
 
     /* Om mig */
-    .om-mig-hero img {
-        object-position: center;
-    }
-
     .fun-facts {
         grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
         column-gap: var(--largePadding);
@@ -2164,7 +2199,6 @@ body.menu-open {
     .accordion-title i,
     .image-zoom-label,
     .image-modal-close,
-    .phase-tabs::after,
     .phase-tabs::after,
     .blame-card,
     .blame-text {

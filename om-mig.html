@@ -27,35 +27,44 @@
         <the-header></the-header>
 
         <main class="main-home">
-            <section class="hero om-mig-hero">
-                <h1>Hvem er Freja?</h1>
-                <p>Jeg er en positiv og imødekommende person, der sætter pris på nærvær og gode relationer. Jeg lytter,
-                    giver plads til andre og værdsætter fællesskaber, hvor man kan være sig selv. For mig betyder det
-                    meget,
-                    at der er plads til både gode samtaler, humor og at hjælpe hinanden.
-                </p>
-                <p>
-                    Jeg er nysgerrig og kan godt lide at prøve nye ting. I min fritid finder jeg glæde i at være aktiv
-                    og
-                    fordybe mig i noget kreativt, som at male eller spille klaver. Jeg holder også af at rejse og opleve
-                    nye
-                    steder, men prioriterer lige så gerne tid med min familie.
-                </p>
-                <img src="./assets/img/om-mig-hero-billeder.webp" alt="Freja der sidder på en restaurant på en ferie">
+            <section class="page-hero" aria-labelledby="page-title">
+                <div class="page-hero-text">
+                    <p class="section-label">&lt;/&gt; Om mig</p>
+                    <h1 id="page-title">Hvem er Freja?</h1>
+                    <p class="page-hero-intro">Jeg er en positiv og imødekommende person, der sætter pris på nærvær og
+                        gode
+                        relationer. Jeg trives i fællesskaber, hvor man kan være sig selv, og hvor der er plads til gode
+                        samtaler, humor og til at hjælpe hinanden.</p>
+                    <p class="page-hero-intro">I min fritid finder jeg ro i at fordybe mig i noget kreativt, som at male
+                        eller spille klaver. Jeg holder også af at rejse og opleve nye steder, men prioriterer lige så
+                        gerne
+                        tid med min familie herhjemme.</p>
+
+                    <!-- Lokal navigation – linker ned til sektionerne på siden via deres id -->
+                    <nav class="page-nav" aria-label="På denne side">
+                        <p class="page-nav-title">På denne side</p>
+                        <ol>
+                            <li><a href="#saadan-er-jeg">Sådan er jeg</a></li>
+                            <li><a href="#facts-title">Fun facts</a></li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class="page-hero-media">
+                    <img src="./assets/img/om-mig-hero-billeder.webp" alt="Freja sidder på en restaurant på ferie">
+                </div>
             </section>
-            <section class="kompetencer-container">
-                <h2 class="section-label">&lt;/&gt; Sådan er jeg</h2>
+            <section class="kompetencer-container" aria-labelledby="saadan-er-jeg">
+                <h2 class="section-label" id="saadan-er-jeg">&lt;/&gt; Sådan er jeg</h2>
                 <article class="kompetencer">
                     <h3 class="kompetencer-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                             height="24px" width="24px" fill="currentColor" aria-hidden="true">
                             <path
                                 d="M11.7,19.94q0.2,0 0.4-0.09t0.33-0.22l7.8-7.8q0.38-0.38 0.58-0.77t0.2-0.87t-0.2-0.93T20.23,8.46L16.48,4.71q-0.37-0.38-0.76-0.55T14.85,3.98T13.98,4.16T13.22,4.71L12.34,5.58l1.85,1.86q0.3,0.29 0.44,0.67t0.15,0.76q0,0.78-0.51,1.29t-1.29,0.51q-0.38,0-0.75-0.12t-0.66-0.41L9.66,8.23L5.34,12.54Q5.19,12.7 5.11,12.89T5.04,13.28q0,0.35 0.23,0.58t0.58,0.23q0.2,0 0.4-0.09t0.33-0.22l3.17-3.17l0.71,0.71L7.29,14.5q-0.15,0.15-0.23,0.35T6.99,15.23q0,0.33 0.24,0.57T7.8,16.04q0.2,0 0.4-0.09t0.33-0.22l3.4-3.39l0.71,0.71l-3.39,3.4q-0.13,0.13-0.22,0.33t-0.09,0.4q0,0.33 0.24,0.57t0.57,0.24q0.2,0 0.39-0.08t0.35-0.23l3.4-3.39L14.59,15l-3.4,3.4q-0.15,0.15-0.23,0.36t-0.08,0.39q0,0.35 0.25,0.57t0.56,0.22Zm-0.01,1q-0.77,0-1.32-0.56T9.89,18.98q-0.85,0.01-1.42-0.51T7.94,17.03Q7.02,17.04 6.48,16.5T6,15.08q-0.83,0.01-1.4-0.47T4.04,13.28q0-0.38 0.15-0.77t0.44-0.68L9.66,6.81l2.58,2.58q0.13,0.13 0.31,0.22t0.42,0.09q0.32,0 0.57-0.22t0.25-0.58q0-0.23-0.09-0.42T13.49,8.15L10.05,4.71Q9.68,4.33 9.27,4.16T8.4,3.98q-0.47,0-0.86,0.18T6.78,4.71L3.73,7.76Q3.41,8.08 3.22,8.52T3.01,9.44Q2.99,9.78 3.06,10.09t0.22,0.59L2.52,11.44q-0.25-0.4-0.39-0.93T2,9.44q0.01-0.68 0.27-1.3T3.02,7.03L6.05,4Q6.57,3.48 7.15,3.23T8.42,2.98T9.67,3.23T10.76,4l0.87,0.87L12.5,4q0.52-0.52 1.1-0.77t1.25-0.25t1.26,0.25T17.22,4l3.73,3.73q0.52,0.52 0.8,1.16t0.28,1.32t-0.28,1.25t-0.8,1.09l-7.8,7.79q-0.31,0.31-0.68,0.45T11.7,20.94ZM8.49,8.33Z" />
                         </svg> Ansvarlig og pålidelig</h3>
-                    <p class="kompetencer-content">Jeg tager mine opgaver alvorligt og gør det, jeg har sagt, jeg vil
-                        gøre. Jeg
-                        arbejder stabilt og samvittighedsfuldt, og det betyder meget for mig, at de mennesker, jeg
-                        arbejder sammen
-                        med, ved, at de kan regne med mig.</p>
+                    <p class="kompetencer-content">Jeg tager ansvar for mine opgaver og følger dem til dørs. Jeg er
+                        stabil og samvittighedsfuld, og det betyder meget for mig, at mine kolleger ved, at de kan regne
+                        med mig.</p>
                 </article>
 
                 <article class="kompetencer">
@@ -78,11 +87,9 @@
                                 d="M15.69,12.38L11.93,8.78q-0.66-0.63-1.1-1.42T10.38,5.65q0-1.1 0.77-1.87T13.03,3q0.82,0 1.49,0.44t1.17,1.08q0.5-0.63 1.17-1.08T18.35,3q1.1,0 1.87,0.77T21,5.65q0,0.93-0.44,1.71t-1.1,1.42l-3.77,3.61Zm0-1.38l2.99-2.87Q19.22,7.63 19.61,7T20,5.65q0-0.68-0.48-1.17T18.35,4q-0.6,0-1.08,0.36T16.42,5.2L15.69,6.12L14.96,5.2q-0.38-0.49-0.85-0.85T13.03,4q-0.68,0-1.17,0.48T11.38,5.65q0,0.73 0.39,1.36T12.7,8.14l2.99,2.87ZM6.4,18.65l7.57,2.21l5.99-1.85q-0.03-0.46-0.27-0.66t-0.55-0.2H14.39q-0.63,0-1.15-0.05t-1.06-0.24L9.99,17.15l0.34-0.99l2.03,0.73q0.48,0.18 1.1,0.22t1.68,0.04q0-0.47-0.17-0.76T14.47,16L8.72,13.88q-0.06-0.02-0.11-0.03T8.5,13.85H6.4v4.81ZM2.4,21V12.85H8.48q0.14,0 0.29,0.03t0.28,0.07l5.78,2.12q0.54,0.2 0.92,0.73t0.39,1.35h3q0.9,0 1.38,0.57T21,19.15v0.62l-6.98,2.15L6.4,19.7V21h-4Zm1-1h2V13.85h-2V20ZM15.69,6.12Z" />
                         </svg>
                         Positiv og hjælpsom</h3>
-                    <p class="kompetencer-content">Jeg ser efter det gode i andre og er opmærksom på, hvordan mine
-                        kolleger har
-                        det. Jeg gør gerne en ekstra indsats for at hjælpe andre videre, og jeg trives bedst i et team,
-                        hvor vi
-                        bakker hinanden op og har det godt sammen.</p>
+                    <p class="kompetencer-content">Jeg møder folk åbent og er opmærksom på, hvordan mine
+                        kolleger har det. Jeg gør gerne en indsats for at hjælpe andre, og jeg trives
+                        bedst i et team, hvor vi bakker hinanden op og har det godt sammen.</p>
                 </article>
 
                 <article class="kompetencer">
@@ -91,12 +98,9 @@
                             <path
                                 d="M19.48,20.15l-6.26-6.26q-0.75,0.64-1.73,0.99T9.54,15.23q-2.4,0-4.06-1.67T3.81,9.5T5.47,5.44T9.54,3.77T13.6,5.44T15.27,9.5q0,1.04-0.37,2.02t-0.97,1.67l6.26,6.26l-0.71,0.71ZM9.54,14.23q1.99,0 3.36-1.37T14.27,9.5T12.9,6.14T9.54,4.77T6.18,6.14T4.81,9.5t1.37,3.36t3.36,1.37Z" />
                         </svg> Omhyggelig</h3>
-                    <p class="kompetencer-content">Jeg har et fint øje for detaljer og lægger mærke til små nuancer i
-                        skrift,
-                        afstande og farver, som andre måske overser. Jeg forbereder mig grundigt og vil gerne have styr
-                        på
-                        tingene, før jeg går i gang. Når jeg koder et layout, sørger jeg for, at det hænger sammen i
-                        alle aspekter.</p>
+                    <p class="kompetencer-content">Jeg forbereder mig grundigt og vil gerne have styr
+                        på tingene, før jeg går i gang. Når jeg koder et layout, sørger jeg for, at det hænger sammen
+                        helt ned i detaljen.</p>
                 </article>
             </section>
             <section class="fun-facts" aria-labelledby="facts-title">
@@ -107,12 +111,12 @@
                     <li>En iskold, crispy Coca-Cola slår Pepsi Max. Hver gang.</li>
                     <li>Jeg er adopteret fra Kina – og nej, jeg kan ikke snakke kinesisk.</li>
                     <li>Jeg elsker at være kreativ – selvom jeg savner Ctrl+Z.</li>
-                    <li>Jeg elsker alt, der har noget med håndbold at gøre.</li>
-                    <li>Stort familiemenneske.</li>
-                    <li>Kan godt lide at være aktiv og prøve nye ting.</li>
+                    <li>Alt, der har med håndbold at gøre, har min opmærksomhed.</li>
+                    <li>Jeg er et stort familiemenneske.</li>
+                    <li>Jeg holder mig aktiv og svømmer gerne et par gange om ugen.</li>
                 </ol>
                 <div class="facts-images">
-                    <img src="./assets/img/frejas_familie.webp" alt="Freja sammen med hendes familie ved havnen"
+                    <img src="./assets/img/frejas_familie.webp" alt="Freja sammen med sin familie ved havnen"
                         loading="lazy">
 
                     <img src="./assets/img/freja_og_soester.webp"
