@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio | Kontakt</title>
     <meta name="description"
-        content="Skal vi skabe noget sammen? Kontakt Freja Fischer, multimediedesignstuderende, om praktik, projekter eller idéer – via mail, LinkedIn eller GitHub.">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap"
-        rel="stylesheet">
+        content="Skal vi skabe noget sammen? Kontakt Freja Fischer, multimediedesignstuderende, om praktik, projekter eller idéer – via mail, telefon, LinkedIn eller GitHub.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap"
@@ -20,14 +17,14 @@
 </head>
 
 <body>
-    <!-- Samlede det i et div-element da vue styrer det er det element vi mounter på. Med .mount(#app) kigger Vue kun efter TheHeader og TheFooter inde i <div id="app"> -->
+    <!-- Alt ligger i <div id="app">, fordi det er her, Vue starter (.mount("#app")). Vue kan kun styre indholdet inde i den, så header og footer skal ligge her -->
     <div id="app">
         <!-- Custom cursor -->
         <div class="cursor" aria-hidden="true">
             <div class="cursor-inner"></div>
         </div>
 
-        <!-- Indsætter headeren med vue -->
+        <!-- Headeren indsættes med Vue -->
         <the-header></the-header>
 
         <main class="main-home">
@@ -45,7 +42,8 @@
                     <li>
                         <a class="kontakt-link" href="mailto:Frejahfischer@gmail.com">
                             <span class="kontakt-link-label">Skriv til mig</span>
-                            <span class="kontakt-link-name"><i class="fa-regular fa-envelope"></i>Send mig en
+                            <span class="kontakt-link-name"><i class="fa-regular fa-envelope"
+                                    aria-hidden="true"></i>Send mig en
                                 mail</span>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 aria-hidden="true">
@@ -57,7 +55,8 @@
                         <a class="kontakt-link" href="https://www.linkedin.com/in/freja-fischer" target="_blank"
                             rel="noopener">
                             <span class="kontakt-link-label">Lad os connecte</span>
-                            <span class="kontakt-link-name"><i class="fa-brands fa-linkedin-in"></i>LinkedIn</span>
+                            <span class="kontakt-link-name"><i class="fa-brands fa-linkedin-in"
+                                    aria-hidden="true"></i>LinkedIn</span>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 aria-hidden="true">
                                 <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
@@ -68,7 +67,8 @@
                         <a class="kontakt-link" href="https://github.com/Freja137" target="_blank" rel="noopener">
                             <span class="kontakt-link-label">Se min kode</span>
 
-                            <span class="kontakt-link-name"><i class="fa-brands fa-github"></i> GitHub</span>
+                            <span class="kontakt-link-name"><i class="fa-brands fa-github"
+                                    aria-hidden="true"></i>GitHub</span>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 aria-hidden="true">
                                 <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
@@ -76,9 +76,10 @@
                         </a>
                     </li>
                     <li>
-                        <a class="kontakt-link" href="tel:+4526757866" target="_blank" rel="noopener">
+                        <a class="kontakt-link" href="tel:+4526757866">
                             <span class="kontakt-link-label">Giv mig et kald</span>
-                            <span class="kontakt-link-name"><i class="fa-solid fa-phone"></i>Telefon</span>
+                            <span class="kontakt-link-name"><i class="fa-solid fa-phone"
+                                    aria-hidden="true"></i>Telefon</span>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 aria-hidden="true">
                                 <path d="M6.19,17.29L5.5,16.6L15.58,6.5H6.29v-1h11v11h-1V7.21L6.19,17.29Z" />
@@ -89,7 +90,7 @@
             </section>
         </main>
 
-        <!-- Indsætter footeren med vue -->
+        <!-- Footeren indsættes med Vue -->
         <the-footer></the-footer>
     </div>
 </body>

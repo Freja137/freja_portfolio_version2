@@ -13,7 +13,7 @@
     --mediumPadding: 40px;
     --largePadding: 80px;
     --page-padding: 50px;
-    --page-max-width: 1300px;
+    --page-max-width: 1400px;
     --section-space: 100px;
 }
 
@@ -106,7 +106,7 @@ h1 {
 .home-hero,
 .about,
 .hero,
-.fp-qoute,
+.fp-quote,
 .kompetencer-container,
 .process-container,
 .bidrag,
@@ -321,6 +321,13 @@ body.menu-open {
 .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Den første sektion på hver side (heroen) står fast fra start og fader ikke ind */
+.main-home>section:first-child.reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
 }
 
 /* ----- Til toppen knap ----- */
@@ -679,17 +686,17 @@ body.menu-open {
     line-height: 1;
 }
 
-.fp-qoute {
+.fp-quote {
     display: flex;
     flex-direction: column;
 }
 
-.fp-qoute>.section-label {
+.fp-quote>.section-label {
     align-self: center;
     text-align: center;
 }
 
-.fp-qoute span {
+.fp-quote span {
     margin: 0 auto;
     font-size: 50px;
     line-height: 1;
@@ -1179,13 +1186,6 @@ body.menu-open {
     background-color: #ffffff;
 }
 
-
-.case-figure-link {
-    align-self: flex-end;
-    margin-bottom: 1rem;
-    font-family: var(--font-body);
-}
-
 /* ----- Kontakt ----- */
 .kontakt {
     display: grid;
@@ -1317,17 +1317,6 @@ body.menu-open {
 }
 
 /* ----- Keyframes ----- */
-@keyframes dot-pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(0.75);
-    }
-}
 
 @keyframes arrow-bounce {
 

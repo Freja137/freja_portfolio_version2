@@ -133,7 +133,13 @@
                         <button class="step-tab" type="button" role="tab"
                             :class="{ 'is-active': activeStep === 'personaer' }"
                             :aria-selected="activeStep === 'personaer'" @click="selectStep('personaer')">
-                            Personaer, situationer og scenarier
+                            Personaer
+                        </button>
+                        <button class="step-tab" type="button" role="tab"
+                            :class="{ 'is-active': activeStep === 'situationer-scenarier' }"
+                            :aria-selected="activeStep === 'situationer-scenarier'"
+                            @click="selectStep('situationer-scenarier')">
+                            Situationer og scenarier
                         </button>
                     </div>
 
@@ -270,17 +276,27 @@
                                 af
                                 interviewpersoner og det videre arbejde med personaer.</p>
                         </div>
-
-                        <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button">
-                            <img src="./assets/img/highway/segmentering.webp"
-                                alt="Segmentering af målgruppen med objektive og subjektive parametre" loading="lazy">
-                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label">
-                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
-                            </span>
-                        </button>
+                        <div class="case-figures">
+                            <!-- Åbner billedet i stor størrelse -->
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/objektiv_segmentering.webp"
+                                    alt="Objektive parametre i segmenteringen af målgruppen" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/subjektiv_segmentering.webp"
+                                    alt="Subjektive parametre i segmenteringen af målgruppen" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
                     </article>
 
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'interview'">
@@ -302,18 +318,38 @@
                                 transskriberet, så disse sammenhænge kunne undersøges nærmere i den tematiske analyse.
                             </p>
                         </div>
+                        <div class="case-figures">
+                            <!-- Åbner billedet i stor størrelse -->
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/tematisering.webp"
+                                    alt="Formålet med interviewundersøgelsen" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/design.webp"
+                                    alt="Planlægning af interviewene med antal deltagere og tidspunkt" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/interviewguide.webp"
+                                    alt="Interviewguide med spørgsmål om restaurantvaner og takeaway" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
 
-                        <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button">
-                            <img src="./assets/img/highway/interviewundersoegelse.webp"
-                                alt="Uddrag af interviewguiden med spørgsmål om restaurantvaner og takeaway"
-                                loading="lazy">
-                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label">
-                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
-                            </span>
-                        </button>
+                        </div>
+
                     </article>
 
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'tematisk-analyse'">
@@ -346,33 +382,37 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
+
                     </article>
 
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'personaer'">
                         <div class="case-step-text">
-                            <h3>Personaer, situationer og scenarier</h3>
+                            <h3>Personaer</h3>
                             <p>Brugerindsigterne viste, at et spontant restaurantbesøg, planlægningen af et selskab og
                                 bestilling af takeaway stiller forskellige krav til websitet. Derfor blev der udviklet
                                 tre
-                                personaer: turisten Lena, selskabskunden Henrik og takeaway-brugeren Tilde.</p>
-                            <p>Lenas scenarie fremhævede betydningen af billeder, anmeldelser og et overskueligt
-                                menukort,
-                                når man skal vurdere et ukendt spisested. Henriks behov for at planlægge en konfirmation
-                                pegede på tydelige buffetmuligheder, priser og kontaktoplysninger. Tildes travle hverdag
-                                gjorde hurtig adgang til takeaway og let aflæselige priser relevant.</p>
-                            <p>Scenarierne gjorde det muligt at forbinde brugerbehov med konkrete prioriteringer i
-                                løsningen. Samtidig var datagrundlaget ikke lige stærkt for alle personaer. Henrik blev
-                                udviklet som en ad hoc persona med input fra restaurantens ejer og blev ikke
-                                efterfølgende
-                                valideret. Hans behov fungerede derfor som et kvalificeret udgangspunkt, men med større
-                                usikkerhed end de øvrige brugerindsigter.</p>
+                                personaer: selskabskunden Henrik, turisten Lena og takeaway-brugeren Tilde.</p>
+                            <p>Hver persona samlede et mønster fra interviewene og den tematiske analyse. Henrik
+                                repræsenterede
+                                gæster,
+                                der planlægger et større arrangement, Lena
+                                repræsenterede gæster, der skal vurdere et ukendt spisested, mens Tilde repræsenterede
+                                behovet for et hurtigt
+                                og
+                                nemt måltid i en travl hverdag.</p>
+                            <p>Datagrundlaget var dog ikke lige stærkt for alle personaer. Henrik blev udviklet som en
+                                ad
+                                hoc persona med input fra restaurantens ejer og blev ikke efterfølgende valideret. Hans
+                                behov fungerede derfor som et kvalificeret udgangspunkt, men med større usikkerhed end
+                                de
+                                øvrige brugerindsigter.</p>
                         </div>
 
-                        <!-- Flere billeder under hinanden – hvert billede kan åbnes for sig -->
                         <div class="case-figures">
+                            <!-- Åbner billedet i stor størrelse -->
                             <button class="image-zoom case-figure" type="button">
-                                <img src="./assets/img/highway/personaer.webp"
-                                    alt="De tre personaer Lena, Henrik og Tilde" loading="lazy">
+                                <img src="./assets/img/highway/persona_henrik.webp"
+                                    alt="Persona for selskabskunden Henrik" loading="lazy">
                                 <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
                                 <span class="image-zoom-label">
                                     Åben<span class="image-zoom-long"> i fuld størrelse</span>
@@ -380,14 +420,80 @@
                                 </span>
                             </button>
                             <button class="image-zoom case-figure" type="button">
-                                <img src="./assets/img/highway/situationer_scenarier.webp"
-                                    alt="Situationer og scenarier for de tre personaer" loading="lazy">
+                                <img src="./assets/img/highway/persona_lena.webp" alt="Persona for turisten Lena"
+                                    loading="lazy">
+
                                 <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
                                 <span class="image-zoom-label">
                                     Åben<span class="image-zoom-long"> i fuld størrelse</span>
                                     <i class="fa-solid fa-expand" aria-hidden="true"></i>
                                 </span>
                             </button>
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/persona_tilde.webp"
+                                    alt="Persona for takeaway-brugeren Tilde" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+
+                        </div>
+                    </article>
+
+                    <article class="case-step" role="tabpanel" v-show="activeStep === 'situationer-scenarier'">
+                        <div class="case-step-text">
+                            <h3>Situationer og scenarier</h3>
+                            <p>For at undersøge, hvordan personaerne ville bruge websitet, blev der beskrevet en
+                                situation og et scenarie for hver af dem. Situationen beskrev anledningen og behovet,
+                                mens scenariet beskrev, hvordan personaen ville søge information og handle på websitet.
+                            </p>
+                            <p>Henriks behov for at planlægge en
+                                konfirmation pegede på tydelige buffetmuligheder, priser og kontaktoplysninger. Lenas
+                                scenarie fremhævede betydningen af billeder, anmeldelser og et overskueligt
+                                menukort, når man skal vurdere et ukendt spisested. Tildes
+                                travle hverdag gjorde hurtig adgang til takeaway og let aflæselige priser relevant.</p>
+                            <p>Scenarierne gjorde det muligt at forbinde brugerbehov med konkrete prioriteringer i
+                                løsningen. De blev dermed et udgangspunkt for det videre arbejde med indhold og
+                                struktur.</p>
+                        </div>
+
+                        <div class="case-figures">
+                            <!-- Åbner billedet i stor størrelse -->
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/situation_scenarie_henrik.webp"
+                                    alt="Situation og scenarie for Henrik, der planlægger en konfirmation"
+                                    loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <!-- Åbner billedet i stor størrelse -->
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/situation_scenarie_lena.webp"
+                                    alt="Situation og scenarie for Lena, der leder efter et spisested på ferie"
+                                    loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <!-- Åbner billedet i stor størrelse -->
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/situation_scenarie_tilde.webp"
+                                    alt="Situation og scenarie for Tilde, der bestiller takeaway efter arbejde"
+                                    loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+
                         </div>
                     </article>
 
@@ -416,18 +522,37 @@
                                 felter blev anvendt. Modellerne fungerede dermed både som struktur og som grundlag for
                                 prioritering.</p>
                         </div>
+                        <div class="case-figures">
 
-                        <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button">
-                            <img src="./assets/img/highway/meta_data.webp"
-                                alt="Indholdsmodel med core content og metadata for mad, drikkevarer og selskaber"
-                                loading="lazy">
-                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label">
-                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
-                            </span>
-                        </button>
+                            <!-- Åbner billedet i stor størrelse -->
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/meta_data_drikke.webp"
+                                    alt="Indholdsmodel med core content og metadata for drikkevarer" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/meta_data_mad.webp"
+                                    alt="Indholdsmodel med core content og metadata for mad" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/meta_data_selskab.webp"
+                                    alt="Indholdsmodel med core content og metadata for selskaber" loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
                     </article>
 
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'affinity'">
@@ -452,7 +577,7 @@
 
                         <!-- Åbner billedet i stor størrelse -->
                         <button class="image-zoom case-figure" type="button">
-                            <img src="./assets/img/highway/affinity_diagram.webp"
+                            <img src="./assets/img/highway/affinity.webp"
                                 alt="Affinity diagram med websitets indhold grupperet i seks kategorier" loading="lazy">
                             <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
                             <span class="image-zoom-label">
@@ -482,17 +607,31 @@
                                 strukturen efter brugernes forståelse frem for udelukkende at følge vores første
                                 gruppering.</p>
                         </div>
+                        <div class="case-figures">
+                            <!-- Åbner billedet i stor størrelse -->
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/card_sorting_p4.webp"
+                                    alt="Card sorting fra en deltager med kategorier for praktisk information, menukort og job"
+                                    loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
 
-                        <!-- Åbner billedet i stor størrelse -->
-                        <button class="image-zoom case-figure" type="button">
-                            <img src="./assets/img/highway/card_sorting.webp" alt="Resultater fra den åbne card sorting"
-                                loading="lazy">
-                            <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
-                            <span class="image-zoom-label">
-                                Åben<span class="image-zoom-long"> i fuld størrelse</span>
-                                <i class="fa-solid fa-expand" aria-hidden="true"></i>
-                            </span>
-                        </button>
+                            <button class="image-zoom case-figure" type="button">
+                                <img src="./assets/img/highway/card_sorting_p7.webp"
+                                    alt="Card sorting fra en deltager, der har givet takeaway sin egen kategori"
+                                    loading="lazy">
+                                <!-- Overlay med tekst og pil – på mobil og tablet bliver det til en lille knap -->
+                                <span class="image-zoom-label">
+                                    Åben<span class="image-zoom-long"> i fuld størrelse</span>
+                                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                                </span>
+                            </button>
+
+                        </div>
                     </article>
 
                     <article class="case-step" role="tabpanel" v-show="activeStep === 'content-sitemap'">

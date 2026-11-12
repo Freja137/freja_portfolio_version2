@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <!-- Samlede det i et div-element da vue styrer det er det element vi mounter på. Med .mount(#app) kigger Vue kun efter TheHeader og TheFooter inde i <div id="app"> -->
+    <!-- Alt ligger i <div id="app">, fordi det er her, Vue starter (.mount("#app")). Vue kan kun styre indholdet inde i den, så header og footer skal ligge her -->
     <div id="app">
         <!-- Custom cursor -->
         <div class="cursor" aria-hidden="true">
@@ -54,7 +54,7 @@
                             </a>
                         </div>
                         <img class="project-row-image" src="./assets/img/full_plate/full-plate.webp"
-                            alt="Forsiden af Full Plate med opskrifter og navigation" loading="lazy">
+                            alt="Forsiden af Full Plate med opskrifter og navigation">
                     </li>
 
                     <!-- Highway 69 -->
