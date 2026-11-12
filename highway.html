@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio | Highway 69</title>
+    <title>Freja Fischer - Frontendudvikler & UX/UI-designer</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
     <meta name="description"
         content="Case study: redesign af Highway 69's hjemmeside – fra brugerresearch til responsivt website med menukort hentet fra WordPress via REST API.">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap"
@@ -30,7 +32,7 @@
             <!-- Intro til casen -->
             <section class="case-hero">
                 <div class="case-hero-text">
-                    <a class="back-link" href="./portfolio.html">
+                    <a class="back-link" href="./projekter.html">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
                             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 d="M21 12.013L3.211 12m6.776 7L3 12l6.988-7" />
@@ -65,7 +67,7 @@
                 <div>
                     <img class="case-hero-image" src="./assets/img/highway/highway.png"
                         alt="Forsiden af Highway 69 med restaurantens bar på en bærbar computer">
-                    <p>copyright: https://highway66.dk/saeby/</p>
+                    <p class="copyright">copyright: https://highway66.dk/saeby/</p>
                 </div>
             </section>
 
@@ -84,24 +86,26 @@
                             :disabled="!canScrollLeft" @click="scrollTabs(-1)">
                             <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                         </button>
-                        <div class="phase-tabs" ref="phaseTabs" @scroll="updateArrows" role="tablist"
+                        <div class="phase-tabs" ref="phaseTabs" @scroll="updateArrows" role="group"
                             aria-label="Faser i processen">
-                            <button class="phase-tab" type="button" role="tab" data-phase="analyse"
-                                data-first-step="desk-research" :class="{ 'is-active': activePhase === 'analyse' }"
-                                :aria-selected="activePhase === 'analyse'" @click="selectPhase('analyse', $event)">01
+                            <button class="phase-tab" type="button" data-phase="analyse" data-first-step="desk-research"
+                                :class="{ 'is-active': activePhase === 'analyse' }"
+                                :aria-pressed="activePhase === 'analyse'" @click="selectPhase('analyse', $event)">01
                                 Analyse</button>
-                            <button class="phase-tab" type="button" role="tab" data-phase="indhold"
-                                data-first-step="indholdsmodel" :class="{ 'is-active': activePhase === 'indhold' }"
-                                :aria-selected="activePhase === 'indhold'" @click="selectPhase('indhold', $event)">02
+
+                            <button class="phase-tab" type="button" data-phase="indhold" data-first-step="indholdsmodel"
+                                :class="{ 'is-active': activePhase === 'indhold' }"
+                                :aria-pressed="activePhase === 'indhold'" @click="selectPhase('indhold', $event)">02
                                 Indhold</button>
-                            <button class="phase-tab" type="button" role="tab" data-phase="prototyping"
+
+                            <button class="phase-tab" type="button" data-phase="prototyping"
                                 data-first-step="design-sprint" :class="{ 'is-active': activePhase === 'prototyping' }"
-                                :aria-selected="activePhase === 'prototyping'"
+                                :aria-pressed="activePhase === 'prototyping'"
                                 @click="selectPhase('prototyping', $event)">03 Prototyping</button>
-                            <button class="phase-tab" type="button" role="tab" data-phase="udvikling"
-                                data-first-step="rest-api" :class="{ 'is-active': activePhase === 'udvikling' }"
-                                :aria-selected="activePhase === 'udvikling'"
-                                @click="selectPhase('udvikling', $event)">04 Udvikling</button>
+                            <button class="phase-tab" type="button" data-phase="udvikling" data-first-step="rest-api"
+                                :class="{ 'is-active': activePhase === 'udvikling' }"
+                                :aria-pressed="activePhase === 'udvikling'" @click="selectPhase('udvikling', $event)">04
+                                Udvikling</button>
                         </div>
                         <button class="phase-arrow" type="button" aria-label="Vis flere faser"
                             :disabled="!canScrollRight" @click="scrollTabs(1)">
@@ -109,35 +113,36 @@
                         </button>
                     </div>
 
-                    <!-- Trinene i hver fase – kun den aktive fase vises -->
+                    <!-- Trinene i hver fase – kun den aktive fase vises
+                    aria-controls kobler hvert trin til sit indhold nedenfor via id, så skærmlæsere ved, hvilket indhold knappen viser -->
                     <div class="step-tabs" role="tablist" aria-label="Trin i analysen"
                         v-show="activePhase === 'analyse'">
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-desk-research"
                             :class="{ 'is-active': activeStep === 'desk-research' }"
                             :aria-selected="activeStep === 'desk-research'" @click="selectStep('desk-research')">
                             Desk research
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-segmentering"
                             :class="{ 'is-active': activeStep === 'segmentering' }"
                             :aria-selected="activeStep === 'segmentering'" @click="selectStep('segmentering')">
                             Segmentering
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-interview"
                             :class="{ 'is-active': activeStep === 'interview' }"
                             :aria-selected="activeStep === 'interview'" @click="selectStep('interview')">
                             Interview
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-tematisk-analyse"
                             :class="{ 'is-active': activeStep === 'tematisk-analyse' }"
                             :aria-selected="activeStep === 'tematisk-analyse'" @click="selectStep('tematisk-analyse')">
                             Tematisk analyse
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-personaer"
                             :class="{ 'is-active': activeStep === 'personaer' }"
                             :aria-selected="activeStep === 'personaer'" @click="selectStep('personaer')">
                             Personaer
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-situationer-scenarier"
                             :class="{ 'is-active': activeStep === 'situationer-scenarier' }"
                             :aria-selected="activeStep === 'situationer-scenarier'"
                             @click="selectStep('situationer-scenarier')">
@@ -147,27 +152,27 @@
 
                     <div class="step-tabs" role="tablist" aria-label="Trin i indhold"
                         v-show="activePhase === 'indhold'">
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-indholdsmodel"
                             :class="{ 'is-active': activeStep === 'indholdsmodel' }"
                             :aria-selected="activeStep === 'indholdsmodel'" @click="selectStep('indholdsmodel')">
                             Indholdsmodel
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-affinity"
                             :class="{ 'is-active': activeStep === 'affinity' }"
                             :aria-selected="activeStep === 'affinity'" @click="selectStep('affinity')">
                             Affinity Diagram
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-card-sorting"
                             :class="{ 'is-active': activeStep === 'card-sorting' }"
                             :aria-selected="activeStep === 'card-sorting'" @click="selectStep('card-sorting')">
                             Card Sorting
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-content-sitemap"
                             :class="{ 'is-active': activeStep === 'content-sitemap' }"
                             :aria-selected="activeStep === 'content-sitemap'" @click="selectStep('content-sitemap')">
                             Content sitemap
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-informationsdesign"
                             :class="{ 'is-active': activeStep === 'informationsdesign' }"
                             :aria-selected="activeStep === 'informationsdesign'"
                             @click="selectStep('informationsdesign')">
@@ -177,27 +182,27 @@
 
                     <div class="step-tabs" role="tablist" aria-label="Trin i prototyping"
                         v-show="activePhase === 'prototyping'">
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-design-sprint"
                             :class="{ 'is-active': activeStep === 'design-sprint' }"
                             :aria-selected="activeStep === 'design-sprint'" @click="selectStep('design-sprint')">
                             Design sprint
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-atomic-design"
                             :class="{ 'is-active': activeStep === 'atomic-design' }"
                             :aria-selected="activeStep === 'atomic-design'" @click="selectStep('atomic-design')">
                             Atomic Design
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-wireframes"
                             :class="{ 'is-active': activeStep === 'wireframes' }"
                             :aria-selected="activeStep === 'wireframes'" @click="selectStep('wireframes')">
                             Wireframes
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-mockups"
                             :class="{ 'is-active': activeStep === 'mockups' }" :aria-selected="activeStep === 'mockups'"
                             @click="selectStep('mockups')">
                             Mockups
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-brugertest"
                             :class="{ 'is-active': activeStep === 'brugertest' }"
                             :aria-selected="activeStep === 'brugertest'" @click="selectStep('brugertest')">
                             Brugertest
@@ -206,22 +211,22 @@
 
                     <div class="step-tabs" role="tablist" aria-label="Trin i udvikling"
                         v-show="activePhase === 'udvikling'">
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-rest-api"
                             :class="{ 'is-active': activeStep === 'rest-api' }"
                             :aria-selected="activeStep === 'rest-api'" @click="selectStep('rest-api')">
                             Opsætning af WordPress
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-github"
                             :class="{ 'is-active': activeStep === 'github' }" :aria-selected="activeStep === 'github'"
                             @click="selectStep('github')">
                             GitHub
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-frontend"
                             :class="{ 'is-active': activeStep === 'frontend' }"
                             :aria-selected="activeStep === 'frontend'" @click="selectStep('frontend')">
                             Kode
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-lighthouse"
                             :class="{ 'is-active': activeStep === 'lighthouse' }"
                             :aria-selected="activeStep === 'lighthouse'" @click="selectStep('lighthouse')">
                             Lighthouse-test
@@ -232,7 +237,8 @@
 
                     <!-- 01 Analyse -->
                     <!-- v-show viser kun det valgte trin. Kilde: https://vuejs.org/guide/essentials/conditional -->
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'desk-research'">
+                    <div class="case-step" id="step-desk-research" role="tabpanel"
+                        v-show="activeStep === 'desk-research'">
                         <div class="case-step-text">
                             <h3>Desk research</h3>
                             <p>I den indledende fase af projektet blev der arbejdet med desk research for at forstå
@@ -258,9 +264,10 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'segmentering'">
+                    <div class="case-step" id="step-segmentering" role="tabpanel"
+                        v-show="activeStep === 'segmentering'">
                         <div class="case-step-text">
                             <h3>Segmentering</h3>
                             <p>Vores desk research pegede på, at gæsterne deler en interesse for madoplevelsen, men kan
@@ -299,9 +306,9 @@
                                 </span>
                             </button>
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'interview'">
+                    <div class="case-step" id="step-interview" role="tabpanel" v-show="activeStep === 'interview'">
                         <div class="case-step-text">
                             <h3>Interview</h3>
                             <p>Desk research gav et overordnet billede af målgruppen, men kunne ikke alene forklare,
@@ -352,9 +359,10 @@
 
                         </div>
 
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'tematisk-analyse'">
+                    <div class="case-step" id="step-tematisk-analyse" role="tabpanel"
+                        v-show="activeStep === 'tematisk-analyse'">
                         <div class="case-step-text">
                             <h3>Tematisk analyse</h3>
                             <p>Den tematiske analyse samlede interviewenes forskellige erfaringer i mønstre, som kunne
@@ -385,9 +393,9 @@
                             </span>
                         </button>
 
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'personaer'">
+                    <div class="case-step" id="step-personaer" role="tabpanel" v-show="activeStep === 'personaer'">
                         <div class="case-step-text">
                             <h3>Personaer</h3>
                             <p>Brugerindsigterne viste, at et spontant restaurantbesøg, planlægningen af et selskab og
@@ -442,9 +450,10 @@
                             </button>
 
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'situationer-scenarier'">
+                    <div class="case-step" id="step-situationer-scenarier" role="tabpanel"
+                        v-show="activeStep === 'situationer-scenarier'">
                         <div class="case-step-text">
                             <h3>Situationer og scenarier</h3>
                             <p>For at undersøge, hvordan personaerne ville bruge websitet, blev der beskrevet en
@@ -497,11 +506,12 @@
                             </button>
 
                         </div>
-                    </article>
+                    </div>
 
 
                     <!-- 02 Indhold -->
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'indholdsmodel'">
+                    <div class="case-step" id="step-indholdsmodel" role="tabpanel"
+                        v-show="activeStep === 'indholdsmodel'">
                         <div class="case-step-text">
                             <h3>Indholdsmodel</h3>
                             <p>Brugerundersøgelsen viste et tydeligt behov for at kunne finde og sammenligne oplysninger
@@ -555,9 +565,9 @@
                                 </span>
                             </button>
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'affinity'">
+                    <div class="case-step" id="step-affinity" role="tabpanel" v-show="activeStep === 'affinity'">
                         <div class="case-step-text">
                             <h3>Affinity Diagram</h3>
                             <p>Indholdsmodellerne beskrev de enkelte indholdstyper, men der var også behov for at
@@ -587,9 +597,10 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'card-sorting'">
+                    <div class="case-step" id="step-card-sorting" role="tabpanel"
+                        v-show="activeStep === 'card-sorting'">
                         <div class="case-step-text">
                             <h3>Card Sorting</h3>
                             <p>Den foreløbige indholdsstruktur byggede på vores fortolkning af brugerindsigterne. En
@@ -634,9 +645,10 @@
                             </button>
 
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'content-sitemap'">
+                    <div class="case-step" id="step-content-sitemap" role="tabpanel"
+                        v-show="activeStep === 'content-sitemap'">
                         <div class="case-step-text">
                             <h3>Content sitemap</h3>
                             <p>Indholdsarbejdet viste, hvilke oplysninger websitet skulle rumme, mens card sorting gav
@@ -665,9 +677,10 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'informationsdesign'">
+                    <div class="case-step" id="step-informationsdesign" role="tabpanel"
+                        v-show="activeStep === 'informationsdesign'">
                         <div class="case-step-text">
                             <h3>Informationsdesign</h3>
                             <p>At have de rigtige oplysninger på websitet var ikke tilstrækkeligt, hvis de var svære at
@@ -697,11 +710,12 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
 
                     <!-- 03 Prototyping -->
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'design-sprint'">
+                    <div class="case-step" id="step-design-sprint" role="tabpanel"
+                        v-show="activeStep === 'design-sprint'">
                         <div class="case-step-text">
                             <h3>Design sprint (Crazy 8 & Dot-voting)</h3>
                             <p>Den fastlagte indholdsstruktur gav et fælles udgangspunkt, men kunne omsættes til flere
@@ -728,8 +742,9 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'atomic-design'">
+                    </div>
+                    <div class="case-step" id="step-atomic-design" role="tabpanel"
+                        v-show="activeStep === 'atomic-design'">
                         <div class="case-step-text">
                             <h3>Atomic Design</h3>
                             <p>Inden wireframes blev udarbejdet, var der behov for at fastlægge, hvilke elementer der
@@ -758,8 +773,8 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'wireframes'">
+                    </div>
+                    <div class="case-step" id="step-wireframes" role="tabpanel" v-show="activeStep === 'wireframes'">
                         <div class="case-step-text">
                             <h3>Wireframes</h3>
                             <p>De udvalgte skitser gav en retning for layoutet, mens wireframes gjorde det muligt at
@@ -784,9 +799,9 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'mockups'">
+                    <div class="case-step" id="step-mockups" role="tabpanel" v-show="activeStep === 'mockups'">
                         <div class="case-step-text">
                             <h3>Mockups</h3>
                             <p>I mockups blev wireframes videreudviklet med farver, typografi og billeder. De
@@ -810,9 +825,9 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'brugertest'">
+                    <div class="case-step" id="step-brugertest" role="tabpanel" v-show="activeStep === 'brugertest'">
                         <div class="case-step-text">
                             <h3>Brugertest</h3>
                             <p>Brugertestene skulle undersøge, om designets prioriteringer også gav mening for personer
@@ -842,11 +857,11 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
 
                     <!-- 04 Udvikling -->
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'rest-api'">
+                    <div class="case-step" id="step-rest-api" role="tabpanel" v-show="activeStep === 'rest-api'">
                         <div class="case-step-text">
                             <h3>Opsætning af WordPress</h3>
                             <p>Menukortet bestod af gentagne indholdselementer med oplysninger, der skulle kunne
@@ -894,9 +909,9 @@
                                 </span>
                             </button>
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'github'">
+                    <div class="case-step" id="step-github" role="tabpanel" v-show="activeStep === 'github'">
                         <div class="case-step-text">
                             <h3>GitHub</h3>
                             <p>Udviklingen krævede, at flere gruppemedlemmer kunne arbejde på løsningen samtidig uden
@@ -935,9 +950,9 @@
                                 </span>
                             </button>
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'frontend'">
+                    <div class="case-step" id="step-frontend" role="tabpanel" v-show="activeStep === 'frontend'">
                         <div class="case-step-text">
                             <h3>Kode</h3>
                             <p>Designets fokus på let adgang til information skulle også fungere på tværs af
@@ -966,9 +981,9 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'lighthouse'">
+                    <div class="case-step" id="step-lighthouse" role="tabpanel" v-show="activeStep === 'lighthouse'">
                         <div class="case-step-text">
                             <h3>Lighthouse-test</h3>
                             <p>Lighthouse-testen gav et teknisk supplement til brugertestene ved at pege på områder
@@ -1011,7 +1026,7 @@
                                 </span>
                             </button>
                         </div>
-                    </article>
+                    </div>
                 </div>
             </section>
             <!-- Modal til billeder i stor størrelse. Inspiration: https://www.w3schools.com/howto/howto_css_modal_images.asp -->
@@ -1019,7 +1034,6 @@
                 <button class="image-modal-close" type="button" aria-label="Luk billedet">
                     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
-                <img class="image-modal-img" src="" alt="">
                 <p class="image-modal-caption"></p>
             </dialog>
         </main>

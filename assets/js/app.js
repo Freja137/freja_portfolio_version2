@@ -175,7 +175,7 @@ if (toTop && heroSection) {
 }
 
 /* ----- Custom cursor ----- */
-/* Inspiration: https://codepen.io/gabrielcojea/pen/dyGKKXY?editors=1010 */
+/* Inspiration: https://codepen.io/gabrielcojea/pen/dyGKKXY */
 
 // Henter cirklen fra DOM'en
 const cursor = document.querySelector(".cursor");
@@ -183,7 +183,7 @@ const cursor = document.querySelector(".cursor");
 // Koden kører kun, hvis siden har en cirkel
 if (cursor) {
     // Gemmer musens placering
-    const mouse = { x: 300, y: 300 };
+    const mouse = { x: 0, y: 0 };
 
     // Gemmer cirklens placering
     const pos = { x: 0, y: 0 };
@@ -201,10 +201,16 @@ if (cursor) {
         cursor.style.transform = "translate3d(" + pos.x + "px, " + pos.y + "px, 0)";
     };
 
-    // Gemmer musens position fra eventet i mouse
+    // Kører hver gang musen bevæger sig – gemmer musens position, viser cirklen og tjekker, om musen er over et link
     const updateCoordinates = (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
+
+        // Hvis cirklen ikke har class="is-visible", er det første gang musen bevæger sig og så flyttes cirklen direkte hen til musen, mens den stadig er usynlig.
+        if (!cursor.classList.contains("is-visible")) {
+            pos.x = e.clientX;
+            pos.y = e.clientY;
+        }
 
         // Viser cirklen, når musen har bevæget sig – i CSS'en er den usynlig fra start
         cursor.classList.add("is-visible");

@@ -1,13 +1,11 @@
 /* ----- Variabler ----- */
 :root {
-    /* Farver */
     --color-background: #f4efe7;
     --chocolate: #3E2B24;
     --caramel: #8C6248;
     --color-line: #b7a596;
     --color-white: #ffffff;
 
-    /* Skrift */
     --font-heading: "Instrument Serif", serif;
     --font-body: "Instrument Sans", sans-serif;
     --font-code: monospace;
@@ -15,7 +13,6 @@
     --font-size-body: 15px;
     --font-size-small: 10px;
 
-    /* Afstande */
     --smallPadding: 20px;
     --mediumPadding: 40px;
     --largePadding: 80px;
@@ -24,7 +21,6 @@
     --section-space: 100px;
     --header-height: 60px;
 }
-
 
 /* ----- Generel styling ----- */
 * {
@@ -58,22 +54,17 @@ main {
     padding-top: var(--header-height);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
+/* Links arver tekstfarven, så de ikke bliver blå */
 a {
-    color: var(--chocolate);
-    font-weight: 300;
+    color: inherit;
 }
 
+/* Overskrifter er ikke fede – Instrument Serif findes kun i én vægt */
 h1,
 h2,
 h3 {
     font-family: var(--font-heading);
+    font-weight: 400;
 }
 
 h1 {
@@ -117,7 +108,7 @@ img {
 
 /* Små labels over sektionerne, fx "</> Kontakt" */
 .section-label {
-    margin: var(--smallPadding) 0 var(--smallPadding);
+    margin: var(--smallPadding) 0;
     font-family: var(--font-body);
     font-size: var(--font-size-small);
 }
@@ -136,7 +127,6 @@ img {
     clip-path: inset(50%);
     white-space: nowrap;
 }
-
 
 /* ----- Fælles komponenter ----- */
 .burgerMenuIcon,
@@ -243,7 +233,6 @@ img {
 }
 
 .to-top i {
-    font-size: var(--font-size-small);
     transition: transform 250ms ease;
 }
 
@@ -376,7 +365,6 @@ header {
     justify-content: flex-end;
     width: 44px;
     height: 44px;
-    margin-left: auto;
     font-size: 1.25rem;
 }
 
@@ -458,7 +446,6 @@ body.menu-open {
     overflow: hidden;
 }
 
-
 /* ----- Footer (mobil) ----- */
 .site-footer {
     margin-top: var(--largePadding);
@@ -496,7 +483,6 @@ body.menu-open {
 
 .footer-links i {
     width: 1rem;
-    font-size: 12px;
     text-align: center;
 }
 
@@ -510,7 +496,6 @@ body.menu-open {
     color: var(--color-line);
     font-size: var(--font-size-small);
 }
-
 
 /* ----- Forside ----- */
 .home-hero-layout {
@@ -671,7 +656,6 @@ body.menu-open {
 
 .about-title {
     margin: var(--smallPadding) 0 0;
-    font-weight: 400;
     font-size: 3rem;
     line-height: 1.5;
 }
@@ -689,9 +673,7 @@ body.menu-open {
     margin-top: var(--largePadding);
 }
 
-
 /* ----- Kompetencer ----- */
-/* Hero på Kompetencer og Om mig – tekst, lokal navigation og billede */
 .page-hero h1 {
     margin: 0 0 var(--smallPadding);
 }
@@ -718,7 +700,6 @@ body.menu-open {
     text-transform: uppercase;
 }
 
-/* Tallene 01, 02, 03 laves med en counter ligesom i fun facts */
 .page-nav ol {
     display: grid;
     gap: 0.75rem;
@@ -786,7 +767,7 @@ body.menu-open {
 .fp-link {
     max-width: 250px;
     margin: 0 auto;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .kompetencer-container,
@@ -817,7 +798,6 @@ body.menu-open {
     font-size: var(--font-size-body);
 }
 
-/* Det bidrager jeg med – accordions */
 .accordion {
     border-bottom: 1px solid var(--chocolate);
 }
@@ -839,7 +819,6 @@ body.menu-open {
     padding: 1.75rem 0;
     font-family: var(--font-heading);
     font-size: 20px;
-    font-weight: 400;
     text-align: left;
 }
 
@@ -881,6 +860,7 @@ body.menu-open {
 }
 
 .accordion-text strong {
+    font-weight: 400;
     font-style: italic;
 }
 
@@ -894,7 +874,6 @@ body.menu-open {
     object-fit: cover;
 }
 
-
 /* ----- Om mig ----- */
 .fun-facts {
     display: grid;
@@ -904,7 +883,6 @@ body.menu-open {
 .fun-facts h2 {
     margin: 0;
     font-size: 30px;
-    font-weight: 400;
     line-height: 1.1;
 }
 
@@ -913,8 +891,7 @@ body.menu-open {
     display: grid;
     gap: 1.5rem;
     margin: 0;
-    padding: 0;
-    padding-top: var(--smallPadding);
+    padding: var(--smallPadding) 0 0;
     list-style: none;
     counter-reset: fact;
 }
@@ -965,7 +942,6 @@ body.menu-open {
 .facts-images img:first-child {
     object-position: 70% 20%;
 }
-
 
 /* ----- Portfolio ----- */
 .portfolio h1 {
@@ -1018,9 +994,7 @@ body.menu-open {
     object-position: top;
 }
 
-
 /* ----- Case study ----- */
-/* Tilbage-link øverst på case-siderne – samme udtryk som Kontakt i navigationen */
 .back-link {
     display: inline-flex;
     align-items: center;
@@ -1043,6 +1017,10 @@ body.menu-open {
     transform: translateY(-4px);
 }
 
+.copyright {
+    text-align: center;
+}
+
 /* Intro */
 .case-hero {
     display: grid;
@@ -1060,7 +1038,6 @@ body.menu-open {
     font-size: var(--font-size-body);
 }
 
-/* Kode i teksten, fx ref og v-for på Job listings */
 .case-step-text code {
     font-family: var(--font-code);
     font-size: 0.9em;
@@ -1158,14 +1135,12 @@ body.menu-open {
         width 400ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Pilene ude i siderne */
 .phase-arrow {
     flex-shrink: 0;
     width: 32px;
     height: 44px;
     margin-bottom: 0.75rem;
     font-size: 16px;
-    font-weight: 200;
 }
 
 .phase-arrow:disabled {
@@ -1178,7 +1153,6 @@ body.menu-open {
     outline-offset: 2px;
 }
 
-/* Trinene i den valgte fase */
 .step-tabs {
     display: flex;
     gap: var(--mediumPadding);
@@ -1190,7 +1164,6 @@ body.menu-open {
     flex-shrink: 0;
     font-family: var(--font-body);
     font-size: var(--font-size-body);
-    font-weight: 300;
 }
 
 .step-tab.is-active {
@@ -1203,7 +1176,6 @@ body.menu-open {
     outline-offset: 4px;
 }
 
-/* Indholdet i hvert trin */
 .case-step {
     display: grid;
     gap: var(--mediumPadding);
@@ -1216,7 +1188,6 @@ body.menu-open {
     line-height: 1.1;
 }
 
-/* Flere billeder i et gitter med to kolonner */
 .case-figures {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1235,14 +1206,12 @@ body.menu-open {
     width: 100%;
 }
 
-/* Billederne i gitteret får samme størrelse, og hele billedet kan ses */
 .case-figures img {
     aspect-ratio: 4 / 3;
     object-fit: contain;
     padding: 0.5rem;
     background-color: var(--color-white);
 }
-
 
 /* ----- Kontakt ----- */
 .kontakt {
@@ -1347,7 +1316,6 @@ body.menu-open {
     margin-top: var(--largePadding);
 }
 
-/* "Hvem giver du skylden?" – fieldset uden browserens egen kant og afstand */
 .blame {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1358,7 +1326,6 @@ body.menu-open {
     border: 0;
 }
 
-/* Kortet er en label, så hele kortet vælger radioknappen */
 .blame-card {
     display: flex;
     flex-direction: column;
@@ -1370,13 +1337,11 @@ body.menu-open {
     transition: box-shadow 250ms ease;
 }
 
-/* Tykkere kant ved hover og på det valgte kort – box-shadow, så kortet ikke ændrer størrelse */
 .blame-card:hover,
 .blame-card:has(input:checked) {
     box-shadow: inset 0 0 0 2px var(--chocolate);
 }
 
-/* Fokus-markering, når man vælger med tastaturet */
 .blame-card:has(input:focus-visible) {
     outline: 2px solid var(--chocolate);
     outline-offset: 6px;
@@ -1387,7 +1352,6 @@ body.menu-open {
     font-size: 24px;
 }
 
-/* < > står midt i kortet */
 .blame-icon {
     display: flex;
     gap: 0.75rem;
@@ -1395,7 +1359,6 @@ body.menu-open {
     font-size: 2rem;
 }
 
-/* Billedet står nederst i kortet */
 .blame-image {
     width: 100%;
     height: 75%;
@@ -1452,7 +1415,6 @@ body.menu-open {
         opacity: 0;
     }
 }
-
 
 /* ------ Media queries ----- */
 @media (min-width: 768px) {
@@ -1526,7 +1488,7 @@ body.menu-open {
         line-height: 1;
     }
 
-    /* Kontakt – pilen flugter med indholdet og bliver til en knap ved hover */
+    /* Kontakt*/
     .nav-desktop .contact-link {
         justify-self: end;
         display: inline-flex;
@@ -1581,7 +1543,6 @@ body.menu-open {
         font-size: 15px;
     }
 
-    /* Rækkefølgen på desktop: Mail, LinkedIn, GitHub */
     .footer-links li:nth-child(1) {
         order: 3;
     }
@@ -1676,6 +1637,7 @@ body.menu-open {
         flex-wrap: wrap;
     }
 
+    /* Kompetencer og Om mig – lokal navigation */
     .page-nav a {
         font-size: 12px;
     }
@@ -1688,7 +1650,7 @@ body.menu-open {
         font-size: 25px;
     }
 
-    /* Kompetencer – labels over sektionerne står i midten (også på Om mig) */
+    /* Kompetencer*/
     .kompetencer-container>.section-label,
     .process-container>.section-label {
         grid-column: 1 / -1;
@@ -1702,7 +1664,6 @@ body.menu-open {
 
     /* Om mig – fun facts */
     .fun-facts {
-        width: 100%;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-template-rows: auto auto 1fr;
         column-gap: var(--mediumPadding);
@@ -1732,8 +1693,6 @@ body.menu-open {
         grid-column: 2;
         grid-row: 2 / 4;
         align-self: center;
-        justify-self: center;
-        width: 100%;
     }
 
     .facts-images {
@@ -1792,7 +1751,7 @@ body.menu-open {
         display: none;
     }
 
-    /* Kontakt – sektionen står i midten af skærmen */
+    /* Kontakt */
     body:has(.kontakt) main {
         display: flex;
     }
@@ -1908,8 +1867,6 @@ body.menu-open {
         font-size: 3.5rem;
     }
 
-    /* Hero – tekst til venstre og billede til højre (Kompetencer og Om mig) */
-    /* Mindre luft over heroen, så navigationen kan ses uden at scrolle – ligesom på forsiden */
     .main-home>section.page-hero {
         padding-top: var(--largePadding);
     }
@@ -1927,8 +1884,8 @@ body.menu-open {
     }
 
     .page-hero h1 {
+        margin: 0 0 var(--largePadding);
         font-size: 70px;
-        margin: 0 0 var(--largePadding)
     }
 
     .page-nav {
@@ -2107,7 +2064,6 @@ body.menu-open {
         font-size: 3rem;
     }
 }
-
 
 /* ----- Custom cursor – kun på enheder med mus ----- */
 /* Kilde: https://codepen.io/gabrielcojea/pen/dyGKKXY */

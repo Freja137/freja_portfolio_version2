@@ -38,7 +38,7 @@ export const TheHeader = {
                         <a href="./om-mig.html" :aria-current="isCurrent('om-mig.html')">Om mig</a>
                     </li>
                     <li class="links">
-                        <a href="./portfolio.html" :aria-current="isCurrent('portfolio.html')">Portfolio</a>
+                        <a href="./projekter.html" :aria-current="isCurrent('projekter.html')">Projekter</a>
                     </li>
                     <li class="links">
                         <a href="./kontakt.html" :aria-current="isCurrent('kontakt.html')">Kontakt</a>
@@ -51,7 +51,7 @@ export const TheHeader = {
             <ul class="nav-list-desktop">
                 <li><a href="./faglig-profil.html" :aria-current="isCurrent('faglig-profil.html')">Faglig profil</a></li>
                 <li><a href="./om-mig.html" :aria-current="isCurrent('om-mig.html')">Om mig</a></li>
-                <li><a href="./portfolio.html" :aria-current="isCurrent('portfolio.html')">Portfolio</a></li>
+                <li><a href="./projekter.html" :aria-current="isCurrent('projekter.html')">Projekter</a></li>
             </ul>
 
             <a class="site-logo" href="./index.html" aria-label="Freja Fischer – forside">

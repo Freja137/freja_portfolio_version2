@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio | Full Plate</title>
+    <title>Full Plate | Freja Fischer</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
     <meta name="description"
         content="Case study: Full Plate – et madunivers med opskrifter, madhistorier og køkkenredskaber, bygget som et WordPress-tema med PHP, Custom Post Types og ACF.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -30,7 +31,7 @@
             <!-- Intro til casen -->
             <section class="case-hero">
                 <div class="case-hero-text">
-                    <a class="back-link" href="./portfolio.html">
+                    <a class="back-link" href="./projekter.html">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
                             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 d="M21 12.013L3.211 12m6.776 7L3 12l6.988-7" />
@@ -63,7 +64,7 @@
                 <div>
                     <img class="case-hero-image" src="./assets/img/full_plate/full-plate.png"
                         alt="Forsiden af Full Plate vist på en bærbar computer">
-                    <p>copyright: www.bbc.co.uk/food/recipes</p>
+                    <p class="copyright">copyright: www.bbc.co.uk/food/recipes</p>
                 </div>
 
             </section>
@@ -84,20 +85,20 @@
                             :disabled="!canScrollLeft" @click="scrollTabs(-1)">
                             <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                         </button>
-                        <div class="phase-tabs" ref="phaseTabs" @scroll="updateArrows" role="tablist"
+                        <div class="phase-tabs" ref="phaseTabs" @scroll="updateArrows" role="group"
                             aria-label="Faser i processen">
-                            <button class="phase-tab" type="button" role="tab" data-phase="indhold"
-                                data-first-step="maalgrupper" :class="{ 'is-active': activePhase === 'indhold' }"
-                                :aria-selected="activePhase === 'indhold'" @click="selectPhase('indhold', $event)">01
+                            <button class="phase-tab" type="button" data-phase="indhold" data-first-step="maalgrupper"
+                                :class="{ 'is-active': activePhase === 'indhold' }"
+                                :aria-pressed="activePhase === 'indhold'" @click="selectPhase('indhold', $event)">01
                                 Indhold og data</button>
-                            <button class="phase-tab" type="button" role="tab" data-phase="prototyping"
+                            <button class="phase-tab" type="button" data-phase="prototyping"
                                 data-first-step="wireframes" :class="{ 'is-active': activePhase === 'prototyping' }"
-                                :aria-selected="activePhase === 'prototyping'"
+                                :aria-pressed="activePhase === 'prototyping'"
                                 @click="selectPhase('prototyping', $event)">02 Prototyping</button>
-                            <button class="phase-tab" type="button" role="tab" data-phase="udvikling"
+                            <button class="phase-tab" type="button" data-phase="udvikling"
                                 data-first-step="wordpress-tema" :class="{ 'is-active': activePhase === 'udvikling' }"
-                                :aria-selected="activePhase === 'udvikling'"
-                                @click="selectPhase('udvikling', $event)">03 Udvikling</button>
+                                :aria-pressed="activePhase === 'udvikling'" @click="selectPhase('udvikling', $event)">03
+                                Udvikling</button>
                         </div>
                         <button class="phase-arrow" type="button" aria-label="Vis flere faser"
                             :disabled="!canScrollRight" @click="scrollTabs(1)">
@@ -107,36 +108,39 @@
 
                     <!-- Trinene i hver fase – kun den aktive fase vises -->
 
+                    <!-- Trinene i hver fase – kun den aktive fase vises
+                    aria-controls kobler hvert trin til sit indhold nedenfor via id, så skærmlæsere ved, hvilket indhold knappen viser -->
                     <div class="step-tabs" role="tablist" aria-label="Trin i indhold og data"
                         v-show="activePhase === 'indhold'">
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-maalgrupper"
                             :class="{ 'is-active': activeStep === 'maalgrupper' }"
                             :aria-selected="activeStep === 'maalgrupper'" @click="selectStep('maalgrupper')">
                             Målgrupper og indsigter
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-content-sitemap"
                             :class="{ 'is-active': activeStep === 'content-sitemap' }"
                             :aria-selected="activeStep === 'content-sitemap'" @click="selectStep('content-sitemap')">
                             Content sitemap
                         </button>
-                        <button class="step-tab" type="button" role="tab" :class="{ 'is-active': activeStep === 'erd' }"
-                            :aria-selected="activeStep === 'erd'" @click="selectStep('erd')">
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-erd"
+                            :class="{ 'is-active': activeStep === 'erd' }" :aria-selected="activeStep === 'erd'"
+                            @click="selectStep('erd')">
                             ERD
                         </button>
                     </div>
                     <div class="step-tabs" role="tablist" aria-label="Trin i prototyping"
                         v-show="activePhase === 'prototyping'">
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-wireframes"
                             :class="{ 'is-active': activeStep === 'wireframes' }"
                             :aria-selected="activeStep === 'wireframes'" @click="selectStep('wireframes')">
                             Wireframes
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-styletiles"
                             :class="{ 'is-active': activeStep === 'styletiles' }"
                             :aria-selected="activeStep === 'styletiles'" @click="selectStep('styletiles')">
                             Styletiles
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-mockups"
                             :class="{ 'is-active': activeStep === 'mockups' }" :aria-selected="activeStep === 'mockups'"
                             @click="selectStep('mockups')">
                             Mockups
@@ -144,23 +148,23 @@
                     </div>
                     <div class="step-tabs" role="tablist" aria-label="Trin i udvikling"
                         v-show="activePhase === 'udvikling'">
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-wordpress-tema"
                             :class="{ 'is-active': activeStep === 'wordpress-tema' }"
                             :aria-selected="activeStep === 'wordpress-tema'" @click="selectStep('wordpress-tema')">
                             WordPress-tema og PHP
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-kode"
                             :class="{ 'is-active': activeStep === 'kode' }" :aria-selected="activeStep === 'kode'"
                             @click="selectStep('kode')">
                             Kode
                         </button>
                     </div>
-
                     <!-- Indholdet til hvert trin – kun det aktive trin vises -->
 
                     <!-- 01 Indhold og data -->
                     <!-- v-show viser kun det valgte trin. Kilde: https://vuejs.org/guide/essentials/conditional -->
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'maalgrupper'">
+                    <div class="case-step" id="step-maalgrupper" role="tabpanel" v-show="activeStep === 'maalgrupper'">
+
                         <div class="case-step-text">
                             <h3>Målgrupper og indsigter</h3>
                             <p>Platformen skulle henvende sig til tre brugergrupper med forskellig erfaring i
@@ -222,9 +226,10 @@
                                 </span>
                             </button>
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'content-sitemap'">
+                    <div class="case-step" id="step-content-sitemap" role="tabpanel"
+                        v-show="activeStep === 'content-sitemap'">
                         <div class="case-step-text">
                             <h3>Content sitemap</h3>
                             <p>Med udgangspunkt i casen udarbejdede vi et content sitemap, hvor vi fastlagde
@@ -257,22 +262,27 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'erd'">
+                    <div class="case-step" id="step-erd" role="tabpanel" v-show="activeStep === 'erd'">
+
                         <div class="case-step-text">
                             <h3>ERD</h3>
-                            <p>Som en del af opgaven skulle vi lave et ER-diagram til det mini-CMS, vi arbejdede med i
-                                teknologiundervisningen. Formålet var at vise, at vi forstod, hvordan data kan fordeles
+                            <p>Som en del af opgaven skulle vi lave et ER-diagram til det mini-CMS, vi arbejdede med
+                                i
+                                teknologiundervisningen. Formålet var at vise, at vi forstod, hvordan data kan
+                                fordeles
                                 i
                                 tabeller og forbindes gennem relationer.</p>
                             <p>Diagrammet omfattede blandt andet brugere, opskrifter, ingredienser, måleenheder og
                                 historier. En ingrediens kan indgå i flere opskrifter, men med forskellige mængder.
-                                Derfor blev opskrifter og ingredienser forbundet gennem en mellemtabel med oplysninger
+                                Derfor blev opskrifter og ingredienser forbundet gennem en mellemtabel med
+                                oplysninger
                                 om blandt andet mængde, enhed og rækkefølge.</p>
                             <p>ER-diagrammet er ikke den database, Full Plate bygger på. Det var en separat øvelse i
                                 datarelationer og har ikke noget med WordPress' database at gøre. I selve løsningen
-                                brugte vi WordPress' egen databasestruktur og organiserede vores indhold med Custom Post
+                                brugte vi WordPress' egen databasestruktur og organiserede vores indhold med Custom
+                                Post
                                 Types og ACF.</p>
                         </div>
                         <!-- Åbner billedet i stor størrelse -->
@@ -286,11 +296,12 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
 
                     <!-- 02 Prototyping -->
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'wireframes'">
+                    <div class="case-step" id="step-wireframes" role="tabpanel" v-show="activeStep === 'wireframes'">
+
                         <div class="case-step-text">
                             <h3>Wireframes</h3>
                             <p>Da vi havde fået overblik over, hvilket indhold vi ønskede på alle siderne, gik vi
@@ -321,9 +332,10 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'styletiles'">
+                    <div class="case-step" id="step-styletiles" role="tabpanel" v-show="activeStep === 'styletiles'">
+
                         <div class="case-step-text">
                             <h3>Styletiles</h3>
                             <p>Før vi gik i gang med mockups, samlede vi den visuelle stil i en styletile med logo,
@@ -357,9 +369,10 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'mockups'">
+                    <div class="case-step" id="step-mockups" role="tabpanel" v-show="activeStep === 'mockups'">
+
                         <div class="case-step-text">
                             <h3>Mockups</h3>
                             <p>I vores mockups blev wireframes videreudviklet med farver, typografi og billeder. Vi
@@ -388,11 +401,13 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
 
                     <!-- 03 Udvikling -->
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'wordpress-tema'">
+                    <div class="case-step" id="step-wordpress-tema" role="tabpanel"
+                        v-show="activeStep === 'wordpress-tema'">
+
                         <div class="case-step-text">
                             <h3>WordPress-tema og PHP</h3>
                             <p>Som en del af udviklingen byggede vi et skræddersyet WordPress-tema, hvor PHP blev
@@ -459,9 +474,10 @@
                             </button>
 
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'kode'">
+                    <div class="case-step" id="step-kode" role="tabpanel" v-show="activeStep === 'kode'">
+
                         <div class="case-step-text">
                             <h3>Kode</h3>
                             <p>Vi startede med at opbygge siderne statisk med HTML og CSS for at omsætte vores
@@ -508,7 +524,7 @@
                             </span>
                         </button>
 
-                    </article>
+                    </div>
                 </div>
             </section>
 
@@ -517,7 +533,6 @@
                 <button class="image-modal-close" type="button" aria-label="Luk billedet">
                     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
-                <img class="image-modal-img" src="" alt="">
                 <p class="image-modal-caption"></p>
             </dialog>
         </main>

@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio | Job listings</title>
+    <title>Job listings | Freja Fischer</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
     <meta name="description"
         content="Job listings – en Frontend Mentor-challenge bygget i Vue 3 og Vite, hvor brugeren kan filtrere jobopslag efter rolle, niveau, sprog og værktøjer.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -30,7 +31,7 @@
             <!-- Intro til casen -->
             <section class="case-hero">
                 <div class="case-hero-text">
-                    <a class="back-link" href="./portfolio.html">
+                    <a class="back-link" href="./projekter.html">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
                             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 d="M21 12.013L3.211 12m6.776 7L3 12l6.988-7" />
@@ -82,20 +83,21 @@
                             :disabled="!canScrollLeft" @click="scrollTabs(-1)">
                             <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                         </button>
-                        <div class="phase-tabs" ref="phaseTabs" @scroll="updateArrows" role="tablist"
+                        <div class="phase-tabs" ref="phaseTabs" @scroll="updateArrows" role="group"
                             aria-label="Faser i processen">
-                            <button class="phase-tab" type="button" role="tab" data-phase="opgaven"
-                                data-first-step="brief" :class="{ 'is-active': activePhase === 'opgaven' }"
-                                :aria-selected="activePhase === 'opgaven'" @click="selectPhase('opgaven', $event)">01
+                            <button class="phase-tab" type="button" data-phase="opgaven" data-first-step="brief"
+                                :class="{ 'is-active': activePhase === 'opgaven' }"
+                                :aria-pressed="activePhase === 'opgaven'" @click="selectPhase('opgaven', $event)">01
                                 Opgaven</button>
-                            <button class="phase-tab" type="button" role="tab" data-phase="udvikling"
-                                data-first-step="struktur" :class="{ 'is-active': activePhase === 'udvikling' }"
-                                :aria-selected="activePhase === 'udvikling'"
-                                @click="selectPhase('udvikling', $event)">02 Udvikling</button>
-                            <button class="phase-tab" type="button" role="tab" data-phase="deployment"
-                                data-first-step="github" :class="{ 'is-active': activePhase === 'deployment' }"
-                                :aria-selected="activePhase === 'deployment'"
-                                @click="selectPhase('deployment', $event)">03 Deployment</button>
+                            <button class="phase-tab" type="button" data-phase="udvikling" data-first-step="struktur"
+                                :class="{ 'is-active': activePhase === 'udvikling' }"
+                                :aria-pressed="activePhase === 'udvikling'" @click="selectPhase('udvikling', $event)">02
+                                Udvikling</button>
+                            <button class="phase-tab" type="button" data-phase="deployment" data-first-step="github"
+                                :class="{ 'is-active': activePhase === 'deployment' }"
+                                :aria-pressed="activePhase === 'deployment'"
+                                @click="selectPhase('deployment', $event)">03
+                                Deployment</button>
                         </div>
                         <button class="phase-arrow" type="button" aria-label="Vis flere faser"
                             :disabled="!canScrollRight" @click="scrollTabs(1)">
@@ -103,16 +105,16 @@
                         </button>
                     </div>
 
-                    <!-- Trinene i hver fase – kun den aktive fase vises -->
-
+                    <!-- Trinene i hver fase – kun den aktive fase vises
+                    aria-controls kobler hvert trin til sit indhold nedenfor via id, så skærmlæsere ved, hvilket indhold knappen viser -->
                     <div class="step-tabs" role="tablist" aria-label="Trin i opgaven"
                         v-show="activePhase === 'opgaven'">
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-brief"
                             :class="{ 'is-active': activeStep === 'brief' }" :aria-selected="activeStep === 'brief'"
                             @click="selectStep('brief')">
                             Brief
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-afgraensning"
                             :class="{ 'is-active': activeStep === 'afgraensning' }"
                             :aria-selected="activeStep === 'afgraensning'" @click="selectStep('afgraensning')">
                             Afgrænsning og værktøjer
@@ -120,22 +122,22 @@
                     </div>
                     <div class="step-tabs" role="tablist" aria-label="Trin i udvikling"
                         v-show="activePhase === 'udvikling'">
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-struktur"
                             :class="{ 'is-active': activeStep === 'struktur' }"
                             :aria-selected="activeStep === 'struktur'" @click="selectStep('struktur')">
                             Struktur og data
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-styling"
                             :class="{ 'is-active': activeStep === 'styling' }" :aria-selected="activeStep === 'styling'"
                             @click="selectStep('styling')">
                             Styling
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-filtrering"
                             :class="{ 'is-active': activeStep === 'filtrering' }"
                             :aria-selected="activeStep === 'filtrering'" @click="selectStep('filtrering')">
                             Filtrering
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-tilgaengelighed"
                             :class="{ 'is-active': activeStep === 'tilgaengelighed' }"
                             :aria-selected="activeStep === 'tilgaengelighed'" @click="selectStep('tilgaengelighed')">
                             Interaktivitet og tilgængelighed
@@ -143,12 +145,12 @@
                     </div>
                     <div class="step-tabs" role="tablist" aria-label="Trin i deployment"
                         v-show="activePhase === 'deployment'">
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-github"
                             :class="{ 'is-active': activeStep === 'github' }" :aria-selected="activeStep === 'github'"
                             @click="selectStep('github')">
                             GitHub
                         </button>
-                        <button class="step-tab" type="button" role="tab"
+                        <button class="step-tab" type="button" role="tab" aria-controls="step-build"
                             :class="{ 'is-active': activeStep === 'build' }" :aria-selected="activeStep === 'build'"
                             @click="selectStep('build')">
                             Build og server
@@ -159,7 +161,7 @@
 
                     <!-- 01 Opgaven -->
                     <!-- v-show viser kun det valgte trin. Kilde: https://vuejs.org/guide/essentials/conditional -->
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'brief'">
+                    <div class="case-step" id="step-brief" role="tabpanel" v-show="activeStep === 'brief'">
                         <div class="case-step-text">
                             <h3>Brief</h3>
                             <p>Opgaven var at bygge en jobliste, der lå så tæt på det udleverede design som muligt. Til
@@ -194,9 +196,10 @@
                                 </span>
                             </button>
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'afgraensning'">
+                    <div class="case-step" id="step-afgraensning" role="tabpanel"
+                        v-show="activeStep === 'afgraensning'">
                         <div class="case-step-text">
                             <h3>Afgrænsning og valg af værktøjer</h3>
                             <p>Designet var udleveret, så projektet fokuserede på udvikling frem for research og
@@ -219,11 +222,11 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
 
                     <!-- 02 Udvikling -->
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'struktur'">
+                    <div class="case-step" id="step-struktur" role="tabpanel" v-show="activeStep === 'struktur'">
                         <div class="case-step-text">
                             <h3>Struktur og data</h3>
                             <p>Før jeg begyndte at style, byggede jeg sidens struktur og fik dataen vist. JSON-filen
@@ -266,9 +269,9 @@
                                 </span>
                             </button>
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'styling'">
+                    <div class="case-step" id="step-styling" role="tabpanel" v-show="activeStep === 'styling'">
                         <div class="case-step-text">
                             <h3>Styling</h3>
                             <p>Farver fra style guiden blev opsat som variabler i <code>:root</code>, så de kunne
@@ -307,9 +310,9 @@
                                 </span>
                             </button>
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'filtrering'">
+                    <div class="case-step" id="step-filtrering" role="tabpanel" v-show="activeStep === 'filtrering'">
                         <div class="case-step-text">
                             <h3>Filtrering</h3>
                             <p>En stor del af opgaven handlede om, at brugeren skulle kunne filtrere jobbene. Jeg
@@ -344,9 +347,10 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'tilgaengelighed'">
+                    <div class="case-step" id="step-tilgaengelighed" role="tabpanel"
+                        v-show="activeStep === 'tilgaengelighed'">
                         <div class="case-step-text">
                             <h3>Interaktivitet og tilgængelighed</h3>
                             <p>Tags og knapper blev bygget som native <code>&lt;button&gt;</code>-elementer frem for
@@ -379,11 +383,11 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
 
                     <!-- 03 Deployment -->
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'github'">
+                    <div class="case-step" id="step-github" role="tabpanel" v-show="activeStep === 'github'">
                         <div class="case-step-text">
                             <h3>GitHub</h3>
                             <p>Projektet blev versionsstyret med Git og lagt i et repository på GitHub. Jeg arbejdede
@@ -405,9 +409,9 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
 
-                    <article class="case-step" role="tabpanel" v-show="activeStep === 'build'">
+                    <div class="case-step" id="step-build" role="tabpanel" v-show="activeStep === 'build'">
                         <div class="case-step-text">
                             <h3>Build og server</h3>
                             <p>Vue-komponenter kan ikke læses direkte af browseren, så løsningen skulle bygges, før den
@@ -434,7 +438,7 @@
                                 <i class="fa-solid fa-expand" aria-hidden="true"></i>
                             </span>
                         </button>
-                    </article>
+                    </div>
                 </div>
             </section>
 
@@ -443,7 +447,7 @@
                 <button class="image-modal-close" type="button" aria-label="Luk billedet">
                     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
-                <img class="image-modal-img" src="" alt="">
+                <!-- Billedet sættes ind her med JavaScript (app.js), når man klikker på et billede -->
                 <p class="image-modal-caption"></p>
             </dialog>
         </main>
