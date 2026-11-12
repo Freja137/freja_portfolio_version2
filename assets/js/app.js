@@ -229,77 +229,50 @@ if (cursor) {
 }
 
 /* ----- Billed-modal ----- */
-/* Kilde: https://www.w3schools.com/howto/howto_css_modal_images.asp */
-// Henter modalen fra DOM'en
-const imageModal = document.querySelector(".image-modal");
+/* Inspiration: https://www.w3schools.com/howto/howto_css_modal_images.asp
+   I stedet for display: block/none bruger jeg <dialog> med showModal() og close(), så modalen kan lukkes med Escape, og fokus bliver i modalen.*/
+
+// Henter modalen
+const modal = document.querySelector(".image-modal");
 
 // Koden kører kun på sider med en modal
-if (imageModal) {
-    // Billedet, krydset og billedteksten inde i modalen gemmes i variabler
-    const modalImg = imageModal.querySelector(".image-modal-img");
-    const closeButton = imageModal.querySelector(".image-modal-close");
-    const modalCaption = imageModal.querySelector(".image-modal-caption");
+if (modal) {
+    // Henter billedet og billedteksten inde i modalen
+    const modalImg = modal.querySelector(".image-modal-img");
+    const captionText = modal.querySelector(".image-modal-caption");
 
-    // Åbner modalen med det billede, man trykker på
-    document.querySelectorAll(".image-zoom").forEach((button) => {
-        button.addEventListener("click", () => {
-            const img = button.querySelector("img");
+    // Henter alle knapperne med billeder på siden
+    const images = document.querySelectorAll(".image-zoom");
 
+    // Når man klikker på et billede, åbnes modalen med billedet, og alt-teksten bruges som billedtekst
+    images.forEach((button) => {
+        button.onclick = function () {
+            // this er den knap, man klikkede på – billedet ligger inde i knappen
+            const img = this.querySelector("img");
+
+            modal.showModal();
             // Bruger modal-billedet fra data-full, hvis der er et, ellers det samme som på siden
             modalImg.src = img.dataset.full || img.src;
             modalImg.alt = img.alt;
-
-            // Billedteksten under billedet er billedets alt-tekst
-            modalCaption.textContent = img.alt;
-
-            // Åbner modalen
-            imageModal.showModal();
-        });
+            captionText.textContent = img.alt;
+        };
     });
 
-    // Lukker med krydset
-    closeButton.addEventListener("click", () => {
-        imageModal.close();
-    });
+    // Henter krydset, der lukker modalen
+    const closeButton = modal.querySelector(".image-modal-close");
 
-    // Lukker, når man trykker uden for billedet – altså på selve baggrunden
-    imageModal.addEventListener("click", (e) => {
-        if (e.target === imageModal) {
-            imageModal.close();
+    // Når man klikker på krydset, lukkes modalen
+    closeButton.onclick = function () {
+        modal.close();
+    };
+
+    // Lukker også, når man klikker på baggrunden uden om billedet
+    modal.onclick = function (event) {
+        if (event.target === modal) {
+            modal.close();
         }
-    });
-
-    // Klik på billedet zoomer ind det sted, man klikker
-    modalImg.addEventListener("click", (e) => {
-        moveZoom(e);
-        modalImg.classList.toggle("is-zoomed");
-    });
-
-    // Mens billedet er zoomet, følger det musen
-    modalImg.addEventListener("mousemove", (e) => {
-        // Tjekker, om billedet har klassen is-zoomed. Den får klassen, når man klikker på det.
-        if (modalImg.classList.contains("is-zoomed")) {
-            // Hvis ovenstående er sandt, køres moveZoom(e), så zoomet følger musen
-            moveZoom(e);
-        }
-    });
-
-    // Finder ud af, hvor på billedet musen er i procent, og zoomer ind omkring det punkt
-    function moveZoom(e) {
-        // Musens afstand fra billedets venstre kant og top, delt med billedets bredde og højde
-        const x = (e.offsetX / modalImg.offsetWidth) * 100;
-        const y = (e.offsetY / modalImg.offsetHeight) * 100;
-
-        // Zoomet tager udgangspunkt i det punkt
-        modalImg.style.transformOrigin = `${x}% ${y}%`;
-    }
-
-    // Zoomer ud igen, når modalen lukkes
-    imageModal.addEventListener("close", () => {
-        modalImg.classList.remove("is-zoomed");
-    });
+    };
 }
-
 /* ----- Typing-effekt i kodekortet på forsiden ----- */
 //  Koden i kortet bliver skrevet ét bogstav ad gangen. Inspiration: https://www.w3schools.com/howto/howto_js_typewriter.asp
 

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Alle stier på siden starter fra roden af domænet, så CSS, billeder og links også virker, når 404-siden vises på en adresse som /mappe/side-der-ikke-findes -->
+    <base href="/">
+    <title>Portfolio | Siden findes ikke</title>
+    <meta name="description" content="Siden kunne ikke findes. Gå til forsiden eller se Freja Fischers projekter.">
+    <!-- Søgemaskiner skal ikke vise 404-siden i deres resultater -->
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script type="module" src="./assets/js/main.js"></script>
+    <script src="./assets/js/app.js" defer></script>
+</head>
+
+<body>
+    <!-- Alt ligger i <div id="app">, fordi det er her, Vue starter (.mount("#app")). Vue kan kun styre indholdet inde i den, så header og footer skal ligge her -->
+    <div id="app">
+        <!-- Custom cursor -->
+        <div class="cursor" aria-hidden="true">
+            <div class="cursor-inner"></div>
+        </div>
+
+        <!-- Header indsættes med Vue -->
+        <the-header></the-header>
+
+        <main class="main-home">
+            <section class="error-page" aria-labelledby="error-title">
+                <div class="error-intro">
+                    <p class="section-label">404 – Siden findes ikke</p>
+                    <h1 class="error-title" id="error-title">Jeg kan godt lide at samarbejde. Nogen her er uenig.</h1>
+                    <p class="error-text">Siden kunne ikke findes – hvem giver du skylden?</p>
+
+                    <div class="error-links">
+                        <a class="text-link" href="./index.html">
+                            Gå til forsiden
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 12.013L20.789 12m-6.776 7L21 12l-6.988-7" />
+                            </svg>
+                        </a>
+                        <a class="text-link" href="./portfolio.html">
+                            Se mine projekter
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 12.013L20.789 12m-6.776 7L21 12l-6.988-7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Valget af skyldig er lavet med radioknapper, så det virker uden JavaScript.
+                     Man kan vælge med musen eller med piletasterne, og teksten under kortet vises med :has() i CSS'en -->
+                <fieldset class="blame">
+                    <legend class="visually-hidden">Hvem giver du skylden?</legend>
+
+                    <div class="blame-option">
+                        <label class="blame-card">
+                            <input class="visually-hidden" type="radio" name="blame" value="koden">
+                            <span class="blame-name">Koden</span>
+                            <span class="blame-icon" aria-hidden="true">
+                                <i class="fa-solid fa-chevron-left"></i>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </label>
+                        <p class="blame-text">Du har givet koden skylden. Et semikolon er stukket af, og et komma er
+                            hovedmistænkt.</p>
+                    </div>
+
+                    <div class="blame-option">
+                        <label class="blame-card">
+                            <input class="visually-hidden" type="radio" name="blame" value="freja">
+                            <span class="blame-name">Freja</span>
+                            <!-- Billedet er pynt – navnet "Freja" står allerede i kortet, så alt-teksten er tom -->
+                            <img class="blame-image" src="./assets/img/kontakt.png"
+                                alt="Freja der sidder og peger hen til at give koden skylden">
+                        </label>
+                        <p class="blame-text">Du har givet Freja skylden. Hun er blevet sat til at genstarte hele
+                            siden.</p>
+                    </div>
+                </fieldset>
+            </section>
+        </main>
+
+        <!-- Footer indsættes med Vue -->
+        <the-footer></the-footer>
+    </div>
+</body>
+
+</html>
