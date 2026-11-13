@@ -243,9 +243,13 @@ const modal = document.querySelector(".image-modal");
 
 // Koden kører kun på sider med en modal
 if (modal) {
-    // Henter billedet og billedteksten inde i modalen
-    const modalImg = modal.querySelector(".image-modal-img");
+    // Henter billedteksten inde i modalen
     const captionText = modal.querySelector(".image-modal-caption");
+
+    // Laver billedet til modalen og sætter det ind lige før billedteksten – src sættes først, når man klikker på et billede
+    const modalImg = document.createElement("img");
+    modalImg.className = "image-modal-img";
+    modal.insertBefore(modalImg, captionText);
 
     // Henter alle knapperne med billeder på siden
     const images = document.querySelectorAll(".image-zoom");

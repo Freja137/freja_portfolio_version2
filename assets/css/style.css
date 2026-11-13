@@ -17,7 +17,7 @@
     --mediumPadding: 40px;
     --largePadding: 80px;
     --page-padding: 50px;
-    --page-max-width: 1400px;
+    --page-max-width: 1300px;
     --section-space: 100px;
     --header-height: 60px;
 }
@@ -1801,10 +1801,17 @@ body.menu-open {
 }
 
 @media (min-width: 1100px) {
+    :root {
+        --h1-size: 70px;
+    }
 
     /* Generel styling */
     .main-home>section+section {
         margin-top: var(--section-space);
+    }
+
+    .main-home>section.case-hero+section {
+        margin-top: var(--mediumPadding);
     }
 
     /* Billed-modal – større billede på desktop */
@@ -1831,11 +1838,16 @@ body.menu-open {
         margin-top: var(--section-space);
     }
 
-    /* Forside – hero i to kolonner */
+    /* Forside – hero i to kolonner, der fylder pladsen over marqueen */
+    .home-hero {
+        display: flex;
+        flex-direction: column;
+    }
+
     .home-hero-layout {
+        flex: 1;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         column-gap: var(--largePadding);
-        min-height: 640px;
     }
 
     .home-hero-content {
@@ -1855,7 +1867,7 @@ body.menu-open {
 
     .hero-portrait {
         width: 65%;
-        max-height: 650px;
+        max-height: 100%;
     }
 
     /* Forside – kort om mig */
@@ -1867,8 +1879,23 @@ body.menu-open {
         font-size: 3.5rem;
     }
 
-    .main-home>section.page-hero {
-        padding-top: var(--largePadding);
+    /* Den første sektion fylder skærmens højde minus headeren – Kontakt har sin egen regel */
+    .main-home>section.home-hero,
+    .main-home>section.page-hero,
+    .main-home>section.case-hero,
+    .main-home>section.error-page {
+        min-height: calc(100svh - var(--header-height));
+    }
+
+    /* Lidt luft i bunden, så indholdet ikke rammer kanten af skærmen */
+    .main-home>section.home-hero {
+        padding-bottom: var(--mediumPadding);
+    }
+
+    .main-home>section.page-hero,
+    .main-home>section.case-hero,
+    .main-home>section.error-page {
+        padding-block: var(--mediumPadding) var(--largePadding);
     }
 
     .page-hero {
@@ -1884,8 +1911,7 @@ body.menu-open {
     }
 
     .page-hero h1 {
-        margin: 0 0 var(--largePadding);
-        font-size: 70px;
+        margin-bottom: var(--largePadding);
     }
 
     .page-nav {
@@ -1896,8 +1922,16 @@ body.menu-open {
         margin-top: 0;
     }
 
+    /* Billedet fylder kolonnen uden at gøre sektionen højere */
+    .page-hero-media {
+        position: relative;
+    }
+
     .page-hero-media img {
-        aspect-ratio: 1 / 1;
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        aspect-ratio: auto;
     }
 
     /* Kompetencer – citat */
@@ -1968,10 +2002,12 @@ body.menu-open {
     }
 
     /* Case study – intro */
+    /* Indholdet står i midten af den høje sektion */
     .case-hero {
         grid-template-columns: 1fr 1fr;
         column-gap: var(--largePadding);
         align-items: start;
+        align-content: center;
     }
 
     .case-hero-text {
@@ -2049,7 +2085,7 @@ body.menu-open {
     }
 
     .error-title {
-        font-size: 5rem;
+        font-size: var(--h1-size);
     }
 
     .blame {
